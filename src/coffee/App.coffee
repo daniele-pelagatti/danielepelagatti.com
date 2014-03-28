@@ -75,8 +75,10 @@ class App
 				success : @onConfigLoaded
 				error : @onConfigError
 			)
+			ga('send', 'event', 'webgl-test', 'passed');
 		else
 			# we cannot continue, no webgl support
+			ga('send', 'event', 'webgl-test', 'failed');
 
 	checkWebGL:->
 		ua = navigator.userAgent.toLowerCase()
@@ -122,7 +124,9 @@ class App
 		null
 
 	onCloseClick:=>
+		ga('send', 'event', 'close-page-button', 'click');
 		@unfocus()
+
 
 	onPopStateChange:(event)=>
 		return if !event.originalEvent.state?;
@@ -218,7 +222,9 @@ class App
 		if !@overObject?
 			# required to unfocus ( click outside focused plane )
 			@handleFocus();
+			ga('send', 'event', '3d-empty-space', 'click');
 			return;
+		ga('send', 'event', '3d-plane:'+@overObject.link, 'click');
 		@handlePushState(@overObject.link)
 
 	handlePushState:(path)=>
@@ -688,7 +694,7 @@ class App
 		@pickMouseX = ( (mx - @CONTAINER_X) / @SCREEN_WIDTH ) * 2 - 1;			
 		@pickMouseY = - ( my / @SCREEN_HEIGHT ) * 2 + 1;	
 
-		console.log("MOVE")
+		# console.log("MOVE")
 
 	animate:()=>
 		requestAnimationFrame( @animate );
@@ -720,7 +726,11 @@ class App
 				@handlePicking(intersects[ 0 ].object)
 			else 
 				# doesn't intersect
-				if ( @overObject ) 
+				if @overObject
+					# if !@isFocused
+					# 	console.log("OUT: "+@overObject.link)
+					# 	ga('send', 'event', '3d-plane:'+@overObject.link, 'out');
+					
 					TweenMax.to( @overObject.material.uniforms.ovelay_unfocused_alpha, 1, {value:1} );
 				@overObject = null;
 
@@ -733,15 +743,20 @@ class App
 	handlePicking:(object)=>
 		if @overObject != object
 			# intersects and it's different from before
-			if ( @overObject ) 
+			if @overObject
 				TweenMax.to( @overObject.material.uniforms.ovelay_unfocused_alpha, 1, {value:1} );	
+				# if !@isFocused
+				# 	ga('send', 'event', '3d-plane:'+@overObject.link, 'out');
+				# 	console.log("OUT: "+@overObject.link)
 
 			if @excludeFromPicking.indexOf(object.name) == -1 
 				# filter picked objects
-				@overObject = object;			
+				@overObject = object;
 				TweenMax.to( @overObject.material.uniforms.ovelay_unfocused_alpha, 1, {value:0} );
+				if !@isFocused
+					ga('send', 'event', '3d-plane:'+@overObject.link, 'over');
+					# console.log("OVER: "+@overObject.link)
 			else
-				# picked object is excluded
 				@overObject = null;
 		else
 			# intersects but it's no different from before

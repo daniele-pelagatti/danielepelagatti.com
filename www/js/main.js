@@ -130,8 +130,9 @@
           success: this.onConfigLoaded,
           error: this.onConfigError
         });
+        ga('send', 'event', 'webgl-test', 'passed');
       } else {
-
+        ga('send', 'event', 'webgl-test', 'failed');
       }
     }
 
@@ -169,6 +170,7 @@
     };
 
     App.prototype.onCloseClick = function() {
+      ga('send', 'event', 'close-page-button', 'click');
       return this.unfocus();
     };
 
@@ -255,8 +257,10 @@
     App.prototype.on3DSceneMouseClick = function(event) {
       if (this.overObject == null) {
         this.handleFocus();
+        ga('send', 'event', '3d-empty-space', 'click');
         return;
       }
+      ga('send', 'event', '3d-plane:' + this.overObject.link, 'click');
       return this.handlePushState(this.overObject.link);
     };
 
@@ -680,8 +684,7 @@
       this.mouseX = ((mx - this.CONTAINER_X) - this.windowHalfX) * 0.5;
       this.mouseY = (my - this.windowHalfY) * 0.5;
       this.pickMouseX = ((mx - this.CONTAINER_X) / this.SCREEN_WIDTH) * 2 - 1;
-      this.pickMouseY = -(my / this.SCREEN_HEIGHT) * 2 + 1;
-      return console.log("MOVE");
+      return this.pickMouseY = -(my / this.SCREEN_HEIGHT) * 2 + 1;
     };
 
     App.prototype.animate = function() {
@@ -735,9 +738,12 @@
         }
         if (this.excludeFromPicking.indexOf(object.name) === -1) {
           this.overObject = object;
-          return TweenMax.to(this.overObject.material.uniforms.ovelay_unfocused_alpha, 1, {
+          TweenMax.to(this.overObject.material.uniforms.ovelay_unfocused_alpha, 1, {
             value: 0
           });
+          if (!this.isFocused) {
+            return ga('send', 'event', '3d-plane:' + this.overObject.link, 'over');
+          }
         } else {
           return this.overObject = null;
         }
