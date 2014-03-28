@@ -12,7 +12,7 @@ tags:       daniele,pelagatti,interactive,developer
 # [Planters: Power Of The Peanut](http://www.powerofthepeanut.com/) #
 ## Front End Developer ##
 
-[ ![](#{base}img/power_of_the_peanut.jpg "Optional title") ]((http://www.powerofthepeanut.com/)
+[![](#{base}img/power_of_the_peanut.jpg "Optional title")](http://www.powerofthepeanut.com/)
 
 Power of the Peanut is an interactive HTML5 microsite built to introduce the people of America to the nutritional power of peanuts.
 
