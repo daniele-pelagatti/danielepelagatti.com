@@ -1,0 +1,560 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"menu",
+				"menu-width"
+			],
+			[
+				"SCREE",
+				"SCREEN_WIDTH"
+			],
+			[
+				"tran",
+				"transition"
+			],
+			[
+				"target",
+				"targetName"
+			],
+			[
+				"grun",
+				"gruntConfig"
+			],
+			[
+				"langua",
+				"languageConfig"
+			],
+			[
+				"current",
+				"currentHistoryState"
+			],
+			[
+				"language",
+				"languageLink"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"overflo",
+				"overflow-y"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"newpa",
+				"newPathArr"
+			],
+			[
+				"href",
+				"hrefArr"
+			],
+			[
+				"font-",
+				"font-weight"
+			],
+			[
+				"get",
+				"getFocusedPagePosition"
+			],
+			[
+				"camera",
+				"cameraLookAt"
+			],
+			[
+				"visi",
+				"visited"
+			],
+			[
+				"wor",
+				"word-spacing"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"paddin",
+				"padding"
+			],
+			[
+				"borde",
+				"border"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"over",
+				"overflow-y"
+			],
+			[
+				"Vector",
+				"Vector3"
+			],
+			[
+				"grunt",
+				"gruntGonfig"
+			],
+			[
+				"ab",
+				"absolute"
+			],
+			[
+				"po",
+				"position"
+			],
+			[
+				"fon",
+				"font-variant"
+			],
+			[
+				"sa",
+				"saturation	saturation()"
+			],
+			[
+				"jade",
+				"jadeFiles"
+			],
+			[
+				"focu",
+				"focus_balance"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "danielepelagatti.sublime-project",
+			"settings":
+			{
+				"buffer_size": 73,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"mark",
+				"Snippet: Markdown_image_(mdi)"
+			],
+			[
+				"markdown",
+				"Snippet: Markdown_image_(mdi)"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"markdo",
+				"Markdown Preview: Github Flavored Markdown: Preview in Browser"
+			],
+			[
+				"grunt",
+				"Grunt"
+			],
+			[
+				"gru",
+				"Grunt"
+			]
+		],
+		"width": 576.0
+	},
+	"console":
+	{
+		"height": 175.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/.gitignore",
+		"/C/Users/dani/Dropbox/sito_3d/src/jade/head.jade",
+		"/C/Users/dani/AppData/Local/Temp/fz3temp-1/.htaccess",
+		"/C/Users/dani/Dropbox/sito_3d/src/jade/tail.jade",
+		"/C/Users/dani/Dropbox/sito_3d/src/coffee/App.coffee",
+		"/C/Users/dani/Dropbox/sito_3d/src/jade/default.en.jade",
+		"/C/Users/dani/Dropbox/sito_3d/src/jade/default.it.jade",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/index.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/index.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/jameson1780.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/jameson1780.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/loro-piana.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/loro-piana.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/mcdonalds-happy-meal.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/mcdonalds-happy-meal.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/philips-parallel-lines.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/philips-parallel-lines.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/planters-power-of-the-peanuts.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/planters-power-of-the-peanuts.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/rifle-jeans-installation.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/rifle-jeans-installation.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/www/config.json",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/silk-reunite-the-river.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/silk-reunite-the-river.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/tivitz.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/tivitz.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/toshiba-journey-of-innovation.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/toshiba-journey-of-innovation.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/wellcome-collection-heart-exhibition.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/wellcome-collection-heart-exhibition.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/hermes-8ties.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/hermes-8ties.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/heineken-know-the-sign.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/heineken-know-the-sign.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/fruit-shoot-champion-of-the-playground.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/fruit-shoot-champion-of-the-playground.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/att-digital-world.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/carphone-warehouse-xfactor-2008.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/carphone-warehouse-xfactor-2008.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/cheetos-mix-ups-cheetahpult.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/cheetos-mix-ups-cheetahpult.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/comcast-town.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/comcast-town.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/drench-water-brains-dance.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/drench-water-brains-dance.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/find-your-way-to-oz.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/find-your-way-to-oz.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/Gruntfile.coffee",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/adobe-adweek.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/adobe-adweek.it.md",
+		"/C/Users/dani/Dropbox/sito_3d/src/markdown/att-digital-world.en.md",
+		"/C/Users/dani/Dropbox/sito_3d/www/index.html",
+		"/C/Users/dani/Dropbox/sito_3d/package.json",
+		"/C/Users/dani/Dropbox/sito_3d/convert.html",
+		"/C/Users/dani/Dropbox/sito_3d/src/compass/_typeplate.scss",
+		"/C/Users/dani/Dropbox/sito_3d/src/compass/main.sass",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/compass/_vars-typeplate.scss",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/find-your-way-to-oz.en.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/find-your-way-to-oz.it.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/cheetos-mix-ups-cheetahpult.en.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/cheetos-mix-ups-cheetahpult.it.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/compass/main.sass",
+		"/D/Dropbox (unit9 italy)/sito_3d/www/css/main.css",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/compass/_typeplate.scss",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/coffee/main.coffee",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/jade/head.jade",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/silk-reunite-the-river.en.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/coffee/App.coffee",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/jade/default.en.jade",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/jade/default.it.jade",
+		"/D/Dropbox (unit9 italy)/sito_3d/three.js-master/README.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/Gruntfile.coffee",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/comcast-town.en.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/comcast-town.it.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/carphone-warehouse-xfactor-2008.en.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/carphone-warehouse-xfactor-2008.it.md",
+		"/D/Users/User/Desktop/olivari/app/src/olivari/.project",
+		"/H/Crack/core.nfo",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/H/Crack/readme.txt",
+		"/D/Dropbox (unit9 italy)/sito_3d/www/js/main.min.js",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/fruit-shoot-champion-of-the-playground.it.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/fruit-shoot-champion-of-the-playground.en.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/index.en.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/index.it.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/tivitz.en.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/tivitz.it.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/silk-reunite-the-river.it.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/loro-piana.en.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/mcdonalds-happy-meal.en.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/mcdonalds-happy-meal.it.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/loro-piana.it.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/philips-parallel-lines.en.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/philips-parallel-lines.it.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/www/js/libs/modernizr.js",
+		"/D/Dropbox (unit9 italy)/sito_3d/www/js/libs/modernizr.dev.js",
+		"/D/Dropbox (unit9 italy)/sito_3d/converted.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/convert.html",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/vlc-flex-http-interface.it.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/vlc-flex-http-interface.en.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/convert.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/www/config.json",
+		"/D/Users/User/Desktop/Nuovo documento di testo.txt",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/compass/bourbon/_bourbon.scss",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/jade/index.jade",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/jade/test.jade",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/jade/header.jade",
+		"/D/Dropbox (unit9 italy)/sito_3d/www/js/libs/TweenMax.min.js",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/compass/_normalize.scss",
+		"/D/Users/User/Desktop/Main.as",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/jade/www/test.jade",
+		"/D/Dropbox (unit9 italy)/sito_3d/pages/VLC-Flex-HTTP-Interface.md",
+		"/C/Users/User/AppData/Roaming/Sublime Text 3/Packages/MarkdownEditing/MultiMarkdown.sublime-settings",
+		"/C/Users/User/AppData/Roaming/Sublime Text 3/Packages/MarkdownEditing/Markdown (Standard).sublime-settings",
+		"/D/Dropbox (unit9 italy)/sito_3d/www/test.html",
+		"/D/Dropbox (unit9 italy)/sito_3d/pages/Silk-Reunite-the-River.md",
+		"/D/Dropbox (unit9 italy)/sito_3d/package.json",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/jade/www/index.jade",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/glsl/PlaneShader.frag",
+		"/D/Dropbox (unit9 italy)/sito_3d/index.html",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/compass/reset.sass",
+		"/D/Dropbox (unit9 italy)/sito_3d/test.html",
+		"/D/Dropbox (unit9 italy)/sito_3d/src/glsl/PlaneShader.vert",
+		"/D/Dropbox (unit9 italy)/sito_3d/js/libs/rasterizeHTML.allinone2.js",
+		"/D/Dropbox (unit9 italy)/sito_3d/node_modules/grunt-glsl/tasks/glsl.coffee",
+		"/D/Dropbox (unit9 italy)/sito_3d/new.html",
+		"/D/Dropbox (unit9 italy)/sito_3d/grunt-glsl/tasks/glsl.js",
+		"/D/Dropbox (unit9 italy)/sito_3d/node_modules/grunt-coffee-percolator-v2/README.md"
+	],
+	"find":
+	{
+		"height": 22.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"D:\\Dropbox (unit9 italy)\\sito_3d\\src"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"pop",
+			"showLoading",
+			"delayID",
+			"onMouseMove",
+			"onDocumentMouseMove",
+			"css-hyphens",
+			"hyph",
+			"hype",
+			"999999",
+			"16",
+			"14",
+			"type-scale",
+			"p ",
+			"type-scale",
+			"font-base",
+			"h1",
+			"$font-size",
+			"font-size",
+			"14",
+			"indent-val",
+			"transition",
+			"parallel_lines_me",
+			"on3DSceneMouseClick",
+			"onDocumentMouseMove",
+			"span",
+			"unit9",
+			"CONTAINER_X",
+			"MENU_WIDTH",
+			"\"menu\"",
+			"MENU_WIDTH",
+			".javascript",
+			"windowHalfX",
+			"- @MENU_WIDTH",
+			"SCREEN_WIDTH",
+			"innerWidth",
+			"SCREEN_WIDTH",
+			"languageLinks",
+			"pageVersions",
+			"pagePermalink",
+			"page",
+			"$(document).ready ->\n	window.app = new App();",
+			"page-content",
+			"page-container",
+			"distance",
+			"vars",
+			"1em",
+			"mixin",
+			"type-scale-unit-value",
+			"value",
+			"type-scale",
+			"font-base",
+			"type-scale",
+			"18",
+			"amp-fontface-name",
+			"page-container",
+			"pagePermalink",
+			"onPageLoaded",
+			"gruntGonfig",
+			"onOverlayLoaded",
+			"common",
+			"UniformsLib",
+			"Vector3String",
+			"rota",
+			"D:/Dropbox (unit9 italy)/sito_3d",
+			"D:/Dropbox (unit9 italy)/sito_3d/images",
+			"D:/Dropbox (unit9 italy)/sito_3d",
+			"180",
+			"getRadians",
+			"rota",
+			"order",
+			"\\images\\",
+			"file://D:/Dropbox (unit9 italy)/sito_3d",
+			"D:/Dropbox (unit9 italy)/sito_3d",
+			"emissive",
+			"D:/Dropbox (unit9 italy)/sito_3d",
+			"\"ambient\"  : 0",
+			"D:/Dropbox (unit9 italy)/sito_3d",
+			"camera",
+			"D:/Dropbox (unit9 italy)/sito_3d",
+			"D:/Dropbox (unit9 italy)/sito_3d/",
+			"materia",
+			"callbackMale",
+			"consol"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "danielepelagatti.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 73,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								73,
+								73
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "danielepelagatti.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 393.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -1,0 +1,175 @@
+newmtl pPlaneShape1_bakedmtl1SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape1.png
+Ni 1.00
+newmtl pPlaneShape2_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape2.png
+Ni 1.00
+newmtl pPlaneShape3_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape3.png
+Ni 1.00
+newmtl pPlaneShape4_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape4.png
+Ni 1.00
+newmtl pPlaneShape5_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape5.png
+Ni 1.00
+newmtl pPlaneShape6_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape6.png
+Ni 1.00
+newmtl pPlaneShape7_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape7.png
+Ni 1.00
+newmtl pPlaneShape8_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape8.png
+Ni 1.00
+newmtl pPlaneShape9_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape9.png
+Ni 1.00
+newmtl pPlaneShape10_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape10.png
+Ni 1.00
+newmtl pPlaneShape11_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape11.png
+Ni 1.00
+newmtl pPlaneShape12_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape12.png
+Ni 1.00
+newmtl pPlaneShape13_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape13.png
+Ni 1.00
+newmtl pPlaneShape14_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape14.png
+Ni 1.00
+newmtl pPlaneShape15_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape15.png
+Ni 1.00
+newmtl pPlaneShape16_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape16.png
+Ni 1.00
+newmtl pPlaneShape17_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape17.png
+Ni 1.00
+newmtl pPlaneShape18_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape18.png
+Ni 1.00
+newmtl pPlaneShape19_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape19.png
+Ni 1.00
+newmtl pPlaneShape20_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape20.png
+Ni 1.00
+newmtl pPlaneShape21_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape21.png
+Ni 1.00
+newmtl pPlaneShape22_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape22.png
+Ni 1.00
+newmtl pPlaneShape23_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape23.png
+Ni 1.00
+newmtl pPlaneShape24_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape24.png
+Ni 1.00
+newmtl pPlaneShape25_bakedmtlSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd baked-pPlaneShape25.png
+Ni 1.00

@@ -1,0 +1,2445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset><contributor><author></author><authoring_tool>FBX COLLADA exporter</authoring_tool><comments></comments></contributor><created>2014-03-14T00:32:36Z</created><keywords></keywords><modified>2014-03-14T00:32:36Z</modified><revision></revision><subject></subject><title></title><unit meter="0.010000" name="centimeter"></unit><up_axis>Y_UP</up_axis></asset>
+  <library_images>
+    <image id="scene_baked_pPlaneShape25_bakedtex-image" name="scene_baked_pPlaneShape25_bakedtex"><init_from>../images/baked-pPlaneShape25.png</init_from></image>
+    <image id="scene_baked_pPlaneShape24_bakedtex-image" name="scene_baked_pPlaneShape24_bakedtex"><init_from>../images/baked-pPlaneShape24.png</init_from></image>
+    <image id="scene_baked_pPlaneShape23_bakedtex-image" name="scene_baked_pPlaneShape23_bakedtex"><init_from>../images/baked-pPlaneShape23.png</init_from></image>
+    <image id="scene_baked_pPlaneShape22_bakedtex-image" name="scene_baked_pPlaneShape22_bakedtex"><init_from>../images/baked-pPlaneShape22.png</init_from></image>
+    <image id="scene_baked_pPlaneShape21_bakedtex-image" name="scene_baked_pPlaneShape21_bakedtex"><init_from>../images/baked-pPlaneShape21.png</init_from></image>
+    <image id="scene_baked_pPlaneShape20_bakedtex-image" name="scene_baked_pPlaneShape20_bakedtex"><init_from>../images/baked-pPlaneShape20.png</init_from></image>
+    <image id="scene_baked_pPlaneShape19_bakedtex-image" name="scene_baked_pPlaneShape19_bakedtex"><init_from>../images/baked-pPlaneShape19.png</init_from></image>
+    <image id="scene_baked_pPlaneShape18_bakedtex-image" name="scene_baked_pPlaneShape18_bakedtex"><init_from>../images/baked-pPlaneShape18.png</init_from></image>
+    <image id="scene_baked_pPlaneShape17_bakedtex-image" name="scene_baked_pPlaneShape17_bakedtex"><init_from>../images/baked-pPlaneShape17.png</init_from></image>
+    <image id="scene_baked_pPlaneShape16_bakedtex-image" name="scene_baked_pPlaneShape16_bakedtex"><init_from>../images/baked-pPlaneShape16.png</init_from></image>
+    <image id="scene_baked_pPlaneShape15_bakedtex-image" name="scene_baked_pPlaneShape15_bakedtex"><init_from>../images/baked-pPlaneShape15.png</init_from></image>
+    <image id="scene_baked_pPlaneShape14_bakedtex-image" name="scene_baked_pPlaneShape14_bakedtex"><init_from>../images/baked-pPlaneShape14.png</init_from></image>
+    <image id="scene_baked_pPlaneShape13_bakedtex-image" name="scene_baked_pPlaneShape13_bakedtex"><init_from>../images/baked-pPlaneShape13.png</init_from></image>
+    <image id="scene_baked_pPlaneShape12_bakedtex-image" name="scene_baked_pPlaneShape12_bakedtex"><init_from>../images/baked-pPlaneShape12.png</init_from></image>
+    <image id="scene_baked_pPlaneShape11_bakedtex-image" name="scene_baked_pPlaneShape11_bakedtex"><init_from>../images/baked-pPlaneShape11.png</init_from></image>
+    <image id="scene_baked_pPlaneShape10_bakedtex-image" name="scene_baked_pPlaneShape10_bakedtex"><init_from>../images/baked-pPlaneShape10.png</init_from></image>
+    <image id="scene_baked_pPlaneShape9_bakedtex-image" name="scene_baked_pPlaneShape9_bakedtex"><init_from>../images/baked-pPlaneShape9.png</init_from></image>
+    <image id="scene_baked_pPlaneShape8_bakedtex-image" name="scene_baked_pPlaneShape8_bakedtex"><init_from>../images/baked-pPlaneShape8.png</init_from></image>
+    <image id="scene_baked_pPlaneShape7_bakedtex-image" name="scene_baked_pPlaneShape7_bakedtex"><init_from>../images/baked-pPlaneShape7.png</init_from></image>
+    <image id="scene_baked_pPlaneShape6_bakedtex-image" name="scene_baked_pPlaneShape6_bakedtex"><init_from>../images/baked-pPlaneShape6.png</init_from></image>
+    <image id="scene_baked_pPlaneShape5_bakedtex-image" name="scene_baked_pPlaneShape5_bakedtex"><init_from>../images/baked-pPlaneShape5.png</init_from></image>
+    <image id="scene_baked_pPlaneShape4_bakedtex-image" name="scene_baked_pPlaneShape4_bakedtex"><init_from>../images/baked-pPlaneShape4.png</init_from></image>
+    <image id="scene_baked_pPlaneShape3_bakedtex-image" name="scene_baked_pPlaneShape3_bakedtex"><init_from>../images/baked-pPlaneShape3.png</init_from></image>
+    <image id="scene_baked_pPlaneShape2_bakedtex-image" name="scene_baked_pPlaneShape2_bakedtex"><init_from>../images/baked-pPlaneShape2.png</init_from></image>
+    <image id="scene_baked_pPlaneShape1_bakedtex1-image" name="scene_baked_pPlaneShape1_bakedtex1"><init_from>../images/baked-pPlaneShape1.png</init_from></image>
+  </library_images>
+  <library_materials>
+    <material id="scene_baked_pPlaneShape25_bakedmtl" name="scene_baked_pPlaneShape25_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape25_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape24_bakedmtl" name="scene_baked_pPlaneShape24_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape24_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape23_bakedmtl" name="scene_baked_pPlaneShape23_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape23_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape22_bakedmtl" name="scene_baked_pPlaneShape22_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape22_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape21_bakedmtl" name="scene_baked_pPlaneShape21_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape21_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape20_bakedmtl" name="scene_baked_pPlaneShape20_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape20_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape19_bakedmtl" name="scene_baked_pPlaneShape19_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape19_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape18_bakedmtl" name="scene_baked_pPlaneShape18_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape18_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape17_bakedmtl" name="scene_baked_pPlaneShape17_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape17_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape16_bakedmtl" name="scene_baked_pPlaneShape16_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape16_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape15_bakedmtl" name="scene_baked_pPlaneShape15_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape15_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape14_bakedmtl" name="scene_baked_pPlaneShape14_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape14_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape13_bakedmtl" name="scene_baked_pPlaneShape13_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape13_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape12_bakedmtl" name="scene_baked_pPlaneShape12_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape12_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape11_bakedmtl" name="scene_baked_pPlaneShape11_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape11_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape10_bakedmtl" name="scene_baked_pPlaneShape10_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape10_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape9_bakedmtl" name="scene_baked_pPlaneShape9_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape9_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape8_bakedmtl" name="scene_baked_pPlaneShape8_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape8_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape7_bakedmtl" name="scene_baked_pPlaneShape7_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape7_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape6_bakedmtl" name="scene_baked_pPlaneShape6_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape6_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape5_bakedmtl" name="scene_baked_pPlaneShape5_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape5_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape4_bakedmtl" name="scene_baked_pPlaneShape4_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape4_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape3_bakedmtl" name="scene_baked_pPlaneShape3_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape3_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape2_bakedmtl" name="scene_baked_pPlaneShape2_bakedmtl">
+      <instance_effect url="#scene_baked_pPlaneShape2_bakedmtl-fx"/>
+    </material>
+    <material id="scene_baked_pPlaneShape1_bakedmtl1" name="scene_baked_pPlaneShape1_bakedmtl1">
+      <instance_effect url="#scene_baked_pPlaneShape1_bakedmtl1-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="scene_baked_pPlaneShape25_bakedmtl-fx" name="scene_baked_pPlaneShape25_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape25_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape25_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape24_bakedmtl-fx" name="scene_baked_pPlaneShape24_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape24_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape24_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape23_bakedmtl-fx" name="scene_baked_pPlaneShape23_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape23_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape23_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape22_bakedmtl-fx" name="scene_baked_pPlaneShape22_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape22_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape22_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape21_bakedmtl-fx" name="scene_baked_pPlaneShape21_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape21_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape21_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape20_bakedmtl-fx" name="scene_baked_pPlaneShape20_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape20_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape20_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape19_bakedmtl-fx" name="scene_baked_pPlaneShape19_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape19_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape19_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape18_bakedmtl-fx" name="scene_baked_pPlaneShape18_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape18_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape18_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape17_bakedmtl-fx" name="scene_baked_pPlaneShape17_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape17_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape17_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape16_bakedmtl-fx" name="scene_baked_pPlaneShape16_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape16_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape16_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape15_bakedmtl-fx" name="scene_baked_pPlaneShape15_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape15_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape15_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape14_bakedmtl-fx" name="scene_baked_pPlaneShape14_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape14_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape14_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape13_bakedmtl-fx" name="scene_baked_pPlaneShape13_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape13_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape13_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape12_bakedmtl-fx" name="scene_baked_pPlaneShape12_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape12_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape12_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape11_bakedmtl-fx" name="scene_baked_pPlaneShape11_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape11_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape11_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape10_bakedmtl-fx" name="scene_baked_pPlaneShape10_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape10_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape10_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape9_bakedmtl-fx" name="scene_baked_pPlaneShape9_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape9_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape9_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape8_bakedmtl-fx" name="scene_baked_pPlaneShape8_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape8_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape8_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape7_bakedmtl-fx" name="scene_baked_pPlaneShape7_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape7_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape7_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape6_bakedmtl-fx" name="scene_baked_pPlaneShape6_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape6_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape6_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape5_bakedmtl-fx" name="scene_baked_pPlaneShape5_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape5_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape5_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape4_bakedmtl-fx" name="scene_baked_pPlaneShape4_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape4_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape4_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape3_bakedmtl-fx" name="scene_baked_pPlaneShape3_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape3_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape3_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape2_bakedmtl-fx" name="scene_baked_pPlaneShape2_bakedmtl">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape2_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape2_bakedtex-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="scene_baked_pPlaneShape1_bakedmtl1-fx" name="scene_baked_pPlaneShape1_bakedmtl1">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <texture texture="scene_baked_pPlaneShape1_bakedtex1-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="scene_baked_pPlaneShape1_bakedtex1-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="scene_baked_pPlane25-lib" name="scene_baked_pPlane25Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane25-POSITION">
+          <float_array id="scene_baked_pPlane25-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane25-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane25-Normal0">
+          <float_array id="scene_baked_pPlane25-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane25-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane25-UV0">
+          <float_array id="scene_baked_pPlane25-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane25-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane25-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane25-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane25-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape25_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane25-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane25-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane24-lib" name="scene_baked_pPlane24Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane24-POSITION">
+          <float_array id="scene_baked_pPlane24-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane24-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane24-Normal0">
+          <float_array id="scene_baked_pPlane24-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane24-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane24-UV0">
+          <float_array id="scene_baked_pPlane24-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane24-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane24-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane24-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane24-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape24_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane24-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane24-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane23-lib" name="scene_baked_pPlane23Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane23-POSITION">
+          <float_array id="scene_baked_pPlane23-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane23-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane23-Normal0">
+          <float_array id="scene_baked_pPlane23-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane23-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane23-UV0">
+          <float_array id="scene_baked_pPlane23-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane23-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane23-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane23-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane23-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape23_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane23-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane23-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane22-lib" name="scene_baked_pPlane22Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane22-POSITION">
+          <float_array id="scene_baked_pPlane22-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane22-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane22-Normal0">
+          <float_array id="scene_baked_pPlane22-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane22-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane22-UV0">
+          <float_array id="scene_baked_pPlane22-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane22-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane22-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane22-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane22-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape22_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane22-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane22-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane21-lib" name="scene_baked_pPlane21Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane21-POSITION">
+          <float_array id="scene_baked_pPlane21-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane21-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane21-Normal0">
+          <float_array id="scene_baked_pPlane21-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane21-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane21-UV0">
+          <float_array id="scene_baked_pPlane21-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane21-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane21-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane21-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane21-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape21_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane21-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane21-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane20-lib" name="scene_baked_pPlane20Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane20-POSITION">
+          <float_array id="scene_baked_pPlane20-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane20-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane20-Normal0">
+          <float_array id="scene_baked_pPlane20-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane20-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane20-UV0">
+          <float_array id="scene_baked_pPlane20-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane20-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane20-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane20-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane20-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape20_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane20-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane20-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane19-lib" name="scene_baked_pPlane19Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane19-POSITION">
+          <float_array id="scene_baked_pPlane19-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane19-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane19-Normal0">
+          <float_array id="scene_baked_pPlane19-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane19-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane19-UV0">
+          <float_array id="scene_baked_pPlane19-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane19-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane19-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane19-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane19-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape19_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane19-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane19-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane18-lib" name="scene_baked_pPlane18Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane18-POSITION">
+          <float_array id="scene_baked_pPlane18-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane18-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane18-Normal0">
+          <float_array id="scene_baked_pPlane18-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane18-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane18-UV0">
+          <float_array id="scene_baked_pPlane18-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane18-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane18-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane18-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane18-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape18_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane18-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane18-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane17-lib" name="scene_baked_pPlane17Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane17-POSITION">
+          <float_array id="scene_baked_pPlane17-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane17-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane17-Normal0">
+          <float_array id="scene_baked_pPlane17-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane17-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane17-UV0">
+          <float_array id="scene_baked_pPlane17-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane17-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane17-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane17-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane17-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape17_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane17-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane17-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane16-lib" name="scene_baked_pPlane16Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane16-POSITION">
+          <float_array id="scene_baked_pPlane16-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane16-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane16-Normal0">
+          <float_array id="scene_baked_pPlane16-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane16-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane16-UV0">
+          <float_array id="scene_baked_pPlane16-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane16-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane16-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane16-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane16-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape16_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane16-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane16-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane15-lib" name="scene_baked_pPlane15Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane15-POSITION">
+          <float_array id="scene_baked_pPlane15-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane15-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane15-Normal0">
+          <float_array id="scene_baked_pPlane15-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane15-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane15-UV0">
+          <float_array id="scene_baked_pPlane15-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane15-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane15-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane15-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane15-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape15_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane15-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane15-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane14-lib" name="scene_baked_pPlane14Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane14-POSITION">
+          <float_array id="scene_baked_pPlane14-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane14-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane14-Normal0">
+          <float_array id="scene_baked_pPlane14-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane14-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane14-UV0">
+          <float_array id="scene_baked_pPlane14-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane14-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane14-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane14-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane14-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape14_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane14-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane14-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane13-lib" name="scene_baked_pPlane13Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane13-POSITION">
+          <float_array id="scene_baked_pPlane13-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane13-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane13-Normal0">
+          <float_array id="scene_baked_pPlane13-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane13-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane13-UV0">
+          <float_array id="scene_baked_pPlane13-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane13-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane13-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane13-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane13-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape13_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane13-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane13-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane12-lib" name="scene_baked_pPlane12Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane12-POSITION">
+          <float_array id="scene_baked_pPlane12-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane12-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane12-Normal0">
+          <float_array id="scene_baked_pPlane12-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane12-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane12-UV0">
+          <float_array id="scene_baked_pPlane12-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane12-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane12-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane12-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane12-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape12_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane12-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane12-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane11-lib" name="scene_baked_pPlane11Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane11-POSITION">
+          <float_array id="scene_baked_pPlane11-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane11-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane11-Normal0">
+          <float_array id="scene_baked_pPlane11-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane11-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane11-UV0">
+          <float_array id="scene_baked_pPlane11-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane11-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane11-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane11-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane11-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape11_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane11-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane11-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane10-lib" name="scene_baked_pPlane10Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane10-POSITION">
+          <float_array id="scene_baked_pPlane10-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane10-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane10-Normal0">
+          <float_array id="scene_baked_pPlane10-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane10-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane10-UV0">
+          <float_array id="scene_baked_pPlane10-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane10-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane10-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane10-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane10-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape10_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane10-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane10-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane9-lib" name="scene_baked_pPlane9Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane9-POSITION">
+          <float_array id="scene_baked_pPlane9-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane9-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane9-Normal0">
+          <float_array id="scene_baked_pPlane9-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane9-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane9-UV0">
+          <float_array id="scene_baked_pPlane9-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane9-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane9-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane9-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane9-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape9_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane9-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane9-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane8-lib" name="scene_baked_pPlane8Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane8-POSITION">
+          <float_array id="scene_baked_pPlane8-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane8-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane8-Normal0">
+          <float_array id="scene_baked_pPlane8-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane8-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane8-UV0">
+          <float_array id="scene_baked_pPlane8-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane8-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane8-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane8-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane8-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape8_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane8-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane8-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane7-lib" name="scene_baked_pPlane7Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane7-POSITION">
+          <float_array id="scene_baked_pPlane7-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane7-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane7-Normal0">
+          <float_array id="scene_baked_pPlane7-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane7-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane7-UV0">
+          <float_array id="scene_baked_pPlane7-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane7-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane7-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane7-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane7-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape7_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane7-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane7-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane6-lib" name="scene_baked_pPlane6Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane6-POSITION">
+          <float_array id="scene_baked_pPlane6-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane6-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane6-Normal0">
+          <float_array id="scene_baked_pPlane6-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane6-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane6-UV0">
+          <float_array id="scene_baked_pPlane6-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane6-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane6-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane6-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane6-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape6_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane6-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane6-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane5-lib" name="scene_baked_pPlane5Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane5-POSITION">
+          <float_array id="scene_baked_pPlane5-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane5-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane5-Normal0">
+          <float_array id="scene_baked_pPlane5-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane5-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane5-UV0">
+          <float_array id="scene_baked_pPlane5-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane5-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane5-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane5-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane5-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape5_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane5-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane5-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane4-lib" name="scene_baked_pPlane4Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane4-POSITION">
+          <float_array id="scene_baked_pPlane4-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane4-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane4-Normal0">
+          <float_array id="scene_baked_pPlane4-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane4-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane4-UV0">
+          <float_array id="scene_baked_pPlane4-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane4-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane4-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane4-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane4-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape4_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane4-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane4-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane3-lib" name="scene_baked_pPlane3Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane3-POSITION">
+          <float_array id="scene_baked_pPlane3-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane3-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane3-Normal0">
+          <float_array id="scene_baked_pPlane3-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane3-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane3-UV0">
+          <float_array id="scene_baked_pPlane3-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane3-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane3-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane3-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane3-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape3_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane3-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane3-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane2-lib" name="scene_baked_pPlane2Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane2-POSITION">
+          <float_array id="scene_baked_pPlane2-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane2-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane2-Normal0">
+          <float_array id="scene_baked_pPlane2-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane2-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane2-UV0">
+          <float_array id="scene_baked_pPlane2-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane2-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane2-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane2-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane2-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape2_bakedmtl"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane2-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane2-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+    <geometry id="scene_baked_pPlane1-lib" name="scene_baked_pPlane1Mesh">
+      <mesh>
+        <source id="scene_baked_pPlane1-POSITION">
+          <float_array id="scene_baked_pPlane1-POSITION-array" count="12">
+-0.500000 -0.000000 0.500000
+0.500000 -0.000000 0.500000
+-0.500000 0.000000 -0.500000
+0.500000 0.000000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane1-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane1-Normal0">
+          <float_array id="scene_baked_pPlane1-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane1-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scene_baked_pPlane1-UV0">
+          <float_array id="scene_baked_pPlane1-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#scene_baked_pPlane1-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scene_baked_pPlane1-VERTEX">
+          <input semantic="POSITION" source="#scene_baked_pPlane1-POSITION"/>
+          <input semantic="NORMAL" source="#scene_baked_pPlane1-Normal0"/>
+        </vertices>
+        <triangles count="2" material="scene_baked_pPlaneShape1_bakedmtl1"><input semantic="VERTEX" offset="0" source="#scene_baked_pPlane1-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#scene_baked_pPlane1-UV0"/><p> 1 1 3 3 0 0 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="scene" name="scene">
+      <node name="scene_baked_pPlane25" id="scene_baked_pPlane25" sid="scene_baked_pPlane25"><matrix sid="matrix">0.762536 0.252454 0.471004 0.407785 -0.127783 0.961354 -0.192830 0.474745 -0.634200 0.109840 0.605168 0.305050 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane25-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape25_bakedmtl" target="#scene_baked_pPlaneShape25_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane24" id="scene_baked_pPlane24" sid="scene_baked_pPlane24"><matrix sid="matrix">0.391373 -0.669497 0.467614 -0.348206 -0.319370 -0.788564 -0.401940 3.322391 0.902782 0.011276 -0.344911 -0.274719 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane24-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape24_bakedmtl" target="#scene_baked_pPlaneShape24_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane23" id="scene_baked_pPlane23" sid="scene_baked_pPlane23"><matrix sid="matrix">0.657768 0.619815 0.154632 0.109396 -0.050827 0.366324 -0.584053 2.484192 -0.657913 0.591378 0.199719 -0.305383 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane23-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape23_bakedmtl" target="#scene_baked_pPlaneShape23_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane22" id="scene_baked_pPlane22" sid="scene_baked_pPlane22"><matrix sid="matrix">1.142564 0.447111 -0.316825 -1.032709 0.142105 -1.096064 -0.482452 3.416099 -0.628422 0.565062 -0.685133 -0.565437 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane22-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape22_bakedmtl" target="#scene_baked_pPlaneShape22_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane21" id="scene_baked_pPlane21" sid="scene_baked_pPlane21"><matrix sid="matrix">0.527220 -0.547902 -0.367747 -1.183169 0.764892 0.313868 0.293373 3.069927 -0.071214 -0.685114 0.428498 -0.142999 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane21-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape21_bakedmtl" target="#scene_baked_pPlaneShape21_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane20" id="scene_baked_pPlane20" sid="scene_baked_pPlane20"><matrix sid="matrix">0.817721 -0.444134 0.031806 -0.644999 0.362191 0.602761 -0.417443 2.798628 0.261231 0.554541 0.479214 0.000000 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane20-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape20_bakedmtl" target="#scene_baked_pPlaneShape20_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane19" id="scene_baked_pPlane19" sid="scene_baked_pPlane19"><matrix sid="matrix">-0.165791 -0.798381 0.307860 -0.861573 0.316750 0.379997 0.539225 2.834268 -0.860392 0.293737 0.139192 -0.785804 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane19-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape19_bakedmtl" target="#scene_baked_pPlaneShape19_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane18" id="scene_baked_pPlane18" sid="scene_baked_pPlane18"><matrix sid="matrix">0.482791 -0.331414 0.494936 0.000000 -0.173769 0.783137 0.323666 2.918838 -0.777694 -0.380727 0.234935 -0.785804 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane18-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape18_bakedmtl" target="#scene_baked_pPlaneShape18_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane17" id="scene_baked_pPlane17" sid="scene_baked_pPlane17"><matrix sid="matrix">0.773477 -0.268017 0.303894 0.109396 0.291391 0.884585 0.017958 2.918838 -0.430018 0.117333 0.558786 0.000000 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane17-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape17_bakedmtl" target="#scene_baked_pPlaneShape17_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane16" id="scene_baked_pPlane16" sid="scene_baked_pPlane16"><matrix sid="matrix">0.616178 -0.128834 0.500505 0.123672 -0.686760 -0.464679 0.338576 1.720313 0.286378 -0.837139 -0.264963 0.127139 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane16-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape16_bakedmtl" target="#scene_baked_pPlaneShape16_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane15" id="scene_baked_pPlane15" sid="scene_baked_pPlane15"><matrix sid="matrix">-0.642408 0.750682 0.271619 -0.914878 -0.580524 -0.751945 0.328925 2.141596 0.620229 0.073718 0.589200 -0.909049 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane15-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape15_bakedmtl" target="#scene_baked_pPlaneShape15_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane14" id="scene_baked_pPlane14" sid="scene_baked_pPlane14"><matrix sid="matrix">1.155256 -0.684232 0.454633 0.090844 -0.750754 -1.296682 -0.020436 1.788586 0.589629 -0.310408 -0.916779 -0.725042 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane14-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape14_bakedmtl" target="#scene_baked_pPlaneShape14_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane13" id="scene_baked_pPlane13" sid="scene_baked_pPlane13"><matrix sid="matrix">1.403984 0.032561 -0.357291 -0.861573 0.276875 -1.316107 0.451540 1.794016 -0.445063 -0.716039 -0.846196 -0.785804 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane13-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape13_bakedmtl" target="#scene_baked_pPlaneShape13_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane12" id="scene_baked_pPlane12" sid="scene_baked_pPlane12"><matrix sid="matrix">1.028928 0.212041 0.729931 -0.893289 -0.335155 -1.337124 0.401548 2.210399 1.036769 -0.642688 -0.594603 0.000000 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane12-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape12_bakedmtl" target="#scene_baked_pPlaneShape12_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane11" id="scene_baked_pPlane11" sid="scene_baked_pPlane11"><matrix sid="matrix">0.409178 -0.897532 0.112243 0.682120 0.904287 0.374840 -0.139566 1.149483 0.121809 0.232232 0.659065 0.000000 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane11-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape11_bakedmtl" target="#scene_baked_pPlaneShape11_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane10" id="scene_baked_pPlane10" sid="scene_baked_pPlane10"><matrix sid="matrix">0.671305 -0.603180 -0.294171 -0.942059 0.218244 0.716233 -0.452710 1.032688 0.708321 0.350977 0.418284 0.000000 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane10-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape10_bakedmtl" target="#scene_baked_pPlaneShape10_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane9" id="scene_baked_pPlane9" sid="scene_baked_pPlane9"><matrix sid="matrix">0.988623 0.122937 0.059190 0.000000 -0.142003 0.572860 0.551331 1.149483 0.049595 -0.810381 0.398716 -0.504533 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane9-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape9_bakedmtl" target="#scene_baked_pPlaneShape9_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane8" id="scene_baked_pPlane8" sid="scene_baked_pPlane8"><matrix sid="matrix">0.734308 -0.674608 -0.051539 -0.760459 0.586738 0.574863 0.389514 1.092339 -0.341365 -0.463072 0.558630 -0.985879 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane8-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape8_bakedmtl" target="#scene_baked_pPlaneShape8_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane7" id="scene_baked_pPlane7" sid="scene_baked_pPlane7"><matrix sid="matrix">0.106082 -0.514518 -0.581132 -1.294547 0.993545 0.089423 0.047667 1.481296 0.040179 -0.852804 0.355610 0.000000 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane7-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape7_bakedmtl" target="#scene_baked_pPlaneShape7_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane6" id="scene_baked_pPlane6" sid="scene_baked_pPlane6"><matrix sid="matrix">0.884276 -0.247104 -0.981561 -0.893289 0.631088 1.580088 0.079649 0.606848 1.314661 -0.592294 0.621989 0.000000 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane6-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape6_bakedmtl" target="#scene_baked_pPlaneShape6_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane5" id="scene_baked_pPlane5" sid="scene_baked_pPlane5"><matrix sid="matrix">0.752857 0.561247 -0.462546 -0.461232 -0.877925 0.534294 -0.364124 0.351668 0.054091 0.860235 0.527940 0.908915 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane5-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape5_bakedmtl" target="#scene_baked_pPlaneShape5_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane4" id="scene_baked_pPlane4" sid="scene_baked_pPlane4"><matrix sid="matrix">0.468788 -0.979132 0.386108 -1.295768 0.225754 0.680746 0.677375 0.267098 -1.107855 -0.275600 0.301413 -0.472129 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane4-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape4_bakedmtl" target="#scene_baked_pPlaneShape4_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane3" id="scene_baked_pPlane3" sid="scene_baked_pPlane3"><matrix sid="matrix">1.446271 0.594691 0.464816 0.000000 -0.903798 0.951633 0.743806 0.351668 0.000000 -1.284246 0.766404 -0.785804 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane3-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape3_bakedmtl" target="#scene_baked_pPlaneShape3_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane2" id="scene_baked_pPlane2" sid="scene_baked_pPlane2"><matrix sid="matrix">1.014032 0.195063 -0.072680 -0.092778 -0.221957 0.865787 -0.360606 1.022080 -0.010459 0.538515 0.606084 0.592471 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane2-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape2_bakedmtl" target="#scene_baked_pPlaneShape2_bakedmtl"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="scene_baked_pPlane1" id="scene_baked_pPlane1" sid="scene_baked_pPlane1"><matrix sid="matrix">8.230663 0.000000 0.000000 0.000000 0.000000 8.230663 0.000000 0.000000 0.000000 0.000000 8.230663 0.000000 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#scene_baked_pPlane1-lib"><bind_material><technique_common><instance_material symbol="scene_baked_pPlaneShape1_bakedmtl1" target="#scene_baked_pPlaneShape1_bakedmtl1"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <extra><technique profile="MAX3D"><frame_rate>24.000000</frame_rate></technique><technique profile="FCOLLADA"><start_time>0.041667</start_time><end_time>2.000000</end_time></technique></extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#scene"></instance_visual_scene>
+  </scene>
+</COLLADA>

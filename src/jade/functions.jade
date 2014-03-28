@@ -1,0 +1,23 @@
+- var getUpDirs = function(howMany) {
+-	var retValue = ""
+-	for(var i = 0;i<howMany;i++) {
+-		retValue += "../"
+-	}	
+-	return retValue;
+- }
+
+
+- var getRelativeLink = function (objectToLink) {
+- 	var thisDepth = depth;
+- 	var otherDepth = objectToLink.depth
+-	var updirs = getUpDirs(thisDepth);
+-	if(thisDepth > 0) {
+-		return updirs.substr(0,updirs.length-1)+objectToLink.link;	
+-	} else {
+-		return 	"."+objectToLink.link;
+-	}
+- }
+
+- var extractVars = function(cont) {
+-		return cont.replace(/#\{base\}/g, base )
+- }

@@ -1,0 +1,28 @@
+---
+lang:       en
+title:      About Me
+description: "Daniele Pelagatti is an interactive developer living in Florence, Tuscany, Italy. He works with world class brands since 2007."
+permalink:  
+id:         index
+date:       2014-12-12 12:12
+author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template:   default.en.jade
+tags:       daniele,pelagatti,interactive,developer
+root:       true
+---
+
+# About Me #
+
+![Daniele Pelagatti](#{base}img/daniele-pelagatti-big.jpg "Daniele Pelagatti")
+Daniele Pelagatti is an **Interactive Developer** passionately working with world class brands since 2007. 
+
+He specializes in bringing to life high quality digital experiences using innovative technologies. 
+
+## Expertise ##
+
+  * HTML5, CSS 3, CoffeeScript & Javascript, Node.js, SASS & SCSS
+  * WebGL & GLSL Shader Programming
+  * Autodesk Maya, 3ds Max, Blender & XSI
+  * Adobe Products: PhotoShop, Illustrator, Flex, Flash, ActionScript 3.0 & Stage3D Rendering
+
+He currently works as _Senior Lead Developer_ at **UNIT9 Flr** and lives in Florence, Tuscany, Italy. 

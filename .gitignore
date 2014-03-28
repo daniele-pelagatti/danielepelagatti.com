@@ -1,0 +1,6 @@
+node_modules
+.sublime-workspace 
+.sass-cache
+.mayaSwatches
+tmp
+.DS_Store

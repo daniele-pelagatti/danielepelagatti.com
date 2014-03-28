@@ -1,0 +1,76 @@
+include functions
+doctype html
+html(lang= lang)
+	include head
+	body
+		div.htmlContent
+			menu
+				name
+					a(href="#{ base }") Daniele
+				surname
+					a(href="#{ base }") Pelagatti
+
+				nav.socialMenu
+					//- a.fontawesome-envelope-alt(title="Send Email" href="http://www.github.com" target="_blank")
+					a.fontawesome-info-sign.website-info-button(title="Info sul Sito" href="#about" )
+					a.fontawesome-google-plus-sign(title="Contatta in Google+" href="https://plus.google.com/+DanielePelagatti" target="_blank")
+					a.fontawesome-twitter-sign(title="Segui su Twitter" href="https://twitter.com/redde81" target="_blank")
+					a.fontawesome-github-sign(title="Vedi Progetti GitHub" href="https://github.com/redde81" target="_blank")
+					a.fontawesome-linkedin-sign(title="Contatta in Linkedin" href="http://lnkd.in/BkMX7G" target="_blank")
+				
+				header Lingue
+				nav.languagesMenu
+					each val in languages
+						li
+							if val.meta.lang == "it"
+								a.selected(href=getRelativeLink(val) id=val.meta.lang permalink=val.link) Italiano
+							if val.meta.lang == "en"
+								a(href=getRelativeLink(val) id=val.meta.lang permalink=val.link) English
+				header Progetti
+				nav.projectsMenu
+					each val in links
+						li
+							if val.link == link
+								a.selected(href=getRelativeLink(val) permalink=val.link)=val.meta.title
+							else
+								a(href=getRelativeLink(val) permalink=val.link)=val.meta.title
+								
+			main
+				if banner != null || banner != undefined
+					img.banner(src="#{base}#{banner}")
+				article!=extractVars(content)
+
+		div.javascriptContent
+
+		div.fontawesome-remove.close-page
+		div.fontawesome-reorder.show-menu
+		
+		div#about
+			h1 Info sul sito
+			p 
+				| Questo sito è reso possibile da: 
+				a(href="http://threejs.org/") Three.js
+				|, 
+				a(href="http://jquery.com/") jQuery
+				|, 
+				a(href="http://underscorejs.org/") underscore.js
+				|, 
+				a(href="http://www.greensock.com/tweenmax/") TweenMax.js
+				|, 
+				a(href="http://fgnass.github.io/spin.js/") spin.js
+				|, 
+				a(href="http://nodejs.org/") Node.js
+				|, 
+				a(href="http://gruntjs.com/") Grunt.js
+				|, 
+				a(href="http://driven-by-data.net/about/chromajs/#/0") Chroma.js
+				|, 
+				a(href="http://tools.medialab.sciences-po.fr/iwanthue/index.php") iWantHue
+				|, 
+				a(href="https://www.google.com/fonts") Google Fonts
+				|, 
+				a(href="http://weloveiconfonts.com/") WE LOVE ICON FONTS
+			p Codice sorgente disponibile su 
+				a(href="https://github.com/redde81/danielepelagatti.com") GitHub
+			a.modal_close(href="#") Chiudi
+		include tail

@@ -1,0 +1,58 @@
+head
+	title Daniele Pelagatti - #{title}
+	meta(charset="utf-8")
+	//- meta(name="author" content=author)
+	meta(property="article:author" content="http://www.danielepelagatti.com")
+	meta(name="description" content=description)
+	meta(name="keywords" content=tags)
+	meta(name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0")
+	link(href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,700,600,300,800' rel='stylesheet' type='text/css')
+	link(href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css')
+	//- link(href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic' rel='stylesheet' type='text/css')
+	link(rel="stylesheet" href="http://weloveiconfonts.com/api/?family=fontawesome")
+	link(rel="stylesheet" href="#{base}css/main.css")
+
+	meta(property="og:title" content="Daniele Pelagatti - #{title}")
+	//- meta(property="og:image" content="#{base}img/daniele-pelagatti.jpg")
+	meta(property="og:site_name" content="Daniele Pelagatti's Portfolio")
+	meta(property="og:type" content="article")
+	meta(property="og:description" content=description)
+	//- essential javascripts
+	script(src="#{base}js/jquery.min.js")
+	script(src="#{base}js/jquery.leanModal.min.js")
+	script(type='text/javascript').
+		window.PAGE_BASE = "#{base}";
+		window.PAGE_DEPTH = #{depth};
+		window.PAGE_LANG = "#{lang}";
+		window.PAGE_PERMALINK = "#{permalink}";
+
+		$(document).ready(function() {
+
+			var showHide = function() {
+				if( $('menu').hasClass('force-show') ) { 
+					$('menu').removeClass('force-show') 
+				} else { 
+					$('menu').addClass('force-show') 
+				} 
+
+				if( $('.show-menu').hasClass('force-hide') ) {
+					$('.show-menu').removeClass('force-hide') 
+				} else { 
+					$('.show-menu').addClass('force-hide')
+				}
+			};
+
+			var hide = function() {
+				$('menu').removeClass('force-show') 
+				$('.show-menu').removeClass('force-hide') 
+			}
+			
+			$(".show-menu").click(showHide);
+			$("nav a").click(hide);
+			$(".website-info-button").leanModal({ top : 40, overlay : 0.4, closeButton: ".modal_close" })
+		});
+	//- advanced threejs site javascripts
+	script(src="#{base}js/vendor.min.js")
+	script(src="#{base}js/main.min.js")
+	//- script(src="#{base}js/shaders.js")
+	//- script(src="#{base}js/main.js")
