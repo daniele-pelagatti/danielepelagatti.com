@@ -20,7 +20,7 @@ module.exports = (grunt)->
     # array of pages indexed by language code
     pagesByLanguage = {};
     
-    grunt.file.recurse "src/markdown",(file)=>
+    grunt.file.recurse gruntConfig.pkg.markdown_folder,(file)=>
         if isMarkDown.test(file)
             md = grunt.file.read(file);
             # grunt.log.write("Parsing "+md)
@@ -36,17 +36,17 @@ module.exports = (grunt)->
                 files : {}
 
             # jade input template
-            input = "src/jade/"+parsed.meta.template;
+            input = gruntConfig.pkg.jade_folder+"/"+parsed.meta.template;
 
             # outputh path
             if parsed.meta.permalink?
                 permalink = "/"+parsed.meta.lang+"/"+parsed.meta.permalink+"/";
-                output = "www/"+parsed.meta.lang+"/"+parsed.meta.permalink+"/index.html";
+                output = gruntConfig.pkg.www_folder+"/"+parsed.meta.lang+"/"+parsed.meta.permalink+"/"+gruntConfig.pkg.default_document;
                 base = "../../"
                 depth = 2
             else
                 permalink = "/"+parsed.meta.lang+"/";
-                output = "www/"+parsed.meta.lang+"/index.html";
+                output = gruntConfig.pkg.www_folder+"/"+parsed.meta.lang+"/"+gruntConfig.pkg.default_document;
                 base = "../"
                 depth = 1
 
@@ -65,7 +65,9 @@ module.exports = (grunt)->
             if parsed.meta.root
                 #jadeConfig.files["www/index.html"] = input;
                 copyJadeConfig = gruntConfig.jade[parsed.meta.id+"-"+parsed.meta.lang+"-root"] = JSON.parse( JSON.stringify( jadeConfig ) )
-                copyJadeConfig.files = {"www/index.html":input}
+                copyJadeConfig.files = {}
+                copyJadeConfig.files[gruntConfig.pkg.www_folder+"/"+gruntConfig.pkg.default_document] = input
+                
                 copyJadeConfig.options.data.link = "/"
                 copyJadeConfig.options.data.base = "./"
                 copyJadeConfig.options.data.depth = 0
@@ -124,50 +126,46 @@ module.exports = (grunt)->
 
 
     # create json file so that javascript can read it
-    grunt.file.delete("www/config.json",{force:true})
-    grunt.file.write("www/config.json", JSON.stringify(pagesByLanguage) )
-
-    gruntConfig.uglify =
-        options:
-            banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-
+    grunt.file.delete(gruntConfig.pkg.www_folder+"/"+gruntConfig.pkg.config_json,{force:true})
+    grunt.file.write(gruntConfig.pkg.www_folder+"/"+gruntConfig.pkg.config_json, JSON.stringify(pagesByLanguage) )
 
     gruntConfig.percolator =
         compile:
-            source: 'src/coffee'
-            output: 'www/js/main.js'
-            main: 'main.coffee'
+            source: gruntConfig.pkg.coffee_folder
+            output: gruntConfig.pkg.www_folder+"/"+gruntConfig.pkg.compiled_js
+            main: gruntConfig.pkg.percolator_main
             compile: true
 
     gruntConfig.compass =
         compile:
             options:
-                sassDir:'src/compass'
-                cssDir:'www/css'
+                sassDir: gruntConfig.pkg.compass_folder
+                cssDir: gruntConfig.pkg.www_folder+'/'+gruntConfig.pkg.compass_output_folder
                 outputStyle: 'expanded'
 
     gruntConfig.glsl_threejs =
         compile:
-            files : 
-                "www/js/shaders.js" : ["src/glsl/*.vert","src/glsl/*.frag"]
+            files : {}
+    gruntConfig.glsl_threejs.compile.files[gruntConfig.pkg.www_folder+'/'+gruntConfig.pkg.glsl_output_file] = [gruntConfig.pkg.glsl_folder+"/*.vert",gruntConfig.pkg.glsl_folder+"/*.frag"]
+            
 
     gruntConfig.watch =
         options:
             livereload: 35729                
         coffee:
-            files: ['src/**/*.coffee']
+            files: [gruntConfig.pkg.watch_folder+'/**/*.coffee']
             tasks: ['percolator','uglify:site']
         compass:
-            files: ['src/**/*.{scss,sass}']
-            tasks: ['compass']
+            files: [gruntConfig.pkg.watch_folder+'/**/*.{scss,sass}']
+            tasks: ['compass','cssmin']
         jade:
-            files: ['src/**/*.{jade,md}']
+            files: [gruntConfig.pkg.watch_folder+'/**/*.{jade,md}']
             tasks: ['jade']
         glsl_threejs:
-            files: ['src/**/*.{frag,vert}']
+            files: [gruntConfig.pkg.watch_folder+'/**/*.{frag,vert}']
             tasks: ['glsl_threejs','uglify:site']
         uglify :
-            files: ['src/**/*.js']
+            files: [gruntConfig.pkg.watch_folder+'/**/*.js']
             tasks: ['uglify:vendor']
                                 
     gruntConfig.concurrent =
@@ -210,6 +208,7 @@ module.exports = (grunt)->
 
     gruntConfig.uglify =
         options :
+            banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             drop_console: true
             # mangle : false
             # beautify : true
@@ -217,22 +216,31 @@ module.exports = (grunt)->
             files : 
                 "www/js/vendor.min.js" : [
                     "src/js/three.min.js" 
-                    "src/js/spin.js" 
+                    "src/js/spin.js"
                     "src/js/*.js"
                 ]
         site : 
-            files :
-                "www/js/main.min.js" : ["www/js/shaders.js","www/js/main.js"]
+            files : {}
+                # "www/js/main.min.js" : ["www/js/shaders.js","www/js/main.js"]
+
+    gruntConfig.uglify.site.files[gruntConfig.pkg.www_folder+"/"+gruntConfig.pkg.minified_main_js_file] = [gruntConfig.pkg.www_folder+"/"+gruntConfig.pkg.glsl_output_file,gruntConfig.pkg.www_folder+"/"+gruntConfig.pkg.compiled_js]
 
 
+    gruntConfig.cssmin =
+        all :
+            options:
+                keepSpecialComments : false
+            files :{}
+
+    gruntConfig.cssmin.all.files[gruntConfig.pkg.www_folder+"/"+gruntConfig.pkg.minified_main_css_file] = [gruntConfig.pkg.www_folder+"/"+gruntConfig.pkg.minified_main_css_input_file];
 
     gruntConfig.modernizr =
         dist:
             devFile : "modernizr.dev.js"
-            outputFile : "src/js/modernizr.js"
-            uglify : false
+            outputFile : gruntConfig.pkg.js_folder+"/modernizr.js"
+            uglify : true
             files : 
-                src: ["www/js/*.js","www/css/*.css"]
+                src: [gruntConfig.pkg.www_folder+"/**/*.js",gruntConfig.pkg.www_folder+"/**/*.css"]
                 
             
 
@@ -251,6 +259,7 @@ module.exports = (grunt)->
     grunt.loadNpmTasks('grunt-glsl-threejs');
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-modernizr');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
     
     # Default task(s).
     grunt.registerTask('default', ['concurrent']);
