@@ -1,13 +1,13 @@
 ---
-lang:       it
-title:      "AT&T Digital World"
-permalink:  att-digital-world
-id:         att-digital-world
-date:       2007-04-21 12:50
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.it.jade
-tags:       at&t,3d,flash 3d,software renderer,campagna interattiva,esperienza digitale
-description: "AT&T Digital World ti aiuta a esprimere la tua unica personalità digitale."
+lang        : it
+title       : "AT&T Digital World"
+permalink   : att-digital-world
+id          : att-digital-world
+date        : 2007-04-21 12:50
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.it.jade
+tags        : at&t,3d,flash 3d,software renderer,campagna interattiva,esperienza digitale
+description : "AT&T Digital World ti aiuta a esprimere la tua unica personalità digitale."
 ---
 
 # [AT&T Digital World](#) #

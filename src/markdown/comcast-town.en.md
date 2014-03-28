@@ -1,14 +1,14 @@
 ---
-lang:       en
-title:      "Comcast Town"
-permalink:  comcast-town
-id:         comcast-town
-date:       2009-04-02 13:44
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.en.jade
-tags:       comcast,interactive campaign,flash,as3,isometric engine
-banner:     img/siteoftheday.png
-description: "Welcome to Comcast Town, where the possibilities are never-ending, the innovations infinite and the squirrels play guitars."
+lang        : en
+title       : "Comcast Town"
+permalink   : comcast-town
+id          : comcast-town
+date        : 2009-04-02 13:44
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.en.jade
+tags        : comcast,interactive campaign,flash,as3,isometric engine
+banner      : img/siteoftheday.png
+description : "Welcome to Comcast Town, where the possibilities are never-ending, the innovations infinite and the squirrels play guitars."
 ---
 
 # [Comcast Town](http://www.unit9.com/project/comcast-town) #

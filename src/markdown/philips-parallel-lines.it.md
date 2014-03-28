@@ -1,14 +1,14 @@
 ---
-lang:       it
-title:      "Parallel Lines"
-permalink:  philips-parallel-lines
-id:         philips-parallel-lines
-date:       2010-03-21 18:24
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.it.jade
-tags:       philips,flash,cinema,ambilight,as3,campagna digitale
-banner:     img/siteoftheday.png
-description: "Cinque film, cinque storie, cinque dialoghi paralleli."
+lang        : it
+title       : "Parallel Lines"
+permalink   : philips-parallel-lines
+id          : philips-parallel-lines
+date        : 2010-03-21 18:24
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.it.jade
+tags        : philips,flash,cinema,ambilight,as3,campagna digitale
+banner      : img/siteoftheday.png
+description : "Cinque film, cinque storie, cinque dialoghi paralleli."
 ---
 
 # [Philips: Parallel Lines](http://www.unit9.com/project/parallel-lines) #

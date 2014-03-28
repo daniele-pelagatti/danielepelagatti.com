@@ -1,14 +1,14 @@
 ---
-lang:       en
-title:      "Know the signs"
-permalink:  heineken-know-the-signs
-id:         heineken-know-the-signs
-date:       2008-12-24 14:50
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.en.jade
-tags:       heineken,digital campaign,drunk,flash,as3
-banner:     img/siteoftheday.png
-description: "Know The Signs lets you find out which of five embarrassing characters you or your friends are when you have one drink too many."
+lang        : en
+title       : "Know the signs"
+permalink   : heineken-know-the-signs
+id          : heineken-know-the-signs
+date        : 2008-12-24 14:50
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.en.jade
+tags        : heineken,digital campaign,drunk,flash,as3
+banner      : img/siteoftheday.png
+description : "Know The Signs lets you find out which of five embarrassing characters you or your friends are when you have one drink too many."
 ---
 
 # [Heineken: Know the signs](http://www.unit9.com/project/know-the-signs) #

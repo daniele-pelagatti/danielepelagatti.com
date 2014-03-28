@@ -1,14 +1,14 @@
 ---
-lang:       it
-title:      "Comcast Town"
-permalink:  comcast-town
-id:         comcast-town
-date:       2009-04-02 13:44
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.it.jade
-tags:       comcast,campagna interattiva,flash,as3,motore isometrico
-banner:     img/siteoftheday.png
-description: "Benvenuti nella Comcast Town, dove le possibilità non hanno limite, le innovazioni sono infinite e gli scoiattoli suonano la chitarra."
+lang        : it
+title       : "Comcast Town"
+permalink   : comcast-town
+id          : comcast-town
+date        : 2009-04-02 13:44
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.it.jade
+tags        : comcast,campagna interattiva,flash,as3,motore isometrico
+banner      : img/siteoftheday.png
+description : "Benvenuti nella Comcast Town, dove le possibilità non hanno limite, le innovazioni sono infinite e gli scoiattoli suonano la chitarra."
 ---
 
 # [Comcast Town](http://www.unit9.com/project/comcast-town) #

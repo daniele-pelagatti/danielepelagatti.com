@@ -1,13 +1,13 @@
 ---
-lang:       it
-title:      "Adobe Adweek"
-permalink:  adobe-adweek
-id:         adobe-adweek
-date:       2008-12-21 12:09
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.it.jade
-tags:       video,3d,3d projection,flash,as3,banner,microsite
-description: "Un sito per la New York Adweek commissionato da Adobe, uno showcase dei più bei progetti fatti con prodotti Adobe. "
+lang        : it
+title       : "Adobe Adweek"
+permalink   : adobe-adweek
+id          : adobe-adweek
+date        : 2008-12-21 12:09
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.it.jade
+tags        : video,3d,3d projection,flash,as3,banner,microsite
+description : "Un sito per la New York Adweek commissionato da Adobe, uno showcase dei più bei progetti fatti con prodotti Adobe. "
 ---
 
 # [Adobe Adweek](#) #

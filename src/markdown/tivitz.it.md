@@ -1,13 +1,13 @@
 ---
-lang:       it
-title:      Tivitz
-permalink:  tivitz
-id:         tivitz
-date:       2010-03-10 17:34
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.it.jade
-tags:       tivitz,flash,3d,software rendering,gioco,matematica
-description: "Un gioco 3D che aiuta i bambini a imparare la matematica."
+lang        : it
+title       : Tivitz
+permalink   : tivitz
+id          : tivitz
+date        : 2010-03-10 17:34
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.it.jade
+tags        : tivitz,flash,3d,software rendering,gioco,matematica
+description : "Un gioco 3D che aiuta i bambini a imparare la matematica."
 ---
 
 # [Tivitz](http://www.tivitz.com/game/3d/) #

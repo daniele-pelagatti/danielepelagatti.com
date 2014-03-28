@@ -1,14 +1,14 @@
 ---
-lang:       it
-title:      "X Factor 2008"
-permalink:  carphone-warehouse-xfactor-2008
-id:         carphone-warehouse-xfactor-2008
-date:       2008-09-15 12:02
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.it.jade
-tags:       cantare,microfono,xfactor,flash,disegnare,as3
-banner:     img/siteoftheday.png
-description: "Canta al microfono, disegna il tuo avatar, guarda il tuo avatar che canta la tua registrazione, poi condividi il tuo capolavoro su Facebook o scaricalo sul tuo cellulare."
+lang        : it
+title       : "X Factor 2008"
+permalink   : carphone-warehouse-xfactor-2008
+id          : carphone-warehouse-xfactor-2008
+date        : 2008-09-15 12:02
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.it.jade
+tags        : cantare,microfono,xfactor,flash,disegnare,as3
+banner      : img/siteoftheday.png
+description : "Canta al microfono, disegna il tuo avatar, guarda il tuo avatar che canta la tua registrazione, poi condividi il tuo capolavoro su Facebook o scaricalo sul tuo cellulare."
 ---
 
 # [Carphone Warehouse: X Factor 2008](http://www.unit9.com/project/carphone-warehouse-x-factor-sponsorship-2008) #

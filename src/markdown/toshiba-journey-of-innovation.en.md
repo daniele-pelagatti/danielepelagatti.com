@@ -1,14 +1,14 @@
 ---
-lang:       en
-title:      "The Journey of Innovation"
-permalink:  toshiba-journey-of-innovation
-id:         toshiba-journey-of-innovation
-date:       2008-11-19 13:31
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.en.jade
-tags:       toshiba,gesture recognition,flash,as3
-banner:     img/siteoftheday.png
-description: "A website with an experimental mouse gesture navigation system. Interaction is done by drawing signs over the site, a circle, a spiral, a zig-zag."
+lang        : en
+title       : "The Journey of Innovation"
+permalink   : toshiba-journey-of-innovation
+id          : toshiba-journey-of-innovation
+date        : 2008-11-19 13:31
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.en.jade
+tags        : toshiba,gesture recognition,flash,as3
+banner      : img/siteoftheday.png
+description : "A website with an experimental mouse gesture navigation system. Interaction is done by drawing signs over the site, a circle, a spiral, a zig-zag."
 ---
 
 # [Toshiba: The Journey of Innovation](http://unit9.com/toshiba-leading_innovation/) #

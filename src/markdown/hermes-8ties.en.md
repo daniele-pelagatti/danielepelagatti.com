@@ -1,13 +1,13 @@
 ---
-lang:       en
-title:      "Hermès: 8ties"
-permalink:  hermes-8ties
-id:         hermes-8ties
-date:       2012-10-04 12:23
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.en.jade
-tags:       hermes,8ties,flash,experiment,retrogaming,flash
-description: "Hermès has launched 8new ties inspired by the digital era. Explore the collection through animation, photography and stop motion videos."
+lang        : en
+title       : "Hermès: 8ties"
+permalink   : hermes-8ties
+id          : hermes-8ties
+date        : 2012-10-04 12:23
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.en.jade
+tags        : hermes,8ties,flash,experiment,retrogaming,flash
+description : "Hermès has launched 8new ties inspired by the digital era. Explore the collection through animation, photography and stop motion videos."
 ---
 
 # [Hermès: 8ties](http://www.unit9.com/project/hermes-8ties) #

@@ -1,13 +1,13 @@
 ---
-lang:       it
-title:      Chi Sono
-description: "Daniele Pelagatti è uno sviluppatore software che vive a Firenze, Toscana. Lavora per marchi di fama mondiale dal 2007."
-permalink:  
-id:         index
-date:       2014-12-12 12:12
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.it.jade
-tags:       daniele,pelagatti,interactive,developer
+lang        : it
+title       : Chi Sono
+permalink   :  
+id          : index
+date        : 2014-12-12 12:12
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.it.jade
+tags        : daniele,pelagatti,interactive,developer
+description : "Daniele Pelagatti è uno sviluppatore software che vive a Firenze, Toscana. Lavora per marchi di fama mondiale dal 2007."
 ---
 
 # Chi Sono #

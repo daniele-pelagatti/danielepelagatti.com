@@ -1,13 +1,13 @@
 ---
-lang:       it
-title:      "Installazione Rifle Jeans"
-permalink:  installazione-interattiva-rifle-jeans
-id:         rifle-jeans-installation
-date:       2013-08-10 11:44
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.it.jade
-tags:       rifle,installazione,twitter,evento dal vivo,flash,java
-description: "Displayed at the opening party for the first Rifle flagship store at Milan, the installation transformed passers by into models walking the Fashion Week runway."
+lang        : it
+title       : "Installazione Rifle Jeans"
+permalink   : installazione-interattiva-rifle-jeans
+id          : rifle-jeans-installation
+date        : 2013-08-10 11:44
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.it.jade
+tags        : rifle,installazione,twitter,evento dal vivo,flash,java
+description : "Displayed at the opening party for the first Rifle flagship store at Milan, the installation transformed passers by into models walking the Fashion Week runway."
 ---
 
 # [Rifle Jeans: Installazione Interattiva](http://www.unit9.com/project/rifle-jeans-installation) #

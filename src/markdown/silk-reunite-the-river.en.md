@@ -1,15 +1,14 @@
 ---
-lang:       en
-title:      "Reunite the River"
-description: "Daniele Pelagatti is an interactive developer living in Florence, Tuscany, Italy. He works with world class brands since 2007."
-permalink:  silk-reunite-the-river
-id:         silk-reunite-the-river
-date:       2013-07-17 11:55
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.en.jade
-tags:       html5,campaign,canvas,pixie.js
-banner:     img/siteoftheday.png
-description: "Every week each American uses enough water to fill a 40ft pool. This water doesn’t come from the faucet, but the Colorado River."
+lang        : en
+title       : "Reunite the River"
+permalink   : silk-reunite-the-river
+id          : silk-reunite-the-river
+date        : 2013-07-17 11:55
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.en.jade
+tags        : html5,campaign,canvas,pixie.js
+banner      : img/siteoftheday.png
+description : "Every week each American uses enough water to fill a 40ft pool. This water doesn’t come from the faucet, but the Colorado River."
 ---
 
 # [Silk: Reunite the River](http://www.reunitetheriver.com/) #

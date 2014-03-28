@@ -1,13 +1,13 @@
 ---
-lang:       it
-title:      McDonald's Happy Meal
-permalink:  mcdonalds-happy-meal
-id:         mcdonalds-happy-meal
-date:       2011-06-06 12:12
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.it.jade
-tags:       banner,campaign,microsite,flash,video,as3
-description: "Una campagna interattiva composta da banner e microsito commisionata da Tribal DDB Paris"
+lang        : it
+title       : McDonald's Happy Meal
+permalink   : mcdonalds-happy-meal
+id          : mcdonalds-happy-meal
+date        : 2011-06-06 12:12
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.it.jade
+tags        : banner,campaign,microsite,flash,video,as3
+description : "Una campagna interattiva composta da banner e microsito commisionata da Tribal DDB Paris"
 ---
 
 # [McDonald's Happy Meal](http://www.unit9.com/project/mcdonalds-happy-meal) #

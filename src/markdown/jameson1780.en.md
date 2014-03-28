@@ -1,14 +1,14 @@
 ---
-lang:       en
-title:      "Jameson1780"
-permalink:  jameson-1780
-id:         jameson-1780
-date:       2012-10-04 12:23
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.en.jade
-tags:       jameson,whiskey,flash,interactive campaign,as3
-banner:     img/siteoftheday.png
-description: "UNIT9 director Martin Percy, teaming with San Francisco based agency Evolution Bureau (EVB) presents an excitingly realistic web experience for Jameson® Irish Whiskey."
+lang        : en
+title       : "Jameson1780"
+permalink   : jameson-1780
+id          : jameson-1780
+date        : 2012-10-04 12:23
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.en.jade
+tags        : jameson,whiskey,flash,interactive campaign,as3
+banner      : img/siteoftheday.png
+description : "UNIT9 director Martin Percy, teaming with San Francisco based agency Evolution Bureau (EVB) presents an excitingly realistic web experience for Jameson® Irish Whiskey."
 ---
 
 # [Jameson1780](http://www.unit9.com/project/jameson1780) #

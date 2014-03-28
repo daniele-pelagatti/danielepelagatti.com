@@ -1,64 +1,64 @@
 class App
 
-	CONTAINER_X : 200;
-	SCREEN_WIDTH : window.innerWidth - @CONTAINER_X;
-	SCREEN_HEIGHT : window.innerHeight;
-	FLOOR : -50;
-	TRANSITION_DURATION :  0.5;
-	PAGE_SCALE_MULTIPLIER : 0.1;
-	SCENE_SCALE_MULTIPLIER : 100;
-	CSS3D_SCALE_MULTIPLIER : 1;
-
-	container : null;
-	# stats : null;
-
-	camera : null;
-	scene : null;
-	css3DScene : null;
-	webglRenderer : null;
-	css3dRenderer : null;
-
-	mouseX : 0;
-	mouseY : 0;
-	pickMouseX : 0;
-	pickMouseY : 0;
-
-	windowHalfX : @SCREEN_WIDTH / 2;
-	windowHalfY : @SCREEN_HEIGHT / 2;
-
-	has_gl : false;
-
-	projector : null;
-	raycaster : null;
-
-	overObject : null;
-	excludeFromPicking : ["scene_baked_pPlane1"]
-
-	initialObjectsProperties : {};
-	clickedObject : null;
-	clickedObjectWPosition : null;
-	clickedObjectWRotation : null;
-	clickedObjectWScale : null;
-	isFocused : false;
+	CONTAINER_X              : 200;
+	SCREEN_WIDTH             : window.innerWidth - @CONTAINER_X;
+	SCREEN_HEIGHT            : window.innerHeight;
+	FLOOR                    : -50;
+	TRANSITION_DURATION      :  0.5;
+	PAGE_SCALE_MULTIPLIER    : 0.1;
+	SCENE_SCALE_MULTIPLIER   : 100;
+	CSS3D_SCALE_MULTIPLIER   : 1;
 	
-	pageLanguage : window.PAGE_LANG;
-	pagePermalink : window.PAGE_PERMALINK;
-	pageDepth : window.PAGE_DEPTH;
-	pageBase : window.PAGE_BASE;
-	pageId : "";
-
-	config : []
-	allLanguagesConfig : []
-	thisPageConfig : null
-
-
-	page3DObjects : {}
-	doPicking : true
-	currentHistoryState : {}
-	cameraLookAt : new THREE.Vector3(-50,-300,0)
-
-	htmlMain : null
-	delayID : -1
+	container                : null;
+	# stats                  : null;
+	
+	camera                   : null;
+	scene                    : null;
+	css3DScene               : null;
+	webglRenderer            : null;
+	css3dRenderer            : null;
+	
+	mouseX                   : 0;
+	mouseY                   : 0;
+	pickMouseX               : 0;
+	pickMouseY               : 0;
+	
+	windowHalfX              : @SCREEN_WIDTH / 2;
+	windowHalfY              : @SCREEN_HEIGHT / 2;
+	
+	has_gl                   : false;
+	
+	projector                : null;
+	raycaster                : null;
+	
+	overObject               : null;
+	excludeFromPicking       : ["scene_baked_pPlane1"]
+	
+	initialObjectsProperties : {};
+	clickedObject            : null;
+	clickedObjectWPosition   : null;
+	clickedObjectWRotation   : null;
+	clickedObjectWScale      : null;
+	isFocused                : false;
+	
+	pageLanguage             : window.PAGE_LANG;
+	pagePermalink            : window.PAGE_PERMALINK;
+	pageDepth                : window.PAGE_DEPTH;
+	pageBase                 : window.PAGE_BASE;
+	pageId                   : "";
+	
+	config                   : []
+	allLanguagesConfig       : []
+	thisPageConfig           : null
+	
+	
+	page3DObjects            : {}
+	doPicking                : true
+	currentHistoryState      : {}
+	cameraLookAt             : new THREE.Vector3(-50,-300,0)
+	
+	htmlMain                 : null
+	delayID                  : -1
 
 	constructor:->
 
@@ -90,11 +90,11 @@ class App
 	onConfigLoaded:( data, textStatus, jqXHR  )=>
 		@container = $( '.javascriptContent' );
 
-		@CONTAINER_X = @container.position().left;
-		@SCREEN_WIDTH = window.innerWidth - @CONTAINER_X;
+		@CONTAINER_X   = @container.position().left;
+		@SCREEN_WIDTH  = window.innerWidth - @CONTAINER_X;
 		@SCREEN_HEIGHT = window.innerHeight;
-		@windowHalfX = @SCREEN_WIDTH / 2;
-		@windowHalfY = @SCREEN_HEIGHT / 2;
+		@windowHalfX   = @SCREEN_WIDTH / 2;
+		@windowHalfY   = @SCREEN_HEIGHT / 2;
 
 
 		@allLanguagesConfig = data;
@@ -338,22 +338,22 @@ class App
 
 	showLoading:=>
 		$(".javascriptContent").spin
-			lines: 8, # The number of lines to draw
-			length: 8, # The length of each line
-			width: 5, # The line thickness
-			radius: 11, # The radius of the inner circle
-			corners: 1, # Corner roundness (0..1)
-			rotate: 0, # The rotation offset
-			direction: 1, # 1: clockwise, -1: counterclockwise
-			color: '#444', # #rgb or #rrggbb or array of colors
-			speed: 1.3, # Rounds per second
-			trail: 60, # Afterglow percentage
-			shadow: true, # Whether to render a shadow
-			hwaccel: true, # Whether to use hardware acceleration
-			className: 'spinner', # The CSS class to assign to the spinner
-			zIndex: 2e9, # The z-index (defaults to 2000000000)
-			top: '47%', # Top position relative to parent in px
-			left: '47%' # Left position relative to parent in px	
+			lines     : 8, # The number of lines to draw
+			length    : 8, # The length of each line
+			width     : 5, # The line thickness
+			radius    : 11, # The radius of the inner circle
+			corners   : 1, # Corner roundness (0..1)
+			rotate    : 0, # The rotation offset
+			direction : 1, # 1: clockwise, -1: counterclockwise
+			color     : '#444', # #rgb or #rrggbb or array of colors
+			speed     : 1.3, # Rounds per second
+			trail     : 60, # Afterglow percentage
+			shadow    : true, # Whether to render a shadow
+			hwaccel   : true, # Whether to use hardware acceleration
+			className : 'spinner', # The CSS class to assign to the spinner
+			zIndex    : 2e9, # The z-index (defaults to 2000000000)
+			top       : '47%', # Top position relative to parent in px
+			left      : '47%' # Left position relative to parent in px	
 	hideLoading:=>
 		$(".javascriptContent").spin(false)		
 	
@@ -499,9 +499,9 @@ class App
 			return
 
 		@hideLoading();
-		@clickedObjectWPosition = 	@initialObjectsProperties[@clickedObject.name].position.clone();
-		@clickedObjectWRotation = 	@initialObjectsProperties[@clickedObject.name].quaternion.clone();
-		@clickedObjectWScale = 		@initialObjectsProperties[@clickedObject.name].scale.clone();
+		@clickedObjectWPosition = @initialObjectsProperties[@clickedObject.name].position.clone();
+		@clickedObjectWRotation = @initialObjectsProperties[@clickedObject.name].quaternion.clone();
+		@clickedObjectWScale    = @initialObjectsProperties[@clickedObject.name].scale.clone();
 
 		newPos = @getFocusedPagePosition();
 

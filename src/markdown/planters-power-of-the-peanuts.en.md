@@ -1,12 +1,12 @@
 ---
-lang:       en
-title:      "Power Of The Peanut"
-permalink:  planters-power-of-the-peanuts
-id:         planters-power-of-the-peanuts
-date:       2013-06-10 11:44
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.en.jade
-tags:       daniele,pelagatti,interactive,developer
+lang      : en
+title     : "Power Of The Peanut"
+permalink : planters-power-of-the-peanuts
+id        : planters-power-of-the-peanuts
+date      : 2013-06-10 11:44
+author    : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template  : default.en.jade
+tags      : daniele,pelagatti,interactive,developer
 ---
 
 # [Planters: Power Of The Peanut](http://www.powerofthepeanut.com/) #

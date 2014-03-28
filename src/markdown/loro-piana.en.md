@@ -1,13 +1,13 @@
 ---
-lang:       en
-title:      Loro Piana
-permalink:  loro-piana
-id:         loro-piana
-date:       2011-10-12 10:12
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.en.jade
-tags:       loro piana,fashion,ecommerce,site,flash,as3
-description: "Made for the Loro Piana lifestyle brand, the experience one gets from visiting this site website is one of luxury and classic elegance, everything that Loro Piana is."
+lang        : en
+title       : Loro Piana
+permalink   : loro-piana
+id          : loro-piana
+date        : 2011-10-12 10:12
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.en.jade
+tags        : loro piana,fashion,ecommerce,site,flash,as3
+description : "Made for the Loro Piana lifestyle brand, the experience one gets from visiting this site website is one of luxury and classic elegance, everything that Loro Piana is."
 ---
 
 # [Loro Piana](http://www.loropiana.com) #

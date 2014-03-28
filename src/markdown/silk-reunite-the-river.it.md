@@ -1,15 +1,14 @@
 ---
-lang:       it
-title:      "Reunite the River"
-description: "Daniele Pelagatti is an interactive developer living in Florence, Tuscany, Italy. He works with world class brands since 2007."
-permalink:  silk-reunite-the-river
-id:         silk-reunite-the-river
-date:       2013-07-17 11:55
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.it.jade
-tags:       html5,campagna,canvas,pixie.js
-banner:     img/siteoftheday.png
-description: "Ogni settimana l'Americano medio consuma tanta acqua da riempire una piscina di 12 metri. Quest'acqua non viene dal rubinetto, ma dal Colorado River."
+lang        : it
+title       : "Reunite the River"
+permalink   : silk-reunite-the-river
+id          : silk-reunite-the-river
+date        : 2013-07-17 11:55
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.it.jade
+tags        : html5,campagna,canvas,pixie.js
+banner      : img/siteoftheday.png
+description : "Ogni settimana l'Americano medio consuma tanta acqua da riempire una piscina di 12 metri. Quest'acqua non viene dal rubinetto, ma dal Colorado River."
 ---
 
 # [Silk: Reunite the River](http://www.reunitetheriver.com/) #

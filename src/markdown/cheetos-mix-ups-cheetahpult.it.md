@@ -1,14 +1,14 @@
 ---
-lang:       it
-title:      "Cheetahpult"
-permalink:  cheetos-mix-ups-cheetahpult
-id:         cheetos-mix-ups-cheetahpult
-date:       2013-05-23 15:12
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.it.jade
-tags:       fisica 3d,flash,stage3d,gioco,campagna interattiva,youtube
-banner:     img/siteoftheday.png
-description: "Cheetahpult è il primo gioco del suo genere; un gioco inglobato nella piattaforma Google dove gli utenti possono giocare direttamente su Youtube."
+lang        : it
+title       : "Cheetahpult"
+permalink   : cheetos-mix-ups-cheetahpult
+id          : cheetos-mix-ups-cheetahpult
+date        : 2013-05-23 15:12
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.it.jade
+tags        : fisica 3d,flash,stage3d,gioco,campagna interattiva,youtube
+banner      : img/siteoftheday.png
+description : "Cheetahpult è il primo gioco del suo genere; un gioco inglobato nella piattaforma Google dove gli utenti possono giocare direttamente su Youtube."
 ---
 
 # [Cheetos Mix-ups: Cheetahpult](http://www.youtube.com/cheetos) #

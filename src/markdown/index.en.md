@@ -1,14 +1,14 @@
 ---
-lang:       en
-title:      About Me
-description: "Daniele Pelagatti is an interactive developer living in Florence, Tuscany, Italy. He works with world class brands since 2007."
-permalink:  
-id:         index
-date:       2014-12-12 12:12
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.en.jade
-tags:       daniele,pelagatti,interactive,developer
-root:       true
+lang        : en
+title       : About Me
+permalink   :  
+id          : index
+date        : 2014-12-12 12:12
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.en.jade
+tags        : daniele,pelagatti,interactive,developer
+root        : true
+description : "Daniele Pelagatti is an interactive developer living in Florence, Tuscany, Italy. He works with world class brands since 2007."
 ---
 
 # About Me #

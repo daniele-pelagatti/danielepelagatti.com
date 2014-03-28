@@ -1,14 +1,14 @@
 ---
-lang:       it
-title:      Trova la tua strada per OZ
-permalink:  trova-la-tua-strada-per-oz
-id:         find-your-way-to-oz
-date:       2013-02-21 13:00
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.it.jade
-tags:       disney,oz,webgl,html5,glsl,shaders,developer
-banner:     img/projectoftheyear.png
-description: "Find Your Way to Oz è un Google Chrome Experiment portato nel web da Disney."
+lang        : it
+title       : Trova la tua strada per OZ
+permalink   : trova-la-tua-strada-per-oz
+id          : find-your-way-to-oz
+date        : 2013-02-21 13:00
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.it.jade
+tags        : disney,oz,webgl,html5,glsl,shaders,developer
+banner      : img/projectoftheyear.png
+description : "Find Your Way to Oz è un Google Chrome Experiment portato nel web da Disney."
 ---
 
 # [Trova la tua strada per OZ](http://www.findyourwaytooz.com) #

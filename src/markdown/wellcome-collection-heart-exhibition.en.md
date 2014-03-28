@@ -1,14 +1,14 @@
 ---
-lang:       en
-title:      "Heart Exhibition"
-permalink:  wellcome-collection-heart-exhibition
-id:         wellcome-collection-heart-exhibition
-date:       2008-02-09 13:44
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.en.jade
-tags:       flash,3d,software rendering,experimental,gallery,exibition
-banner:     img/siteoftheday.png
-description: "Explore the Wellcome exhibition, navigate the collection via semantically connected keywords and dig inside endless layers of information."
+lang        : en
+title       : "Heart Exhibition"
+permalink   : wellcome-collection-heart-exhibition
+id          : wellcome-collection-heart-exhibition
+date        : 2008-02-09 13:44
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.en.jade
+tags        : flash,3d,software rendering,experimental,gallery,exibition
+banner      : img/siteoftheday.png
+description : "Explore the Wellcome exhibition, navigate the collection via semantically connected keywords and dig inside endless layers of information."
 ---
 
 # [Wellcome Collection: Heart Exhibition](http://www.unit9.com/heart) #

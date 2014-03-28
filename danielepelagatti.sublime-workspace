@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"ugli",
+				"uglify"
+			],
+			[
+				"grunt",
+				"gruntConfig"
+			],
+			[
 				"margin",
 				"margin-left"
 			],
@@ -104,10 +112,6 @@
 				"Vector3"
 			],
 			[
-				"grunt",
-				"gruntGonfig"
-			],
-			[
 				"ab",
 				"absolute"
 			],
@@ -140,20 +144,48 @@
 	"buffers":
 	[
 		{
-			"file": "danielepelagatti.sublime-project",
+			"file": "src/coffee/App.coffee",
 			"settings":
 			{
-				"buffer_size": 73,
-				"line_ending": "Unix"
+				"buffer_size": 22072,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/dani/AppData/Roaming/Sublime Text 3/Packages/User/Base File.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 1177,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/coffee/main.coffee",
+			"settings":
+			{
+				"buffer_size": 65,
+				"line_ending": "Windows"
 			}
 		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 392.0,
+		"height": 357.0,
 		"selected_items":
 		[
+			[
+				"picke",
+				"Color Picker"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"github",
+				"Markdown Preview: Github Flavored Markdown: Preview in Browser"
+			],
 			[
 				"mark",
 				"Snippet: Markdown_image_(mdi)"
@@ -161,10 +193,6 @@
 			[
 				"markdown",
 				"Snippet: Markdown_image_(mdi)"
-			],
-			[
-				"Package Control: ",
-				"Package Control: Install Package"
 			],
 			[
 				"markdo",
@@ -200,7 +228,50 @@
 	},
 	"file_history":
 	[
+		"/C/Users/dani/AppData/Roaming/Sublime Text 3/Packages/Alignment/Base File.sublime-settings",
+		"/C/Users/dani/AppData/Roaming/Sublime Text 3/Packages/Alignment/Default (Windows).sublime-keymap",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/node_modules/grunt/node_modules/js-yaml/node_modules/argparse/lib/argument_parser.js",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/node_modules/grunt-cli/AUTHORS",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/maya/images/.mayaSwatches/baked-pPlaneShape1.png.swatch",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/maya/data/split_obj.py",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/maya/data/scene2.json",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/maya/data/scene.mtl",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/maya/data/scene.json",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/maya/data/scene.fbx",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/maya/data/scene.dae",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/maya/data/scene.bin",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/maya/data/direct_export.js",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/maya/data/convert_to_threejs.py",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/maya/data/convert_obj_three.py",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/maya/data/convert_fbx_three.py",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/maya/workspace.mel",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/README.md",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/package.json",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/modernizr.dev.js",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/html2text.py",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/Gruntfile.coffee",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/danielepelagatti.sublime-project",
 		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/.gitignore",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/node_modules/grunt/node_modules/findup-sync/node_modules/glob/node_modules/inherits/inherits_browser.js",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/node_modules/uglify-js/node_modules/optimist/example/default_singles.js",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/node_modules/uglify-js/node_modules/optimist/example/default_hash.js",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/node_modules/grunt/node_modules/minimatch/test/defaults.js",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/node_modules/grunt-glsl-threejs/test/expected/default_options",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/src/jade/default.it.jade",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/src/jade/default.en.jade",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/node_modules/uglify-js/lib/mozilla-ast.js",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/src/glsl/PlaneShader.frag",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/src/coffee/App.coffee",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/src/compass/main.sass",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/src/jade/head.jade",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/src/markdown/wellcome-collection-heart-exhibition.it.md",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/src/coffee/main.coffee",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/src/markdown/adobe-adweek.en.md",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/src/js/chroma.js",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/src/jade/tail.jade",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/www/js/vendor.min.js",
+		"/C/Users/dani/Documents/GitHub/danielepelagatti.com/www/css/main.css",
+		"/C/Users/dani/Documents/GitHub/JSVendorManager/README.md",
 		"/C/Users/dani/Dropbox/sito_3d/src/jade/head.jade",
 		"/C/Users/dani/AppData/Local/Temp/fz3temp-1/.htaccess",
 		"/C/Users/dani/Dropbox/sito_3d/src/jade/tail.jade",
@@ -284,54 +355,11 @@
 		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/fruit-shoot-champion-of-the-playground.it.md",
 		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/fruit-shoot-champion-of-the-playground.en.md",
 		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/index.en.md",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/index.it.md",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/tivitz.en.md",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/tivitz.it.md",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/silk-reunite-the-river.it.md",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/loro-piana.en.md",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/mcdonalds-happy-meal.en.md",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/mcdonalds-happy-meal.it.md",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/loro-piana.it.md",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/philips-parallel-lines.en.md",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/philips-parallel-lines.it.md",
-		"/D/Dropbox (unit9 italy)/sito_3d/www/js/libs/modernizr.js",
-		"/D/Dropbox (unit9 italy)/sito_3d/www/js/libs/modernizr.dev.js",
-		"/D/Dropbox (unit9 italy)/sito_3d/converted.md",
-		"/D/Dropbox (unit9 italy)/sito_3d/convert.html",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/vlc-flex-http-interface.it.md",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/vlc-flex-http-interface.en.md",
-		"/D/Dropbox (unit9 italy)/sito_3d/convert.md",
-		"/D/Dropbox (unit9 italy)/sito_3d/www/config.json",
-		"/D/Users/User/Desktop/Nuovo documento di testo.txt",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/compass/bourbon/_bourbon.scss",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/jade/index.jade",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/jade/test.jade",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/jade/header.jade",
-		"/D/Dropbox (unit9 italy)/sito_3d/www/js/libs/TweenMax.min.js",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/compass/_normalize.scss",
-		"/D/Users/User/Desktop/Main.as",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/jade/www/test.jade",
-		"/D/Dropbox (unit9 italy)/sito_3d/pages/VLC-Flex-HTTP-Interface.md",
-		"/C/Users/User/AppData/Roaming/Sublime Text 3/Packages/MarkdownEditing/MultiMarkdown.sublime-settings",
-		"/C/Users/User/AppData/Roaming/Sublime Text 3/Packages/MarkdownEditing/Markdown (Standard).sublime-settings",
-		"/D/Dropbox (unit9 italy)/sito_3d/www/test.html",
-		"/D/Dropbox (unit9 italy)/sito_3d/pages/Silk-Reunite-the-River.md",
-		"/D/Dropbox (unit9 italy)/sito_3d/package.json",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/jade/www/index.jade",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/glsl/PlaneShader.frag",
-		"/D/Dropbox (unit9 italy)/sito_3d/index.html",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/compass/reset.sass",
-		"/D/Dropbox (unit9 italy)/sito_3d/test.html",
-		"/D/Dropbox (unit9 italy)/sito_3d/src/glsl/PlaneShader.vert",
-		"/D/Dropbox (unit9 italy)/sito_3d/js/libs/rasterizeHTML.allinone2.js",
-		"/D/Dropbox (unit9 italy)/sito_3d/node_modules/grunt-glsl/tasks/glsl.coffee",
-		"/D/Dropbox (unit9 italy)/sito_3d/new.html",
-		"/D/Dropbox (unit9 italy)/sito_3d/grunt-glsl/tasks/glsl.js",
-		"/D/Dropbox (unit9 italy)/sito_3d/node_modules/grunt-coffee-percolator-v2/README.md"
+		"/D/Dropbox (unit9 italy)/sito_3d/src/markdown/index.it.md"
 	],
 	"find":
 	{
-		"height": 22.0
+		"height": 34.0
 	},
 	"find_in_files":
 	{
@@ -346,6 +374,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"$min-very-little-device",
+			"500px",
 			"pop",
 			"showLoading",
 			"delayID",
@@ -451,30 +481,88 @@
 			[
 				{
 					"buffer": 0,
-					"file": "danielepelagatti.sublime-project",
+					"file": "src/coffee/App.coffee",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 73,
+						"buffer_size": 22072,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								73,
-								73
+								1011,
+								1011
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+							"syntax": "Packages/Better CoffeeScript/CoffeeScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/dani/AppData/Roaming/Sublime Text 3/Packages/User/Base File.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1177,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								815,
+								815
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/coffee/main.coffee",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 65,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Better CoffeeScript/CoffeeScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -511,6 +599,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.coffeecompile_output":
+	{
+		"height": 94.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
@@ -526,24 +618,36 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"app.",
+				"src\\coffee\\App.coffee"
+			],
+			[
+				"main.co",
+				"src\\coffee\\main.coffee"
+			]
 		],
 		"width": 0.0
 	},
 	"select_project":
 	{
-		"height": 0.0,
+		"height": 500.0,
 		"selected_items":
 		[
 		],
-		"width": 0.0
+		"width": 380.0
 	},
 	"select_symbol":
 	{
-		"height": 0.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"construc",
+				"constructor"
+			]
 		],
-		"width": 0.0
+		"width": 1213.0
 	},
 	"settings":
 	{

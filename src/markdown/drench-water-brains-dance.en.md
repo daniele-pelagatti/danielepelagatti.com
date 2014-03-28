@@ -1,13 +1,13 @@
 ---
-lang:       en
-title:      "Brains Dance"
-permalink:  drench-water-brains-dance
-id:         drench-water-brains-dance
-date:       2008-05-05 01:24
-author:     Daniele Pelagatti <daniele.pelagatti@unit9.com>
-template:   default.en.jade
-tags:       webcam,motion detection,dance,flash,as3,swfaddress,movement
-description: "Test your mental performance and make Brains dance using your web-cam."
+lang        : en
+title       : "Brains Dance"
+permalink   : drench-water-brains-dance
+id          : drench-water-brains-dance
+date        : 2008-05-05 01:24
+author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
+template    : default.en.jade
+tags        : webcam,motion detection,dance,flash,as3,swfaddress,movement
+description : "Test your mental performance and make Brains dance using your web-cam."
 ---
 # [Dranch Water: Brains Dance](http://www.unit9.com/drenchwater/) #
 # Front End Developer #
