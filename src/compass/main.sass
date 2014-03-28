@@ -7,6 +7,7 @@ $page-width: 800px
 $menu-width: 220px
 $min-fullsize: $page-width + $menu-width
 $min-little-device: 700px // 
+$min-very-little-device: 500px // 
 
 // @import url("http://weloveiconfonts.com/api/?family=fontawesome")
 
@@ -151,7 +152,7 @@ main
 	@media screen and (min-width: $min-fullsize)
 		left: $menu-width
 	@media screen and (max-width: $min-fullsize)
-		left: 0px	
+		left: 0px
 
 	.object3DContainer
 		
@@ -160,11 +161,13 @@ main
 		+transition (width 1.0s ease-in-out)
 
 
-		@media screen and (max-width: $min-little-device)
+		@media screen and (max-width: $min-very-little-device)
+			width: $page-width / 2
+		@media screen and (min-width: $min-very-little-device) and (max-width: $min-little-device)
 			width: $page-width / 1.6
 		@media screen and (min-width: $min-little-device) and (max-width: $min-fullsize)
 			width: $page-width / 1.2
-		@media screen and (min-width: $min-fullsize)//, screen and (max-width: 900000px)
+		@media screen and (min-width: $min-fullsize) 
 			width: $page-width
 
 			
