@@ -190,7 +190,7 @@ module.exports = (grunt)->
                 #     # RewriteRules support
                 #     middlewares.push(rewriteModule.getMiddleware([
                 #         # rewrite everything not contained in these folders to index.html
-                #         {from: '^/(?!css|js|img|maya|test).*$', to: '/index.html'} 
+                #         {from: '^/(?!css|js|img|maya|en|it).*$', to: '/index.html'} 
                 #     ]));
 
                 #     if !Array.isArray(options.base)
@@ -277,6 +277,25 @@ module.exports = (grunt)->
                 }
             ]
 
+    gruntConfig.rsync = 
+        options:
+            args: ["--verbose"]
+            recursive: true
+        dist:
+            options:
+                src:"./www"
+                dest:"/public_html"
+                host: "danielep@danielepelagatti.com"
+    # gruntConfig['ftp-deploy'] = 
+    #     build:
+    #         auth: 
+    #             host: 'www.danielepelagatti.com',
+    #             port: 21,
+    #             authKey: 'key1'
+   
+    #         src: 'www',
+    #         dest: '/public_html',
+    #         exclusions: ['www/**/.DS_Store', 'www/**/Thumbs.db']        
 
     grunt.initConfig(gruntConfig)
 
@@ -293,7 +312,9 @@ module.exports = (grunt)->
     grunt.loadNpmTasks('grunt-modernizr');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-rsync');
     
     # Default task(s).
+    # grunt.registerTask('deploy', ['ftp-deploy']);
     grunt.registerTask('build', ['copy','percolator','compass','glsl_threejs','jade','uglify','cssmin']);
     grunt.registerTask('default', ['build','concurrent']);
