@@ -1,5 +1,5 @@
 node_modules
-*.sublime-workspace 
+*.sublime-workspace
 .sass-cache
 .mayaSwatches
 tmp
