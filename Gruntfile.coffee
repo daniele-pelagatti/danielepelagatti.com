@@ -126,13 +126,13 @@ module.exports = (grunt)->
 
 
     # create json file so that javascript can read it
-    grunt.file.delete(gruntConfig.pkg.www_folder+"/"+gruntConfig.pkg.config_json,{force:true})
-    grunt.file.write(gruntConfig.pkg.www_folder+"/"+gruntConfig.pkg.config_json, JSON.stringify(pagesByLanguage) )
+    grunt.file.delete(gruntConfig.pkg.config_json,{force:true})
+    grunt.file.write(gruntConfig.pkg.config_json, JSON.stringify(pagesByLanguage) )
 
     gruntConfig.percolator =
         compile:
             source: gruntConfig.pkg.coffee_folder
-            output: gruntConfig.pkg.www_folder+"/"+gruntConfig.pkg.compiled_js
+            output: gruntConfig.pkg.compiled_js
             main: gruntConfig.pkg.percolator_main
             compile: true
 
@@ -140,13 +140,13 @@ module.exports = (grunt)->
         compile:
             options:
                 sassDir: gruntConfig.pkg.compass_folder
-                cssDir: gruntConfig.pkg.www_folder+'/'+gruntConfig.pkg.compass_output_folder
+                cssDir: gruntConfig.pkg.compass_output_folder
                 outputStyle: 'expanded'
 
     gruntConfig.glsl_threejs =
         compile:
             files : {}
-    gruntConfig.glsl_threejs.compile.files[gruntConfig.pkg.www_folder+'/'+gruntConfig.pkg.glsl_output_file] = [gruntConfig.pkg.glsl_folder+"/*.vert",gruntConfig.pkg.glsl_folder+"/*.frag"]
+    gruntConfig.glsl_threejs.compile.files[gruntConfig.pkg.glsl_output_file] = [gruntConfig.pkg.glsl_folder+"/*.vert",gruntConfig.pkg.glsl_folder+"/*.frag"]
             
 
     gruntConfig.watch =
@@ -154,7 +154,7 @@ module.exports = (grunt)->
             livereload: 35729                
         coffee:
             files: [gruntConfig.pkg.watch_folder+'/**/*.coffee']
-            tasks: ['percolator','uglify:site']
+            tasks: ['percolator']
         compass:
             files: [gruntConfig.pkg.watch_folder+'/**/*.{scss,sass}']
             tasks: ['compass','cssmin']
@@ -163,10 +163,13 @@ module.exports = (grunt)->
             tasks: ['jade']
         glsl_threejs:
             files: [gruntConfig.pkg.watch_folder+'/**/*.{frag,vert}']
-            tasks: ['glsl_threejs','uglify:site']
-        uglify :
-            files: [gruntConfig.pkg.watch_folder+'/**/*.js']
-            tasks: ['uglify:vendor']
+            tasks: ['glsl_threejs']
+        uglify_essential :
+            files: [gruntConfig.pkg.watch_folder+'/js/essential/*.js']
+            tasks: ['uglify:essential']
+        uglify_optional :
+            files: [gruntConfig.pkg.watch_folder+'/js/optional/*.js']
+            tasks: ['uglify:optional']
                                 
     gruntConfig.concurrent =
         options:
@@ -212,18 +215,26 @@ module.exports = (grunt)->
             drop_console: true
             # mangle : false
             # beautify : true
-        vendor :
+        optional :
             files : 
-                "www/js/vendor.min.js" : [
-                    "src/js/three.min.js" 
-                    "src/js/spin.js"
-                    "src/js/*.js"
+                "www/js/optional.min.js" : [
+                    "src/js/optional/three.min.js" 
+                    "src/js/optional/spin.js"
+                    "src/js/optional/*.js"
+                    "src/js/optional/shaders.js"
+                    "src/js/optional/main.js"
                 ]
-        site : 
-            files : {}
-                # "www/js/main.min.js" : ["www/js/shaders.js","www/js/main.js"]
+        essential:
+            files:
+                "www/js/essential.min.js" : [
+                    "src/js/essential/jquery.min.js"
+                    "src/js/essential/jquery.leanModal.min.js"
+                    "src/js/essential/essential.js"
+                ]
+        # site : 
+        #     files : {}
 
-    gruntConfig.uglify.site.files[gruntConfig.pkg.www_folder+"/"+gruntConfig.pkg.minified_main_js_file] = [gruntConfig.pkg.www_folder+"/"+gruntConfig.pkg.glsl_output_file,gruntConfig.pkg.www_folder+"/"+gruntConfig.pkg.compiled_js]
+    # gruntConfig.uglify.site.files[gruntConfig.pkg.minified_main_js_file] = [gruntConfig.pkg.glsl_output_file,gruntConfig.pkg.compiled_js]
 
 
     gruntConfig.cssmin =
@@ -232,7 +243,7 @@ module.exports = (grunt)->
                 keepSpecialComments : false
             files :{}
 
-    gruntConfig.cssmin.all.files[gruntConfig.pkg.www_folder+"/"+gruntConfig.pkg.minified_main_css_file] = [gruntConfig.pkg.www_folder+"/"+gruntConfig.pkg.minified_main_css_input_file];
+    gruntConfig.cssmin.all.files[gruntConfig.pkg.minified_main_css_file] = [gruntConfig.pkg.minified_main_css_input_file];
 
     gruntConfig.modernizr =
         dist:

@@ -6,20 +6,20 @@
   "watch_folder": "src",
   "coffee_folder": "src/coffee",
   "percolator_main": "main.coffee",
-  "compiled_js": "js/main.js",
+  "compiled_js": "src/js/optional/main.js",
   "compass_folder": "src/compass",
-  "compass_output_folder": "css",
+  "compass_output_folder": "www/css",
   "glsl_folder": "src/glsl",
-  "glsl_output_file": "js/shaders.js",
+  "glsl_output_file": "src/js/optional/shaders.js",
   "markdown_folder": "src/markdown",
   "jade_folder": "src/jade",
   "default_document": "index.html",
   "js_folder": "src/js",
-  "minified_vendor_js_file": "js/vendor.min.js",
-  "minified_main_js_file": "js/main.min.js",
-  "minified_main_css_input_file": "css/main.css",
-  "minified_main_css_file": "css/main.min.css",
-  "config_json": "config.json",
+  "minified_vendor_js_file": "www/js/vendor.min.js",
+  "minified_main_js_file": "www/js/main.min.js",
+  "minified_main_css_input_file": "www/css/main.css",
+  "minified_main_css_file": "www/css/main.min.css",
+  "config_json": "www/config.json",
   "devDependencies": {
     "grunt-contrib-compass": "^0.7.2",
     "grunt-contrib-coffee": "^0.10.1",
@@ -43,7 +43,5 @@
     "meta-marked": "~0.3.1",
     "grunt-modernizr": "~0.5.2",
     "grunt-contrib-cssmin": "~0.9.0"
-  },
-  "scripts": {},
-  "main": "js/main.js"
+  }
 }

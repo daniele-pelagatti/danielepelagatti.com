@@ -123,6 +123,7 @@
       var isIE11;
       isIE11 = !!window.MSInputMethodContext;
       if (this.checkWebGL() && window.navigator.userAgent.indexOf("MSIE ") === -1 && !isIE11) {
+        this.showLoading();
         this.htmlMain = $("main");
         this.htmlMain.remove();
         $("body").css("overflow-y", "hidden");
@@ -427,6 +428,8 @@
               link = object.link = _this.config[objectIndex].link;
               container = $("<div class='object3DContainer' permalink='" + link + "'></div>");
               if (_this.config[objectIndex].meta.permalink === _this.pagePermalink) {
+                _this.htmlMain.find("#no-webgl-warning").remove();
+                _this.htmlMain.find(".no-webgl-warning-button").remove();
                 container.append(_this.htmlMain);
               }
               _this.setupCSS3DPage(container, object, link);
@@ -451,6 +454,7 @@
       this.scene.scale.set(this.SCENE_SCALE_MULTIPLIER, this.SCENE_SCALE_MULTIPLIER, this.SCENE_SCALE_MULTIPLIER);
       this.scene.updateMatrix();
       this.css3DScene.updateMatrix();
+      this.hideLoading();
       return null;
     };
 
@@ -479,6 +483,8 @@
             return function(data, textStatus, jqXHR) {
               var mainArticle;
               mainArticle = $(data).find("main");
+              mainArticle.find("#no-webgl-warning").remove();
+              mainArticle.find(".no-webgl-warning-button").remove();
               _this.clickedObject.page.append(mainArticle);
               return _this.focus();
             };
@@ -675,12 +681,12 @@
     };
 
     App.prototype.onMouseMove = function(event) {
-      var mx, my, _ref, _ref1;
+      var mx, my, _ref, _ref1, _ref2, _ref3;
       if (!this.isFocused) {
         event.originalEvent.preventDefault();
       }
-      mx = event.clientX || ((_ref = event.originalEvent.touches[0]) != null ? _ref.clientX : void 0);
-      my = event.clientY || ((_ref1 = event.originalEvent.touches[0]) != null ? _ref1.clientY : void 0);
+      mx = event.clientX || ((_ref = event.originalEvent.touches) != null ? (_ref1 = _ref[0]) != null ? _ref1.clientX : void 0 : void 0) || 0;
+      my = event.clientY || ((_ref2 = event.originalEvent.touches) != null ? (_ref3 = _ref2[0]) != null ? _ref3.clientY : void 0 : void 0) || 0;
       this.mouseX = ((mx - this.CONTAINER_X) - this.windowHalfX) * 0.5;
       this.mouseY = (my - this.windowHalfY) * 0.5;
       this.pickMouseX = ((mx - this.CONTAINER_X) / this.SCREEN_WIDTH) * 2 - 1;

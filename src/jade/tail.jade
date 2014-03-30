@@ -1,9 +1,20 @@
+//- configuration for threejs javascripts
+script(type='text/javascript').
+	window.PAGE_BASE = "#{base}";
+	window.PAGE_DEPTH = #{depth};
+	window.PAGE_LANG = "#{lang}";
+	window.PAGE_PERMALINK = "#{permalink}";
+//- essential javascripts
+script(src="#{base}js/essential.min.js")
+//- threejs site javascripts
+script(async src="#{base}js/optional.min.js")
+//- analytics
 script.
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-3031535-2', 'danielepelagatti.com', {'siteSpeedSampleRate': 100} );
-  ga('require', 'linkid', 'linkid.js');
-  ga('send', 'pageview');
+	ga('create', 'UA-3031535-2', 'danielepelagatti.com', {'siteSpeedSampleRate': 100} );
+	ga('require', 'linkid', 'linkid.js');
+	ga('send', 'pageview');

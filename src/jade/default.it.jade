@@ -34,12 +34,19 @@ html(lang= lang)
 								a.selected(href=getRelativeLink(val) permalink=val.link)=val.meta.title
 							else
 								a(href=getRelativeLink(val) permalink=val.link)=val.meta.title
-								
 			main
 				if banner != null || banner != undefined
 					img.banner(src="#{base}#{banner}")
 				article!=extractVars(content)
-
+				div#no-webgl-warning
+					h4 ATTENZIONE: Stai visualizzando una versione semplificata di questo sito. 
+					p
+						| Per vedere la versione completa, utilizzare un 
+						a(href="http://www.google.com/chrome/") browser con supporto WebGL 
+						| e 
+						a(href="http://windows.microsoft.com/it-it/windows-8/find-install-display-drivers") aggiornare i driver della scheda video 
+						| all'ultima versione.
+				a(href="#no-webgl-warning").fontawesome-warning-sign.no-webgl-warning-button
 		div.javascriptContent
 
 		div.fontawesome-remove.close-page
@@ -79,4 +86,4 @@ html(lang= lang)
 			p Codice sorgente disponibile su 
 				a(href="https://github.com/redde81/danielepelagatti.com") GitHub
 			a.modal_close(href="#") Chiudi
-		include tail
+include tail

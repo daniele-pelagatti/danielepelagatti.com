@@ -62,14 +62,15 @@ class App
 
 	constructor:->
 
+
 		isIE11 = !!window.MSInputMethodContext;
 
 		if @checkWebGL() && window.navigator.userAgent.indexOf("MSIE ") == -1 && !isIE11
+			@showLoading()
 			@htmlMain = $("main")
-			# @htmlMain.css
-			# 	opacity : 0
-			# 	display : "none"
 			@htmlMain.remove();
+
+			
 			$("body").css("overflow-y","hidden");
 			$.ajax(@pageBase+"config.json",
 				success : @onConfigLoaded
@@ -79,6 +80,7 @@ class App
 		else
 			# we cannot continue, no webgl support
 			ga('send', 'event', 'webgl-test', 'failed');
+
 
 	checkWebGL:->
 		ua = navigator.userAgent.toLowerCase()
@@ -302,6 +304,9 @@ class App
 
 		@onWindowResize()
 
+		# TweenMax.to( $(".threejs-container"), 0, {css:{opacity:0}} )
+		# TweenMax.to( $(".css3d-container"), 0, {css:{opacity:0}} )
+
 	
 
 	
@@ -430,17 +435,11 @@ class App
 
 						if @config[objectIndex].meta.permalink == @pagePermalink
 							# don't load ourselves
-							# cont = $("<div></div>")
-							# cont.append(@htmlMain[0])
+							@htmlMain.find("#no-webgl-warning").remove()
+							@htmlMain.find(".no-webgl-warning-button").remove()
 							container.append(@htmlMain)
 
 						@setupCSS3DPage( container , object, link )
-						# $.ajax(@getRelativeLink(link),
-						# 	success : ( data, textStatus, jqXHR  ) =>
-						# 		@setupCSS3DPage(data,object,link)
-						# 	error : (jqXHR,textStatus,errorThrown ) =>
-						# 		console.error(textStatus);
-						# )
 					else
 						@excludeFromPicking.push(object.name)
 
@@ -471,6 +470,24 @@ class App
 		@css3DScene.updateMatrix();	
 
 		# @scene.updateMatrix();
+		@hideLoading()
+
+		# TweenMax.to @htmlMain, 1,
+		# 	css:
+		# 		opacity:0
+		# 	onComplete :=>
+		# 		@htmlMain.remove()
+
+		
+		# TweenMax.to $(".threejs-container"), 0,
+		# 	css:
+		# 		opacity:1
+
+
+		# TweenMax.to $(".css3d-container"), 0,
+		# 	css:
+		# 		opacity:1
+
 		null;
 	
 
@@ -497,6 +514,8 @@ class App
 				success : ( data, textStatus, jqXHR  ) =>
 					# @setupCSS3DPage(data,object,link)
 					mainArticle = $(data).find("main")
+					mainArticle.find("#no-webgl-warning").remove()
+					mainArticle.find(".no-webgl-warning-button").remove()
 					@clickedObject.page.append( mainArticle )
 					@focus()
 				error : (jqXHR,textStatus,errorThrown ) =>
@@ -685,8 +704,8 @@ class App
 		if !@isFocused
 			event.originalEvent.preventDefault();
 
-		mx = event.clientX || event.originalEvent.touches[0]?.clientX
-		my = event.clientY || event.originalEvent.touches[0]?.clientY
+		mx = event.clientX || event.originalEvent.touches?[0]?.clientX || 0
+		my = event.clientY || event.originalEvent.touches?[0]?.clientY || 0
 
 		@mouseX = ( (mx - @CONTAINER_X) - @windowHalfX ) * 0.5;
 		@mouseY = ( my - @windowHalfY ) * 0.5;
