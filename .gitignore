@@ -4,3 +4,4 @@ node_modules
 .mayaSwatches
 tmp
 .DS_Store
+www

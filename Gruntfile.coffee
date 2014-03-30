@@ -254,7 +254,28 @@ module.exports = (grunt)->
                 src: [gruntConfig.pkg.www_folder+"/**/*.js",gruntConfig.pkg.www_folder+"/**/*.css"]
                 
             
-
+    gruntConfig.copy =
+        include:
+            files : [
+                {
+                    expand: true
+                    cwd: 'include/'
+                    src: ['**']
+                    dest: 'www/'
+                }
+                {
+                    expand: true
+                    cwd: 'maya/data'
+                    src: ['**']
+                    dest: 'www/maya/data'                
+                }
+                {
+                    expand: true
+                    cwd: 'maya/images'
+                    src: ['**']
+                    dest: 'www/maya/images'                
+                }
+            ]
 
 
     grunt.initConfig(gruntConfig)
@@ -271,6 +292,8 @@ module.exports = (grunt)->
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-modernizr');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     
     # Default task(s).
-    grunt.registerTask('default', ['concurrent']);
+    grunt.registerTask('build', ['copy','percolator','compass','glsl_threejs','jade','uglify','cssmin']);
+    grunt.registerTask('default', ['build','concurrent']);
