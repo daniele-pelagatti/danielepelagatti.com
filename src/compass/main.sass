@@ -64,6 +64,30 @@ main
 		top: 0
 		left: 0
 
+	.videoWrapper
+		position: relative
+		padding-bottom: 56.25% /* 16:9 */
+		padding-top: 25px
+		height: 0
+
+		iframe
+			position: absolute
+			top: 0
+			left: 0
+			width: 100%
+			height: 100%
+
+	.videoCaption
+		padding: 1em
+		background-color: #eee
+		p 
+			// text-align: right
+			width: 100%
+			font-style: italic
+			font-weight: 400
+			+type-scale($epsilon,$font-base,rem)
+			margin-bottom: 0
+
 
 	time
 		display: block
@@ -88,7 +112,7 @@ main
 			-moz-border-radius: 5px
 			-webkit-border-radius: 5px
 			-khtml-border-radius: 5px	
-			max-width: 95%
+			max-width: 100%
 			min-width: 100px
 			height: auto
 

@@ -29,6 +29,8 @@ Disney. Permette al visitatore di fare un tour interattivo attraverso un circo
 del Kansas che termina, dopo essere spazzati via da un tornado, nelle lande di
 Oz.
 
+{youtube}{nxMlI4z-Khc}{Una demo del progetto}
+
 In questo progetto il nostro obbiettivo è stato di combinare la richezza del
 cinema con le capacità techniche del browser per creare un esperienza
 divertente e immersiva adeguandosi, allo stesso tempo, alla visione di Oz del
@@ -38,6 +40,8 @@ nello stesso mondo ma non poteva esserne una copia uno ad uno. In altre parole
 ci serviva un viaggio interattivo che fluisse verso il mondo che Mr. Raimi
 stava creando per il film: da qui deriva la frase chiave “Trova la tua Strada
 per Oz”, stava per nascere un viaggio verso Oz.
+
+{youtube}{yj0abkBz2Ag#t=2m30s}{Il nostro team discute sulle soluzioni tecniche}
 
 Il progetto è una collaborazione imponente tra UNIT9, il team di Google Chrome
 e Disney, è stato reso possibile grazie al potente motore di rendering di

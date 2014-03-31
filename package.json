@@ -38,12 +38,11 @@
     "grunt-contrib-connect": "~0.7.1",
     "connect-livereload": "~0.3.2",
     "http-rewrite-middleware": "~0.1.5",
-    "markdown-js": "0.0.3",
-    "marked": "~0.3.2",
-    "meta-marked": "~0.3.1",
     "grunt-modernizr": "~0.5.2",
     "grunt-contrib-cssmin": "~0.9.0",
     "grunt-contrib-copy": "^0.5.0",
-    "grunt-rsync": "^0.5.0"
+    "grunt-rsync": "^0.5.0",
+    "load-grunt-tasks": "~0.4.0",
+    "meta-marked": "~0.3.1"
   }
 }

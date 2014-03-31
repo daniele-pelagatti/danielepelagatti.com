@@ -24,9 +24,11 @@ huge thanks to all the team members and voters!
 
 ---
 
-“Find Your Way to Oz” is a Google Chrome Experiment brought to the web by
+"Find Your Way to Oz" is a Google Chrome Experiment brought to the web by
 Disney. It allows you to take an interactive journey through a Kansas circus,
 which leads you to the land of Oz after you are swept up by a massive storm.
+
+{youtube}{nxMlI4z-Khc}{A Video Walkthrough of the project}
 
 In this project our goal was to combine the richness of cinema with the
 technical capabilities of the browser to create a fun, immersive experience
@@ -37,6 +39,8 @@ have to live in the same space, and yet could not cover the same ground. In
 other words, we needed a simple interactive journey that flows towards the
 world Mr. Raimi was creating on film. That is where the key phrase “Find Your
 Way To Oz” came in. This was going to be your journey to Oz.
+
+{youtube}{yj0abkBz2Ag#t=2m30s}{Here is a video of our team talking about the technical solutions we used}
 
 The project is a massive collaborative effort between UNIT9, the Google
 Chrome's Team and Disney, it was brought to life thanks to the powerful Chrome

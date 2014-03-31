@@ -19,5 +19,7 @@
 - }
 
 - var extractVars = function(cont) {
--		return cont.replace(/#\{base\}/g, base )
+- 		cont = cont.replace(/#\{base\}/g, base )
+-		cont = cont.replace(/\{youtube\}\{(.*?)\}\{(.*?)\}/g, "<div class=\"videoWrapper\"><iframe class=\"video\" src=\"//www.youtube.com/embed/$1\" frameborder=\"0\"></iframe></div><div class=\"videoCaption\"><p>$2</p></div>" )
+-		return cont;
 - }
