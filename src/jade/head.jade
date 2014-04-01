@@ -5,6 +5,8 @@ head
 	meta(name="description" content=description)
 	meta(name="keywords" content=tags)
 	meta(name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0")
+	meta(name="msapplication-TileColor" content="#FFFFFF")
+	meta(name="msapplication-square150x150logo" content="#{base}img/tile.jpg")
 	//- OpenGraph tags
 	meta(property="og:title" content="Daniele Pelagatti - #{title}")
 	meta(property="og:site_name" content="Daniele Pelagatti's Portfolio")
@@ -15,3 +17,25 @@ head
 	//- link(href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css')
 	//- link(rel="stylesheet" href="http://weloveiconfonts.com/api/?family=fontawesome")
 	link(rel="stylesheet" href="#{base}css/main.min.css")
+
+
+	//- prefetch and prerender next menu item
+	- if(links) {
+	-	var found = false
+	- 	for( var i = 0; i< links.length;i++) {
+	-		var val = links[i]
+	-		if(val.link == link) {
+	-			var next_link = null
+	-			if(i < links.length-1) next_link = links[i+1]
+	-			else next_link = links[i-1]
+				link(rel="prefetch" href=getRelativeLink(next_link))
+				link(rel="prerender" href=getRelativeLink(next_link))
+	-			found = true;
+	-			break
+	-		}
+	- 	}
+	- 	if(!found && links.length > 0) {
+			link(rel="prefetch" href=getRelativeLink(links[1]))
+			link(rel="prerender" href=getRelativeLink(links[1]))
+	-	}
+	- }

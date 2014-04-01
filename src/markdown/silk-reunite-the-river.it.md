@@ -9,6 +9,9 @@ template    : default.it.jade
 tags        : html5,campagna,canvas,pixie.js
 banner      : img/siteoftheday.png
 description : "Ogni settimana l'Americano medio consuma tanta acqua da riempire una piscina di 12 metri. Quest'acqua non viene dal rubinetto, ma dal Colorado River."
+twittertags :
+    - reunitetheriver
+    - changethecourse
 ---
 
 # [Silk: Reunite the River](http://www.reunitetheriver.com/) #

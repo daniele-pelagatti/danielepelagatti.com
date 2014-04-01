@@ -9,6 +9,9 @@ template    : default.en.jade
 tags        : html5,campaign,canvas,pixie.js
 banner      : img/siteoftheday.png
 description : "Every week each American uses enough water to fill a 40ft pool. This water doesn’t come from the faucet, but the Colorado River."
+twittertags :
+    - reunitetheriver
+    - changethecourse
 ---
 
 # [Silk: Reunite the River](http://www.reunitetheriver.com/) #

@@ -8,6 +8,8 @@ author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
 template    : default.it.jade
 tags        : tivitz,flash,3d,software rendering,gioco,matematica
 description : "Un gioco 3D che aiuta i bambini a imparare la matematica."
+twittertags :
+    - tivitz
 ---
 
 # [Tivitz](http://www.tivitz.com/game/3d/) #

@@ -9,6 +9,8 @@ template    : default.it.jade
 tags        : heineken,campagna digitale,ubriaco,flash,as3
 banner      : img/siteoftheday.png
 description : "Know The Signs ti permette di individuare in quale, tra cinque imbarazzanti personaggi, tu e i tuoi amici vi trasformate quando bevete un bicchiere di troppo."
+twittertags :
+    - heineken knowthesigns
 ---
 
 # [Heineken: Know the signs](http://www.unit9.com/project/know-the-signs) #

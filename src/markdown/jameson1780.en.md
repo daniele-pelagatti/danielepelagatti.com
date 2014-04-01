@@ -9,6 +9,8 @@ template    : default.en.jade
 tags        : jameson,whiskey,flash,interactive campaign,as3
 banner      : img/siteoftheday.png
 description : "UNIT9 director Martin Percy, teaming with San Francisco based agency Evolution Bureau (EVB) presents an excitingly realistic web experience for Jameson® Irish Whiskey."
+twittertags:
+    - jameson1780
 ---
 
 # [Jameson1780](http://www.unit9.com/project/jameson1780) #

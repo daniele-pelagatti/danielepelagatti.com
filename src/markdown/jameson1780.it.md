@@ -9,6 +9,8 @@ template    : default.it.jade
 tags        : jameson,whiskey,flash,campagna interattiva,as3
 banner      : img/siteoftheday.png
 description : "Martin Percy – direttore creativo di unit9, insieme a EVB – pluripremiata agenzia digitale di San Francisco, presentano un'avventura digitale HD realizzata per Jameson® Irish Whiskey."
+twittertags:
+    - jameson1780
 ---
 
 # [Jameson1780](http://www.unit9.com/project/jameson1780) #

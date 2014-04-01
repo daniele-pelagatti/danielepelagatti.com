@@ -9,6 +9,8 @@ template    : default.en.jade
 tags        : disney,oz,webgl,html5,glsl,shaders,developer
 banner      : img/projectoftheyear.png
 description : "Find Your Way to Oz is a Google Chrome Experiment brought to the web by Disney."
+twittertags : 
+    - findyourwaytooz
 ---
 
 # [Find Your Way To OZ](http://www.findyourwaytooz.com) #

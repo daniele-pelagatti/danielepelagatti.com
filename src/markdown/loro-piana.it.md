@@ -8,6 +8,8 @@ author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
 template    : default.it.jade
 tags        : loro piana,fashion,ecommerce,site,flash,as3
 description : "Commissionato dal brand [Loro Piana](http://www.loropiana.com), la sensazione che si ha navigando questo sito è quella di lusso ed eleganza classica, tutto quello che Loro Piana rappresenta."
+twittertags :
+    - loropiana
 ---
 
 # [Loro Piana](http://www.loropiana.com) #

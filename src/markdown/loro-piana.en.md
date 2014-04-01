@@ -8,6 +8,8 @@ author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
 template    : default.en.jade
 tags        : loro piana,fashion,ecommerce,site,flash,as3
 description : "Made for the Loro Piana lifestyle brand, the experience one gets from visiting this site website is one of luxury and classic elegance, everything that Loro Piana is."
+twittertags :
+    - loropiana
 ---
 
 # [Loro Piana](http://www.loropiana.com) #

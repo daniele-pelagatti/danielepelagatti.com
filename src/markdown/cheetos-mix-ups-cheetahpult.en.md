@@ -9,6 +9,9 @@ template    : default.en.jade
 tags        : 3d physics,flash,stage3d,game,interactive campaign,youtube
 banner      : img/siteoftheday.png
 description : "Cheetahpult is the first of its kind to be developed; a game/brand integration within a YouTube platform, where the users play through the YouTube site."
+twittertags : 
+    - cheetahpult
+    - cheetoschannel
 ---
 
 # [Cheetos Mix-ups: Cheetahpult](http://www.youtube.com/cheetos) #
@@ -29,7 +32,7 @@ array of mix-up Cheetos.
 
 ## Press ##
 
-**[Google Think Insights](http://www.google.com/think/campaigns/cheetahpult.html)**
+**[Google Think Insights](http://www.thinkwithgoogle.com/campaigns/cheetahpult.html)**
 
 > We’re at 8.5 million views and counting. People who played the game
 stayed for an average of seven minutes and 17 seconds, and flung an average of

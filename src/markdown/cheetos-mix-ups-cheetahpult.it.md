@@ -9,6 +9,9 @@ template    : default.it.jade
 tags        : fisica 3d,flash,stage3d,gioco,campagna interattiva,youtube
 banner      : img/siteoftheday.png
 description : "Cheetahpult è il primo gioco del suo genere; un gioco inglobato nella piattaforma Google dove gli utenti possono giocare direttamente su Youtube."
+twittertags : 
+    - cheetahpult
+    - cheetoschannel
 ---
 
 # [Cheetos Mix-ups: Cheetahpult](http://www.youtube.com/cheetos) #
@@ -28,7 +31,7 @@ alternativa al mouse, per usarlo come controller.
 
 ## Stampa ##
 
-**[Google Think Insights](http://www.google.com/think/campaigns/cheetahpult.html)**
+**[Google Think Insights](http://www.thinkwithgoogle.com/campaigns/cheetahpult.html)**
 
 > We’re at 8.5 million views and counting. People who played the game
 stayed for an average of seven minutes and 17 seconds, and flung an average of

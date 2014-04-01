@@ -9,6 +9,8 @@ template    : default.en.jade
 tags        : philips,flash,cinema,ambilight,as3,digital campaign
 banner      : img/siteoftheday.png
 description : "Five different films, five different stories, five parallel dialogues. "
+twittertags : 
+    - philips parallel lines
 ---
 
 # [Philips: Parallel Lines](http://www.unit9.com/project/parallel-lines) #

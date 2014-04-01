@@ -8,6 +8,8 @@ author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
 template    : default.en.jade
 tags        : rifle,installation,twitter,live event,flash,java
 description : "Displayed at the opening party for the first Rifle flagship store at Milan, the installation transformed passers by into models walking the Fashion Week runway."
+twittertags :
+    - RIFLEJEANS
 ---
 
 # [Rifle Jeans: Interactive Installation](http://www.unit9.com/project/rifle-jeans-installation) #

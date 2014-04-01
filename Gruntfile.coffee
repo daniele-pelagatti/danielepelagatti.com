@@ -2,12 +2,12 @@ module.exports = (grunt)->
     # Project configuration.    
     # debugger
 
-    env = grunt.option('env') || 'prod';
+    env = grunt.option("env") || "prod";
 
-    rewriteModule = require('http-rewrite-middleware');
+    rewriteModule = require("http-rewrite-middleware");
 
     gruntConfig = 
-        pkg: grunt.file.readJSON('package.json')
+        pkg: grunt.file.readJSON("package.json")
 
 
     gruntConfig.percolator =
@@ -22,7 +22,7 @@ module.exports = (grunt)->
             options:
                 sassDir     : gruntConfig.pkg.compass_folder
                 cssDir      : gruntConfig.pkg.compass_output_folder
-                outputStyle : 'expanded'
+                outputStyle : "expanded"
 
     gruntConfig.glsl_threejs =
         compile:
@@ -34,31 +34,31 @@ module.exports = (grunt)->
         options:
             livereload: 35729                
         coffee:
-            files: [gruntConfig.pkg.watch_folder+'/**/*.coffee']
-            tasks: ['percolator']
+            files: [gruntConfig.pkg.watch_folder+"/**/*.coffee"]
+            tasks: ["percolator"]
         compass:
-            files: [gruntConfig.pkg.watch_folder+'/**/*.{scss,sass}']
-            tasks: ['compass']
+            files: [gruntConfig.pkg.watch_folder+"/**/*.{scss,sass}"]
+            tasks: ["compass"]
         jade:
-            files: [gruntConfig.pkg.watch_folder+'/**/*.{jade,md}']
-            tasks: ['compile_markdown_files']
+            files: [gruntConfig.pkg.watch_folder+"/**/*.{jade,md}"]
+            tasks: ["compile_markdown_files"]
         glsl_threejs:
-            files: [gruntConfig.pkg.watch_folder+'/**/*.{frag,vert}']
-            tasks: ['glsl_threejs']
+            files: [gruntConfig.pkg.watch_folder+"/**/*.{frag,vert}"]
+            tasks: ["glsl_threejs"]
         uglify_essential :
-            files: [gruntConfig.pkg.watch_folder+'/js/essential/*.js']
-            tasks: ['uglify:essential']
+            files: [gruntConfig.pkg.watch_folder+"/js/essential/*.js"]
+            tasks: ["uglify:essential"]
         uglify_optional :
-            files: [gruntConfig.pkg.watch_folder+'/js/optional/*.js']
-            tasks: ['uglify:optional']
+            files: [gruntConfig.pkg.watch_folder+"/js/optional/*.js"]
+            tasks: ["uglify:optional"]
         cssmin :
-            files: [gruntConfig.pkg.watch_folder+'/**/*.css']
-            tasks: ['cssmin']
+            files: [gruntConfig.pkg.watch_folder+"/**/*.css"]
+            tasks: ["cssmin"]
 
     gruntConfig.concurrent =
         options:
             logConcurrentOutput : true
-        default: ['watch', 'connect']
+        default: ["watch", "connect"]
 
     gruntConfig.connect =
         default:
@@ -74,7 +74,7 @@ module.exports = (grunt)->
                 #     # RewriteRules support
                 #     middlewares.push(rewriteModule.getMiddleware([
                 #         # rewrite everything not contained in these folders to index.html
-                #         {from: '^/(?!css|js|img|maya|en|it).*$', to: '/index.html'} 
+                #         {from: "^/(?!css|js|img|maya|en|it).*$", to: "/index.html"} 
                 #     ]));
 
                 #     if !Array.isArray(options.base)
@@ -95,7 +95,7 @@ module.exports = (grunt)->
 
     gruntConfig.uglify =
         options :
-            banner       : '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+            banner       : "/*! <%= pkg.name %> <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
             drop_console : true
             # mangle     : false
             # beautify   : true
@@ -120,7 +120,7 @@ module.exports = (grunt)->
     gruntConfig.cssmin =
         all :
             options:
-                banner              : '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+                banner              : "/*! <%= pkg.name %> <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
                 keepSpecialComments : false
             files :{}
 
@@ -140,24 +140,24 @@ module.exports = (grunt)->
             files : [
                 {
                     expand : true
-                    cwd    : 'include/'
-                    src    : ['**']
-                    dest   : gruntConfig.pkg.www_folder+'/'
+                    cwd    : "include/"
+                    src    : ["**"]
+                    dest   : gruntConfig.pkg.www_folder+"/"
                     dot    : true             
                 }
                 {
                     expand : true
-                    cwd    : 'maya/data'
-                    src    : ['**']
-                    dest   : gruntConfig.pkg.www_folder+'/maya/data'                
-                    dot    : true             
+                    cwd    : "maya/data"
+                    src    : ["**"]
+                    dest   : gruntConfig.pkg.www_folder+"/maya/data"                
+                    dot    : false             
                 }
                 {
                     expand : true
-                    cwd    : 'maya/images'
-                    src    : ['**']
-                    dest   : gruntConfig.pkg.www_folder+'/maya/images'   
-                    dot    : true             
+                    cwd    : "maya/images"
+                    src    : ["**"]
+                    dest   : gruntConfig.pkg.www_folder+"/maya/images"   
+                    dot    : false             
                 }
             ]
 
@@ -174,26 +174,41 @@ module.exports = (grunt)->
                 config_json      : gruntConfig.pkg.config_json
                 environment      : env
 
+    gruntConfig.imagemin = 
+        all:
+            options:
+                optimizationLevel : 3
+                pngquant          : true
+                interlaced        : true
+                progressive       : true
+
+            files: [
+                expand : true
+                cwd    : "include/img/"
+                src    : ["*.{png,jpg,gif}"]
+                dest   : gruntConfig.pkg.www_folder+"/img"
+            ]
+
     gruntConfig.rsync = 
         options:
             args               : ["--verbose"]
             recursive          : true
-            dryRun             : true
-            # syncDestIgnoreExcl : true
-            # exclude            : ["casa","cgi-bin","old","error_log","php.ini"]
+            # dryRun             : true
+            syncDestIgnoreExcl : true
+            exclude            : ["casa","cgi-bin","old","error_log","php.ini","tmp"]
         dist:   
             options:
                 src  : gruntConfig.pkg.www_folder
-                dest : "/home/danielep"
+                dest : "/home2/danielep"
                 host : "danielep@danielepelagatti.com"
 
     grunt.initConfig(gruntConfig)
 
     grunt.task.loadTasks("tasks")
-    require('load-grunt-tasks')(grunt);
+    require("load-grunt-tasks")(grunt);
 
     
     # Default task(s).
-    grunt.registerTask('deploy', ['rsync']);
-    grunt.registerTask('build', ['clean','copy','percolator','compass','glsl_threejs','compile_markdown_files','uglify','cssmin']);
-    grunt.registerTask('default', ['build','concurrent']);
+    grunt.registerTask("build", ["clean","copy","percolator","compass","glsl_threejs","compile_markdown_files","uglify","cssmin"]);
+    grunt.registerTask("deploy", ["build","rsync"]);
+    grunt.registerTask("default", ["build","concurrent"]);

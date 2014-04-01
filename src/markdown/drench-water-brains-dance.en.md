@@ -8,6 +8,8 @@ author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
 template    : default.en.jade
 tags        : webcam,motion detection,dance,flash,as3,swfaddress,movement
 description : "Test your mental performance and make Brains dance using your web-cam."
+twittertags :
+    - drench brains
 ---
 # [Dranch Water: Brains Dance](http://www.unit9.com/drenchwater/) #
 # Front End Developer #
