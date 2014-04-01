@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "/xml/dtds/cross-domain-policy.dtd">
+<!-- SVN crossdomain -->
+<cross-domain-policy> 
+   <site-control permitted-cross-domain-policies="master-only"/>
+   <allow-access-from domain="facebook.com" to-ports="12348,12349" />
+</cross-domain-policy>

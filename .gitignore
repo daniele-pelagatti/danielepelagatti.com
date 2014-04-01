@@ -5,4 +5,4 @@ node_modules
 tmp
 .DS_Store
 www
-.ftppass
+public_html

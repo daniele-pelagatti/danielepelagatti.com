@@ -2,6 +2,8 @@ module.exports = (grunt)->
     # Project configuration.    
     # debugger
 
+    env = grunt.option('env') || 'prod';
+
     rewriteModule = require('http-rewrite-middleware');
 
     gruntConfig = 
@@ -36,7 +38,7 @@ module.exports = (grunt)->
             tasks: ['percolator']
         compass:
             files: [gruntConfig.pkg.watch_folder+'/**/*.{scss,sass}']
-            tasks: ['compass','cssmin']
+            tasks: ['compass']
         jade:
             files: [gruntConfig.pkg.watch_folder+'/**/*.{jade,md}']
             tasks: ['compile_markdown_files']
@@ -49,7 +51,10 @@ module.exports = (grunt)->
         uglify_optional :
             files: [gruntConfig.pkg.watch_folder+'/js/optional/*.js']
             tasks: ['uglify:optional']
-                                
+        cssmin :
+            files: [gruntConfig.pkg.watch_folder+'/**/*.css']
+            tasks: ['cssmin']
+
     gruntConfig.concurrent =
         options:
             logConcurrentOutput : true
@@ -62,7 +67,7 @@ module.exports = (grunt)->
                 hostname   : "localhost"
                 keepalive  : true
                 livereload : 35729
-                base       : "www"
+                base       : gruntConfig.pkg.www_folder
                 # middleware: (connect, options)->
                 #     middlewares = [];
 
@@ -96,7 +101,7 @@ module.exports = (grunt)->
             # beautify   : true
         optional :
             files : 
-                "www/js/optional.min.js" : [
+                "public_html/js/optional.min.js" : [
                     "src/js/optional/three.min.js" 
                     "src/js/optional/spin.js"
                     "src/js/optional/*.js"
@@ -105,7 +110,7 @@ module.exports = (grunt)->
                 ]
         essential:
             files:
-                "www/js/essential.min.js" : [
+                "public_html/js/essential.min.js" : [
                     "src/js/essential/jquery.min.js"
                     "src/js/essential/jquery.leanModal.min.js"
                     "src/js/essential/essential.js"
@@ -115,10 +120,11 @@ module.exports = (grunt)->
     gruntConfig.cssmin =
         all :
             options:
+                banner              : '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
                 keepSpecialComments : false
             files :{}
 
-    gruntConfig.cssmin.all.files[gruntConfig.pkg.minified_main_css_file] = [gruntConfig.pkg.minified_main_css_input_file];
+    gruntConfig.cssmin.all.files[gruntConfig.pkg.minified_main_css_file] = [gruntConfig.pkg.compass_output_folder+"/**/*.css"];
 
     gruntConfig.modernizr =
         dist:
@@ -136,32 +142,27 @@ module.exports = (grunt)->
                     expand : true
                     cwd    : 'include/'
                     src    : ['**']
-                    dest   : 'www/'
+                    dest   : gruntConfig.pkg.www_folder+'/'
+                    dot    : true             
                 }
                 {
                     expand : true
                     cwd    : 'maya/data'
                     src    : ['**']
-                    dest   : 'www/maya/data'                
+                    dest   : gruntConfig.pkg.www_folder+'/maya/data'                
+                    dot    : true             
                 }
                 {
                     expand : true
                     cwd    : 'maya/images'
                     src    : ['**']
-                    dest   : 'www/maya/images'                
+                    dest   : gruntConfig.pkg.www_folder+'/maya/images'   
+                    dot    : true             
                 }
             ]
 
-    gruntConfig.rsync = 
-        options:
-            args: ["--verbose"]
-            recursive: true
-        dist:
-            options:
-                src  :"./www"
-                dest :"/public_html"
-                host : "danielep@danielepelagatti.com"
-
+    gruntConfig.clean =
+        all: [gruntConfig.pkg.www_folder]
 
     gruntConfig.compile_markdown_files =
         all:
@@ -171,18 +172,20 @@ module.exports = (grunt)->
                 www_folder       : gruntConfig.pkg.www_folder
                 default_document : gruntConfig.pkg.default_document
                 config_json      : gruntConfig.pkg.config_json
+                environment      : env
 
-
-    # gruntConfig['ftp-deploy'] = 
-    #     build:
-    #         auth: 
-    #             host: 'www.danielepelagatti.com',
-    #             port: 21,
-    #             authKey: 'key1'
-   
-    #         src: 'www',
-    #         dest: '/public_html',
-    #         exclusions: ['www/**/.DS_Store', 'www/**/Thumbs.db']        
+    gruntConfig.rsync = 
+        options:
+            args               : ["--verbose"]
+            recursive          : true
+            dryRun             : true
+            # syncDestIgnoreExcl : true
+            # exclude            : ["casa","cgi-bin","old","error_log","php.ini"]
+        dist:   
+            options:
+                src  : gruntConfig.pkg.www_folder
+                dest : "/home/danielep"
+                host : "danielep@danielepelagatti.com"
 
     grunt.initConfig(gruntConfig)
 
@@ -191,6 +194,6 @@ module.exports = (grunt)->
 
     
     # Default task(s).
-    # grunt.registerTask('deploy', ['ftp-deploy']);
-    grunt.registerTask('build', ['copy','percolator','compass','glsl_threejs','compile_markdown_files','uglify','cssmin']);
+    grunt.registerTask('deploy', ['rsync']);
+    grunt.registerTask('build', ['clean','copy','percolator','compass','glsl_threejs','compile_markdown_files','uglify','cssmin']);
     grunt.registerTask('default', ['build','concurrent']);
