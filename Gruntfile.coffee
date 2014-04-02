@@ -110,8 +110,8 @@ module.exports = (grunt)->
         options :
             banner       : "/*! <%= pkg.name %> <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
             drop_console : true
-            mangle       : false
-            beautify     : true
+            # mangle       : false
+            # beautify     : true
         optional :
             files : 
                 "public_html/js/optional.min.js" : [
@@ -124,9 +124,8 @@ module.exports = (grunt)->
         essential:
             files:
                 "public_html/js/essential.min.js" : [
-                    "src/js/essential/jquery.min.js"
-                    "src/js/essential/jquery.leanModal.min.js"
-                    "src/js/essential/modernizr.js"
+                    "src/js/essential/jquery.js"
+                    "src/js/essential/jquery.leanModal.js"
                     "src/js/essential/essential.js"
                 ]
 
@@ -141,13 +140,15 @@ module.exports = (grunt)->
 
     gruntConfig.cssmin.all.files[gruntConfig.pkg.minified_main_css_file] = [gruntConfig.pkg.compass_output_folder+"/**/*.css"];
 
+
     gruntConfig.modernizr =
         dist:
-            devFile    : "modernizr.dev.js"
-            outputFile : gruntConfig.pkg.js_folder+"/essential/modernizr.js"
-            uglify     : false
-            # files : 
-            #     src: [gruntConfig.pkg.www_folder+"/js/*.js",gruntConfig.pkg.watch_folder+"/css/*.css"]
+            devFile             : "modernizr.dev.js"
+            outputFile          : gruntConfig.pkg.watch_folder+"/include/js/modernizr.js"
+            uglify              : true
+            matchCommunityTests : true
+            files : 
+                src: ["src/**/*.{css,js}"]
                 
             
     gruntConfig.copy =
@@ -158,7 +159,7 @@ module.exports = (grunt)->
                     cwd    : "src/include/"
                     src    : ["**"]
                     dest   : gruntConfig.pkg.www_folder+"/"
-                    dot    : true             
+                    dot    : true
                 }
             ]
 
