@@ -54,6 +54,12 @@ module.exports = (grunt)->
         cssmin :
             files: [gruntConfig.pkg.watch_folder+"/**/*.css"]
             tasks: ["cssmin"]
+        imagemin :
+            files: ["**/*.{jpg,png,gif}"]
+            tasks: ["imagemin"]   
+        copy :
+            files: ["include/**","maya/data/**","maya/images/**"]
+            tasks: ["copy"]                        
 
     gruntConfig.concurrent =
         options:
@@ -152,13 +158,13 @@ module.exports = (grunt)->
                     dest   : gruntConfig.pkg.www_folder+"/maya/data"                
                     dot    : false             
                 }
-                {
-                    expand : true
-                    cwd    : "maya/images"
-                    src    : ["**"]
-                    dest   : gruntConfig.pkg.www_folder+"/maya/images"   
-                    dot    : false             
-                }
+                # {
+                #     expand : true
+                #     cwd    : "maya/images"
+                #     src    : ["**"]
+                #     dest   : gruntConfig.pkg.www_folder+"/maya/images"   
+                #     dot    : false             
+                # }
             ]
 
     gruntConfig.clean =
@@ -175,18 +181,29 @@ module.exports = (grunt)->
                 environment      : env
 
     gruntConfig.imagemin = 
-        all:
+        site:
             options:
-                optimizationLevel : 3
+                optimizationLevel : 6
                 pngquant          : true
                 interlaced        : true
                 progressive       : true
-
             files: [
                 expand : true
-                cwd    : "include/img/"
+                cwd    : "src/images/"
                 src    : ["*.{png,jpg,gif}"]
                 dest   : gruntConfig.pkg.www_folder+"/img"
+            ]
+        maya:
+            options:
+                optimizationLevel : 6
+                pngquant          : false
+                interlaced        : true
+                progressive       : true            
+            files: [
+                expand : true
+                cwd    : "maya/images/"
+                src    : ["**/*.{png,jpg,gif}"]
+                dest   : gruntConfig.pkg.www_folder+"/maya/images"
             ]
 
     gruntConfig.rsync = 
@@ -209,6 +226,6 @@ module.exports = (grunt)->
 
     
     # Default task(s).
-    grunt.registerTask("build", ["clean","copy","percolator","compass","glsl_threejs","compile_markdown_files","uglify","cssmin"]);
+    grunt.registerTask("build", ["clean","copy","percolator","compass","glsl_threejs","compile_markdown_files","uglify","cssmin","imagemin"]);
     grunt.registerTask("deploy", ["build","rsync"]);
     grunt.registerTask("default", ["build","concurrent"]);

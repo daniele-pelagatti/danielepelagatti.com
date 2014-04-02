@@ -19,7 +19,7 @@ head
 	link(rel="stylesheet" href="#{base}css/main.min.css")
 
 
-	//- prefetch and prerender next menu item
+	//- prefetch , prerender and fli ahead support (IE11 Stuff) 
 	- if(links) {
 	-	var found = false
 	- 	for( var i = 0; i< links.length;i++) {
@@ -31,11 +31,21 @@ head
 				link(rel="prefetch" href=getRelativeLink(next_link))
 				link(rel="prerender" href=getRelativeLink(next_link))
 	-			found = true;
+	-			if(i > 0)
+					link(rel="prev" href=getRelativeLink(links[i-1]))
+	-			if(i < links.length-1)
+					link(rel="next" href=getRelativeLink(links[i+1]))
 	-			break
 	-		}
 	- 	}
 	- 	if(!found && links.length > 0) {
 			link(rel="prefetch" href=getRelativeLink(links[1]))
 			link(rel="prerender" href=getRelativeLink(links[1]))
+			link(rel="next" href=getRelativeLink(links[1]))
 	-	}
 	- }
+
+	<!--[if lt IE 9]>
+	SCRIPT(LANGUAGE="javascript").
+		location.href="http://browsehappy.com/";
+	<![endif]-->
