@@ -295,7 +295,7 @@ class App
 		@raycaster = new THREE.Raycaster();
 
 		loader = new THREE.SceneLoader();
-		loader.load( @pageBase+"maya/data/scene2.json", @sceneLoadCallback );
+		loader.load( @pageBase+"maya/data/scene.json", @sceneLoadCallback );
 
 		$(window).bind( 'resize', @onWindowResize );
 		@container.bind( 'mousemove touchmove touchstart', @onMouseMove );
@@ -403,8 +403,8 @@ class App
 					uniforms.opacity.value = 1;
 					uniforms.diffuse.value.set( @colors[objectIndex].rgb[0] / 255 , @colors[objectIndex].rgb[1] /255 , @colors[objectIndex].rgb[2] /255 )
 					uniforms.map.value = object.material.map
-					uniforms.focused_map.value = THREE.ImageUtils.loadTexture(@pageBase+'maya/images/focused.jpg')
-					uniforms.overlay_map.value = THREE.ImageUtils.loadTexture(@pageBase+'maya/images/overlay.png')
+					# uniforms.focused_map.value = THREE.ImageUtils.loadTexture(@pageBase+'maya/images/focused.jpg')
+					# uniforms.overlay_map.value = THREE.ImageUtils.loadTexture(@pageBase+'maya/images/overlay.png')
 
 					defines = {}
 					defines["USE_MAP"] = "";

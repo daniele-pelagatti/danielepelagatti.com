@@ -318,7 +318,7 @@
       this.projector = new THREE.Projector();
       this.raycaster = new THREE.Raycaster();
       loader = new THREE.SceneLoader();
-      loader.load(this.pageBase + "maya/data/scene2.json", this.sceneLoadCallback);
+      loader.load(this.pageBase + "maya/data/scene.json", this.sceneLoadCallback);
       $(window).bind('resize', this.onWindowResize);
       this.container.bind('mousemove touchmove touchstart', this.onMouseMove);
       this.container.bind('click touchend', this.on3DSceneMouseClick);
@@ -406,8 +406,6 @@
             uniforms.opacity.value = 1;
             uniforms.diffuse.value.set(_this.colors[objectIndex].rgb[0] / 255, _this.colors[objectIndex].rgb[1] / 255, _this.colors[objectIndex].rgb[2] / 255);
             uniforms.map.value = object.material.map;
-            uniforms.focused_map.value = THREE.ImageUtils.loadTexture(_this.pageBase + 'maya/images/focused.jpg');
-            uniforms.overlay_map.value = THREE.ImageUtils.loadTexture(_this.pageBase + 'maya/images/overlay.png');
             defines = {};
             defines["USE_MAP"] = "";
             material = new THREE.ShaderMaterial({

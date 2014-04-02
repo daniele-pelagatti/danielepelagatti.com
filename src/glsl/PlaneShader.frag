@@ -2,7 +2,7 @@ uniform float opacity;
 //#THREE.ShaderChunk["map_pars_fragment"]
 uniform sampler2D focused_map;
 uniform float focus_balance;
-uniform sampler2D overlay_map;
+// uniform sampler2D overlay_map;
 uniform float ovelay_unfocused_alpha;
 uniform vec3 diffuse;
 
@@ -14,14 +14,14 @@ void main() {
 
 	#ifdef USE_MAP
 		vec4 texelColor = texture2D( map, vUv );
-		vec4 focusedColor = texture2D( focused_map, vUv );
-		vec4 finalColor = mix(texelColor,focusedColor,focus_balance);
+		// vec4 focusedColor = texture2D( focused_map, vUv );
+		// vec4 finalColor = mix(texelColor,focusedColor,focus_balance);
 
 		// #ifdef GAMMA_INPUT
 		// finalColor.xyz *= finalColor.xyz;
 		// #endif
 
-		gl_FragColor = gl_FragColor * finalColor;
+		gl_FragColor *= texelColor;
 	#endif
 
 	// overlay an image

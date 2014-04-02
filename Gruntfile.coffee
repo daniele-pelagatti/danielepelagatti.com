@@ -55,11 +55,18 @@ module.exports = (grunt)->
             files: [gruntConfig.pkg.watch_folder+"/**/*.css"]
             tasks: ["cssmin"]
         imagemin :
-            files: ["**/*.{jpg,png,gif}"]
-            tasks: ["imagemin"]   
+            files: [gruntConfig.pkg.watch_folder+"images/**/*.{jpg,png,gif}"]
+            tasks: ["imagemin:site"]
+        imagemin2 :
+            files: [gruntConfig.pkg.watch_folder+"maya/images/**/*.{jpg,png,gif}"]
+            tasks: ["imagemin:maya"]
         copy :
-            files: ["include/**","maya/data/**","maya/images/**"]
-            tasks: ["copy"]                        
+            files: [gruntConfig.pkg.watch_folder+"/include/**"]
+            tasks: ["copy"]
+        jsonmin:
+            files: [gruntConfig.pkg.watch_folder+"maya/data/*.json"]
+            tasks: ["jsonmin"]            
+
 
     gruntConfig.concurrent =
         options:
@@ -123,6 +130,7 @@ module.exports = (grunt)->
                 ]
 
 
+
     gruntConfig.cssmin =
         all :
             options:
@@ -146,26 +154,22 @@ module.exports = (grunt)->
             files : [
                 {
                     expand : true
-                    cwd    : "include/"
+                    cwd    : "src/include/"
                     src    : ["**"]
                     dest   : gruntConfig.pkg.www_folder+"/"
                     dot    : true             
                 }
-                {
-                    expand : true
-                    cwd    : "maya/data"
-                    src    : ["**"]
-                    dest   : gruntConfig.pkg.www_folder+"/maya/data"                
-                    dot    : false             
-                }
-                # {
-                #     expand : true
-                #     cwd    : "maya/images"
-                #     src    : ["**"]
-                #     dest   : gruntConfig.pkg.www_folder+"/maya/images"   
-                #     dot    : false             
-                # }
             ]
+
+    gruntConfig.jsonmin =
+        maya:
+            options:
+                stripWhitespace:true
+                stripComments:true
+            files: {}
+
+    gruntConfig.jsonmin.maya.files[gruntConfig.pkg.www_folder+"/maya/data/scene.json"] =  "src/maya/data/scene.json"
+
 
     gruntConfig.clean =
         all: [gruntConfig.pkg.www_folder]
@@ -182,11 +186,11 @@ module.exports = (grunt)->
 
     gruntConfig.imagemin = 
         site:
-            options:
-                optimizationLevel : 6
-                pngquant          : true
-                interlaced        : true
-                progressive       : true
+            # options:
+            #     optimizationLevel : 7
+            #     pngquant          : false
+            #     interlaced        : true
+            #     progressive       : true
             files: [
                 expand : true
                 cwd    : "src/images/"
@@ -194,14 +198,14 @@ module.exports = (grunt)->
                 dest   : gruntConfig.pkg.www_folder+"/img"
             ]
         maya:
-            options:
-                optimizationLevel : 6
-                pngquant          : false
-                interlaced        : true
-                progressive       : true            
+            # options:
+            #     optimizationLevel : 7
+            #     pngquant          : false
+            #     interlaced        : true
+            #     progressive       : true
             files: [
                 expand : true
-                cwd    : "maya/images/"
+                cwd    : "src/maya/images/"
                 src    : ["**/*.{png,jpg,gif}"]
                 dest   : gruntConfig.pkg.www_folder+"/maya/images"
             ]
@@ -226,6 +230,6 @@ module.exports = (grunt)->
 
     
     # Default task(s).
-    grunt.registerTask("build", ["clean","copy","percolator","compass","glsl_threejs","compile_markdown_files","uglify","cssmin","imagemin"]);
-    grunt.registerTask("deploy", ["build","rsync"]);
+    grunt.registerTask("build", ["clean","imagemin","copy","percolator","compass","glsl_threejs","compile_markdown_files","uglify","cssmin","jsonmin"]);
+    grunt.registerTask("deploy", ["rsync"]);
     grunt.registerTask("default", ["build","concurrent"]);
