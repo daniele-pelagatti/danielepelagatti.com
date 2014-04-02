@@ -110,8 +110,8 @@ module.exports = (grunt)->
         options :
             banner       : "/*! <%= pkg.name %> <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
             drop_console : true
-            # mangle     : false
-            # beautify   : true
+            mangle       : false
+            beautify     : true
         optional :
             files : 
                 "public_html/js/optional.min.js" : [
@@ -188,8 +188,8 @@ module.exports = (grunt)->
 
     gruntConfig.imagemin = 
         site:
-            # options:
-            #     optimizationLevel : 7
+            options:
+                optimizationLevel : 6
             #     pngquant          : false
             #     interlaced        : true
             #     progressive       : true
@@ -200,8 +200,8 @@ module.exports = (grunt)->
                 dest   : gruntConfig.pkg.www_folder+"/img"
             ]
         maya:
-            # options:
-            #     optimizationLevel : 7
+            options:
+                optimizationLevel : 6
             #     pngquant          : false
             #     interlaced        : true
             #     progressive       : true

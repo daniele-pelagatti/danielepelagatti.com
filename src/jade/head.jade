@@ -17,7 +17,7 @@ head
 	//- link(href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css')
 	//- link(rel="stylesheet" href="http://weloveiconfonts.com/api/?family=fontawesome")
 	link(rel="stylesheet" href="#{base}css/main.min.css")
-
+	script(src="#{base}js/html5shiv.js")
 
 	//- prefetch , prerender and fli ahead support (IE11 Stuff) 
 	- if(links) {
@@ -45,7 +45,22 @@ head
 	-	}
 	- }
 
-	<!--[if lt IE 9]>
+	//- show warnign for old browsers
+	script(type="text/javascript"). 
+		var $buoop = {}; 
+		$buoop.ol = window.onload; 
+		window.onload=function(){ 
+			try {if ($buoop.ol) $buoop.ol();}catch (e) {} 
+			var e = document.createElement("script"); 
+			e.setAttribute("type", "text/javascript"); 
+			e.setAttribute("src", "//browser-update.org/update.js"); 
+			document.body.appendChild(e); 
+		} 
+
+	
+	//- redirect IE6, I don't want to work with whoever uses this
+
+	<!--[if lt IE 7]>
 	SCRIPT(LANGUAGE="javascript").
-		location.href="http://browsehappy.com/";
+		location.href="http://browser-update.org/update.html";
 	<![endif]-->

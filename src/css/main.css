@@ -949,6 +949,7 @@ main article * img {
   z-index: 2;
   top: 0;
   bottom: 0;
+  margin-left: 220px;
   -webkit-transition: margin-left 1s ease-in-out;
   -moz-transition: margin-left 1s ease-in-out;
   transition: margin-left 1s ease-in-out;
@@ -972,62 +973,64 @@ main article * img {
   }
 }
 
-/* line 148, ../compass/main.sass */
+/* line 149, ../compass/main.sass */
 .javascriptContent {
   position: absolute;
   top: 0px;
   left: 0px;
   z-index: 1;
+  left: 220px;
   -webkit-transition: left 1s ease-in-out;
   -moz-transition: left 1s ease-in-out;
   transition: left 1s ease-in-out;
 }
 @media screen and (min-width: 1020px) {
-  /* line 148, ../compass/main.sass */
+  /* line 149, ../compass/main.sass */
   .javascriptContent {
     left: 220px;
   }
 }
 @media screen and (max-width: 1020px) {
-  /* line 148, ../compass/main.sass */
+  /* line 149, ../compass/main.sass */
   .javascriptContent {
     left: 0px;
   }
 }
-/* line 160, ../compass/main.sass */
+/* line 162, ../compass/main.sass */
 .javascriptContent .object3DContainer {
   height: 100%;
   overflow-y: auto;
   -webkit-transition: width 1s ease-in-out;
   -moz-transition: width 1s ease-in-out;
   transition: width 1s ease-in-out;
+  width: 800px;
 }
 @media screen and (max-width: 500px) {
-  /* line 160, ../compass/main.sass */
+  /* line 162, ../compass/main.sass */
   .javascriptContent .object3DContainer {
     width: 400px;
   }
 }
 @media screen and (min-width: 500px) and (max-width: 700px) {
-  /* line 160, ../compass/main.sass */
+  /* line 162, ../compass/main.sass */
   .javascriptContent .object3DContainer {
     width: 500px;
   }
 }
 @media screen and (min-width: 700px) and (max-width: 1020px) {
-  /* line 160, ../compass/main.sass */
+  /* line 162, ../compass/main.sass */
   .javascriptContent .object3DContainer {
     width: 666.66667px;
   }
 }
 @media screen and (min-width: 1020px) {
-  /* line 160, ../compass/main.sass */
+  /* line 162, ../compass/main.sass */
   .javascriptContent .object3DContainer {
     width: 800px;
   }
 }
 
-/* line 181, ../compass/main.sass */
+/* line 184, ../compass/main.sass */
 menu {
   position: fixed;
   top: 0;
@@ -1042,35 +1045,36 @@ menu {
   -webkit-transition: left 1s ease-in-out;
   -moz-transition: left 1s ease-in-out;
   transition: left 1s ease-in-out;
+  left: 0;
 }
 @media screen and (min-width: 1020px) {
-  /* line 181, ../compass/main.sass */
+  /* line 184, ../compass/main.sass */
   menu {
     left: 0;
   }
 }
 @media screen and (max-width: 1020px) {
-  /* line 181, ../compass/main.sass */
+  /* line 184, ../compass/main.sass */
   menu {
     left: -220px;
   }
 }
 @media print {
-  /* line 181, ../compass/main.sass */
+  /* line 184, ../compass/main.sass */
   menu {
     display: none;
   }
 }
-/* line 203, ../compass/main.sass */
+/* line 207, ../compass/main.sass */
 menu.force-show {
   left: 0px;
 }
-/* line 207, ../compass/main.sass */
-menu name, menu surname {
+/* line 211, ../compass/main.sass */
+menu .myName, menu .mySurname {
   display: block;
 }
-/* line 211, ../compass/main.sass */
-menu name a, menu surname a {
+/* line 215, ../compass/main.sass */
+menu .myName a, menu .mySurname a {
   font-family: "Open Sans Condensed", sans-serif;
   word-wrap: normal;
   word-break: normal;
@@ -1083,20 +1087,20 @@ menu name a, menu surname a {
   letter-spacing: 0.15em;
   padding: 0.35em;
 }
-/* line 227, ../compass/main.sass */
-menu name a:visited, menu surname a:visited {
+/* line 231, ../compass/main.sass */
+menu .myName a:visited, menu .mySurname a:visited {
   color: #bfbfbf;
 }
-/* line 233, ../compass/main.sass */
-menu name a {
+/* line 237, ../compass/main.sass */
+menu .myName a {
   padding-bottom: 0em;
 }
-/* line 237, ../compass/main.sass */
-menu surname a {
+/* line 241, ../compass/main.sass */
+menu .mySurname a {
   border-bottom: 1px solid #333333;
   padding-top: 0em;
 }
-/* line 241, ../compass/main.sass */
+/* line 245, ../compass/main.sass */
 menu header {
   font-size: 16.3338px;
   font-size: 1.13429rem;
@@ -1104,12 +1108,12 @@ menu header {
   padding-left: 0.5em;
   display: block;
 }
-/* line 257, ../compass/main.sass */
+/* line 261, ../compass/main.sass */
 menu nav {
   padding: 0;
   margin: 0;
 }
-/* line 258, ../compass/main.sass */
+/* line 262, ../compass/main.sass */
 menu nav [class*="fontawesome-"] {
   padding: 0.65em;
   display: inline-block;
@@ -1118,15 +1122,15 @@ menu nav [class*="fontawesome-"] {
   font-weight: normal;
   color: #333333;
 }
-/* line 269, ../compass/main.sass */
+/* line 273, ../compass/main.sass */
 menu nav [class*="fontawesome-"]:hover {
   color: #999999;
 }
-/* line 274, ../compass/main.sass */
+/* line 278, ../compass/main.sass */
 menu nav li {
   list-style: none;
 }
-/* line 276, ../compass/main.sass */
+/* line 280, ../compass/main.sass */
 menu nav li a {
   display: block;
   padding: 1em;
@@ -1135,21 +1139,21 @@ menu nav li a {
   font-size: 14px;
   font-size: 0.97222rem;
 }
-/* line 286, ../compass/main.sass */
+/* line 290, ../compass/main.sass */
 menu nav li a:visited {
   color: #999999;
 }
-/* line 289, ../compass/main.sass */
+/* line 293, ../compass/main.sass */
 menu nav li a:hover {
   background-color: #333333;
 }
-/* line 292, ../compass/main.sass */
+/* line 296, ../compass/main.sass */
 menu nav li a.selected {
   background-color: #1f8dd6;
   color: white;
 }
 
-/* line 297, ../compass/main.sass */
+/* line 301, ../compass/main.sass */
 #lean_overlay {
   position: absolute;
   z-index: 100;
@@ -1161,7 +1165,7 @@ menu nav li a.selected {
   display: none;
 }
 
-/* line 309, ../compass/main.sass */
+/* line 313, ../compass/main.sass */
 #about {
   width: 70%;
   max-width: 450px;
@@ -1176,7 +1180,7 @@ menu nav li a.selected {
   display: none;
 }
 
-/* line 323, ../compass/main.sass */
+/* line 327, ../compass/main.sass */
 #no-webgl-warning {
   position: relative;
   top: 0;
@@ -1189,16 +1193,16 @@ menu nav li a.selected {
   text-align: center;
   background-color: #ffffbf;
 }
-/* line 336, ../compass/main.sass */
+/* line 340, ../compass/main.sass */
 #no-webgl-warning h4 {
   font-weight: 600;
 }
-/* line 338, ../compass/main.sass */
+/* line 342, ../compass/main.sass */
 #no-webgl-warning p {
   margin: auto auto 0.2em;
 }
 
-/* line 342, ../compass/main.sass */
+/* line 346, ../compass/main.sass */
 .no-webgl-warning-button {
   position: fixed;
   top: 1px;
@@ -1221,21 +1225,21 @@ menu nav li a.selected {
   -moz-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
 }
-/* line 358, ../compass/main.sass */
+/* line 362, ../compass/main.sass */
 .no-webgl-warning-button:visited {
   color: #444444;
 }
-/* line 361, ../compass/main.sass */
+/* line 365, ../compass/main.sass */
 .no-webgl-warning-button:before {
   margin-left: -2px;
 }
-/* line 370, ../compass/main.sass */
+/* line 374, ../compass/main.sass */
 .no-webgl-warning-button:hover {
   color: black;
   background-color: #969696;
 }
 
-/* line 375, ../compass/main.sass */
+/* line 379, ../compass/main.sass */
 .show-menu {
   position: fixed;
   top: 1px;
@@ -1255,36 +1259,38 @@ menu nav li a.selected {
   -webkit-transition: all 1s ease-in-out;
   -moz-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
+  display: none;
+  left: 221px;
 }
-/* line 389, ../compass/main.sass */
+/* line 393, ../compass/main.sass */
 .show-menu:before {
   margin-left: -2px;
 }
 @media screen and (min-width: 1020px) {
-  /* line 375, ../compass/main.sass */
+  /* line 379, ../compass/main.sass */
   .show-menu {
     display: none;
     left: 221px;
   }
 }
 @media screen and (max-width: 1020px) {
-  /* line 375, ../compass/main.sass */
+  /* line 379, ../compass/main.sass */
   .show-menu {
     display: block;
     left: 1px;
   }
 }
-/* line 404, ../compass/main.sass */
+/* line 411, ../compass/main.sass */
 .show-menu:hover {
   color: black;
   background-color: #969696;
 }
-/* line 409, ../compass/main.sass */
+/* line 416, ../compass/main.sass */
 .show-menu.force-hide {
   left: 221px;
 }
 
-/* line 412, ../compass/main.sass */
+/* line 419, ../compass/main.sass */
 .close-page {
   position: fixed;
   top: 1px;
@@ -1307,7 +1313,7 @@ menu nav li a.selected {
   -webkit-border-radius: 2px;
   -khtml-border-radius: 2px;
 }
-/* line 434, ../compass/main.sass */
+/* line 441, ../compass/main.sass */
 .close-page:hover {
   color: black;
   background-color: #969696;

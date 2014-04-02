@@ -134,6 +134,7 @@ main
 		top: 0
 		bottom: 0
 		// height: 100%
+		margin-left: $menu-width
 
 		@media screen and (min-width: $min-fullsize)
 			margin-left: $menu-width
@@ -150,6 +151,7 @@ main
 	z-index: 1
 	// width: 100%
 	// height: 100%
+	left: $menu-width
 
 	+transition (left 1.0s ease-in-out)
 	@media screen and (min-width: $min-fullsize)
@@ -163,6 +165,7 @@ main
 		overflow-y: auto
 		+transition (width 1.0s ease-in-out)
 
+		width: $page-width
 
 		@media screen and (max-width: $min-very-little-device)
 			width: $page-width / 2
@@ -192,6 +195,7 @@ menu
 	// text-shadow: 0 1px 0 #000
 	width: $menu-width
 	+transition (left 1.0s ease-in-out)
+	left: 0
 
 	@media screen and (min-width: $min-fullsize)
 		left: 0
@@ -204,7 +208,7 @@ menu
 		left: 0px
 
 
-	name, surname
+	.myName, .mySurname
 		display: block
 		// width: 100%
 
@@ -229,11 +233,11 @@ menu
 
 
 
-	name
+	.myName
 		a
 			padding-bottom: 0em
 
-	surname
+	.mySurname
 		a
 			border-bottom: 1px solid #333
 			padding-top: 0em
@@ -395,6 +399,9 @@ menu
 	// +transition (background-color 0.3s ease-in-out)
 	+transition (all 1.0s ease-in-out)
 	
+	display: none
+	left: $menu-width+1
+		
 	@media screen and (min-width: $min-fullsize)
 		display: none
 		left: $menu-width+1
