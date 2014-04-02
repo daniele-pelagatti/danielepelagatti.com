@@ -12,8 +12,13 @@ $min-very-little-device: 500px //
 // @import url("http://weloveiconfonts.com/api/?family=fontawesome")
 
 /* fontawesome */
+[class*="fontawesome-"]
+	span 
+		display: none
+	
 [class*="fontawesome-"]:before
 	font-family: 'FontAwesome', sans-serif
+
 
 body
 	background-color: #ffffff
@@ -181,7 +186,7 @@ main
 
 
 // Global Menu
-menu
+.menu
 
 	position: fixed
 	top: 0
@@ -242,23 +247,29 @@ menu
 			border-bottom: 1px solid #333
 			padding-top: 0em
 
-	header
-		// @media screen and (min-width: $min-fullsize)
-		+type-scale($epsilon,$font-base,rem)
-		// @media screen and (max-width: $min-fullsize)
-		// 	+type-scale($zeta,$font-base,rem)	
-		padding: 0.625em
-		padding-left: 0.5em
-		display: block
-		// font-weight: 600
-		// &:hover
-		// 	color: #999		
 
 
 	// .socialMenu
 	// 	text-align: center
 
 	nav
+		padding: 0
+		margin: 0	
+
+		h1
+			// @media screen and (min-width: $min-fullsize)
+			+type-scale($epsilon,$font-base,rem)
+			// @media screen and (max-width: $min-fullsize)
+			// 	+type-scale($zeta,$font-base,rem)	
+			padding: 1em
+			padding-left: 0.5em
+			display: block
+			font-weight: 400
+			// &:hover
+			// 	color: #999		
+			color: #444
+			margin-bottom: 0
+
 		[class*="fontawesome-"]
 			padding: 0.65em
 			// margin-right: 0.65em
@@ -273,29 +284,30 @@ menu
 			&:hover
 				color: #999
 
-		padding: 0
-		margin: 0		
-		li
-			list-style: none
-			a
-				display: block
-				padding: 1em
-				color: #999
-				font-weight: 300
-				// @media screen and (min-width: $min-fullsize)
-				+type-scale(14,$font-base,rem)
-				// @media screen and (max-width: $min-fullsize)
-				// 	+type-scale($zeta0,$font-base,rem)
-
-				&:visited
+		ul	
+			padding: 0
+			margin: 0
+			li
+				list-style: none
+				a
+					display: block
+					padding: 1em
 					color: #999
+					font-weight: 300
+					// @media screen and (min-width: $min-fullsize)
+					+type-scale(14,$font-base,rem)
+					// @media screen and (max-width: $min-fullsize)
+					// 	+type-scale($zeta0,$font-base,rem)
 
-				&:hover
-					background-color: #333
+					&:visited
+						color: #999
 
-				&.selected
-					background-color: #1f8dd6
-					color: #fff
+					&:hover
+						background-color: #333
+
+					&.selected
+						background-color: #1f8dd6
+						color: #fff
 
 
 #lean_overlay
