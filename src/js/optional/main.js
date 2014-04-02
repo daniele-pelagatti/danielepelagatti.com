@@ -155,12 +155,6 @@
     };
 
     App.prototype.onConfigLoaded = function(data, textStatus, jqXHR) {
-      this.container = $('.javascriptContent');
-      this.CONTAINER_X = this.container.position().left;
-      this.SCREEN_WIDTH = window.innerWidth - this.CONTAINER_X;
-      this.SCREEN_HEIGHT = window.innerHeight;
-      this.windowHalfX = this.SCREEN_WIDTH / 2;
-      this.windowHalfY = this.SCREEN_HEIGHT / 2;
       this.allLanguagesConfig = data;
       this.config = data[this.pageLanguage];
       if (this.config == null) {
@@ -168,11 +162,6 @@
       }
       this.init();
       this.animate();
-      $(".projectsMenu").find("a").mouseover(this.onMenuLinkOver);
-      $(".projectsMenu").find("a").mouseout(this.onMenuLinkOut);
-      $(".projectsMenu").find("a").click(this.onMenuLinkClick);
-      $(".close-page").click(this.onCloseClick);
-      $(window).bind("popstate", this.onPopStateChange);
       return null;
     };
 
@@ -292,30 +281,40 @@
       return null;
     };
 
-    App.prototype.onConfigError = function(jqXHR, textStatus, errorThrown) {};
+    App.prototype.onConfigError = function(jqXHR, textStatus, errorThrown) {
+      throw errorThrown;
+    };
 
     App.prototype.init = function() {
       var loader;
+      this.container = $('.javascriptContent');
+      this.CONTAINER_X = this.container.position().left;
+      this.SCREEN_WIDTH = window.innerWidth - this.CONTAINER_X;
+      this.SCREEN_HEIGHT = window.innerHeight;
+      this.windowHalfX = this.SCREEN_WIDTH / 2;
+      this.windowHalfY = this.SCREEN_HEIGHT / 2;
       this.camera = new THREE.PerspectiveCamera(75, this.SCREEN_WIDTH / this.SCREEN_HEIGHT, 1, 10000);
       this.camera.position.z = 300;
       this.scene = new THREE.Scene();
       this.css3DScene = new THREE.Scene();
       this.css3DScene.scale.set(this.CSS3D_SCALE_MULTIPLIER, this.CSS3D_SCALE_MULTIPLIER, this.CSS3D_SCALE_MULTIPLIER);
       this.css3DScene.updateMatrix();
-      try {
-        if (this.isWebGLCapable) {
-          this.renderer = new THREE.WebGLRenderer({
-            antialias: true
-          });
-        } else if (this.isCanvasCapable) {
-          this.renderer = new THREE.CanvasRenderer();
-        }
-        this.renderer.setClearColor(0xffffff);
-        this.renderer.setSize(this.SCREEN_WIDTH, this.SCREEN_HEIGHT);
-        this.renderer.domElement.style.position = "relative";
-        $(this.renderer.domElement).addClass("threejs-container");
-        this.container.append(this.renderer.domElement);
-      } catch (_error) {}
+      if (this.isWebGLCapable) {
+        this.renderer = new THREE.WebGLRenderer({
+          antialias: true,
+          sortObjects: false
+        });
+      } else if (this.isCanvasCapable) {
+        this.renderer = new THREE.CanvasRenderer({
+          sortObjects: false,
+          sortElements: false
+        });
+      }
+      this.renderer.setClearColor(0xffffff, 1);
+      this.renderer.setSize(this.SCREEN_WIDTH, this.SCREEN_HEIGHT);
+      this.renderer.domElement.style.position = "relative";
+      $(this.renderer.domElement).addClass("threejs-container");
+      this.container.append(this.renderer.domElement);
       this.css3dRenderer = new THREE.CSS3DRenderer();
       this.css3dRenderer.setClearColor(0xffffff);
       this.css3dRenderer.setSize(this.SCREEN_WIDTH, this.SCREEN_HEIGHT);
@@ -336,6 +335,11 @@
       this.container.bind('mousemove touchmove touchstart', this.onMouseMove);
       this.container.bind('click touchend', this.on3DSceneMouseClick);
       this.container.bind("transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd", this.onWindowResize);
+      $(".projectsMenu").find("a").mouseover(this.onMenuLinkOver);
+      $(".projectsMenu").find("a").mouseout(this.onMenuLinkOut);
+      $(".projectsMenu").find("a").click(this.onMenuLinkClick);
+      $(".close-page").click(this.onCloseClick);
+      $(window).bind("popstate", this.onPopStateChange);
       return this.onWindowResize();
     };
 
@@ -406,7 +410,7 @@
       objectIndex = 0;
       result.scene.traverse((function(_this) {
         return function(object) {
-          var container, defines, link, material, uniforms, _ref;
+          var container, defines, link, material, uniforms;
           object.rotation.order = "ZYX";
           if (object.material && _this.excludeFromPicking.indexOf(object.name) === -1) {
             _this.initialObjectsProperties[object.name] = {};
@@ -452,10 +456,15 @@
             }
             objectIndex++;
           }
-          if (!_this.isWebGLCapable) {
-            if ((_ref = object.material) != null) {
-              _ref.overdraw = true;
-            }
+          if (!_this.isWebGLCapable && (object.material != null)) {
+            object.material = new THREE.MeshBasicMaterial({
+              lights: false,
+              fog: false,
+              shading: THREE.FlatShading,
+              map: object.material.map
+            });
+            object.material.overdraw = true;
+            object.material.side = THREE.DoubleSide;
           }
           if (object.geometry != null) {
             object.geometry.computeFaceNormals();

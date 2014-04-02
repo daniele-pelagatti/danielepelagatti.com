@@ -10,7 +10,6 @@ class App
 	CSS3D_SCALE_MULTIPLIER   : 1;
 	
 	container                : null;
-	# stats                  : null;
 	
 	camera                   : null;
 	scene                    : null;
@@ -96,37 +95,13 @@ class App
 
 
 	onConfigLoaded:( data, textStatus, jqXHR  )=>
-		@container = $( '.javascriptContent' );
-
-		@CONTAINER_X   = @container.position().left;
-		@SCREEN_WIDTH  = window.innerWidth - @CONTAINER_X;
-		@SCREEN_HEIGHT = window.innerHeight;
-		@windowHalfX   = @SCREEN_WIDTH / 2;
-		@windowHalfY   = @SCREEN_HEIGHT / 2;
-
-
 		@allLanguagesConfig = data;
-		# @pageLanguage = document.URL.split("/")[3] || "en"
-		# @pagePermalink = document.URL.split("/")[4] || ""
 		@config = data[@pageLanguage]
 		if !@config?
 			throw "Cannot find config for this language"
 
-		# for configItem in @config
-		# 	if configItem.link == "ciao"
-		# 		@thisPageConfig = configItem;
-		# 		break;
-
 		@init();
 		@animate();
-
-		
-		# link overrides
-		$(".projectsMenu").find("a").mouseover(@onMenuLinkOver)
-		$(".projectsMenu").find("a").mouseout(@onMenuLinkOut)
-		$(".projectsMenu").find("a").click(@onMenuLinkClick)
-		$(".close-page").click(@onCloseClick)
-		$(window).bind("popstate",@onPopStateChange);
 		null
 
 	onCloseClick:=>
@@ -250,10 +225,18 @@ class App
 		@doPicking = true;
 		null
 
-	onConfigError:(jqXHR,textStatus,errorThrown )=>
+	onConfigError:(jqXHR,textStatus,errorThrown )=> throw errorThrown
 
 	init:-> 
-		
+		@container = $( '.javascriptContent' );
+
+		@CONTAINER_X   = @container.position().left;
+		@SCREEN_WIDTH  = window.innerWidth - @CONTAINER_X;
+		@SCREEN_HEIGHT = window.innerHeight;
+		@windowHalfX   = @SCREEN_WIDTH / 2;
+		@windowHalfY   = @SCREEN_HEIGHT / 2;
+
+
 		@camera = new THREE.PerspectiveCamera( 75, @SCREEN_WIDTH / @SCREEN_HEIGHT, 1, 10000 );
 		@camera.position.z = 300;
 
@@ -263,19 +246,22 @@ class App
 		@css3DScene = new THREE.Scene();
 		@css3DScene.scale.set(@CSS3D_SCALE_MULTIPLIER,@CSS3D_SCALE_MULTIPLIER,@CSS3D_SCALE_MULTIPLIER)
 		@css3DScene.updateMatrix();
-		# RENDERER
 
-		try 
-			if @isWebGLCapable
-				@renderer = new THREE.WebGLRenderer({antialias:true});
-			else if @isCanvasCapable
-				@renderer = new THREE.CanvasRenderer();
 
-			@renderer.setClearColor( 0xffffff );
-			@renderer.setSize( @SCREEN_WIDTH, @SCREEN_HEIGHT );
-			@renderer.domElement.style.position = "relative";
-			$(@renderer.domElement).addClass("threejs-container");
-			@container.append( @renderer.domElement );
+		if @isWebGLCapable
+			@renderer = new THREE.WebGLRenderer
+				antialias   : true
+				sortObjects : false
+		else if @isCanvasCapable
+			@renderer = new THREE.CanvasRenderer
+				sortObjects  : false
+				sortElements : false
+
+		@renderer.setClearColor( 0xffffff, 1 );
+		@renderer.setSize( @SCREEN_WIDTH, @SCREEN_HEIGHT );
+		@renderer.domElement.style.position = "relative";
+		$(@renderer.domElement).addClass("threejs-container");
+		@container.append( @renderer.domElement );
 
 
 
@@ -301,6 +287,12 @@ class App
 		@container.bind( 'mousemove touchmove touchstart', @onMouseMove );
 		@container.bind( 'click touchend', @on3DSceneMouseClick );
 		@container.bind( "transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd" , @onWindowResize);
+		# link overrides
+		$(".projectsMenu").find("a").mouseover(@onMenuLinkOver)
+		$(".projectsMenu").find("a").mouseout(@onMenuLinkOut)
+		$(".projectsMenu").find("a").click(@onMenuLinkClick)
+		$(".close-page").click(@onCloseClick)
+		$(window).bind("popstate",@onPopStateChange);		
 
 		@onWindowResize()
 
@@ -422,7 +414,8 @@ class App
 							defines : defines;
 
 						object.material = material;
-						
+
+
 
 					object.material.transparent = true;
 					object.material.opacity = 1;
@@ -455,8 +448,14 @@ class App
 				# 		object.updateMatrix();	
 
 
-				if !@isWebGLCapable
-					object.material?.overdraw = true
+				if !@isWebGLCapable && object.material?
+					object.material = new THREE.MeshBasicMaterial
+						lights : false
+						fog: false
+						shading: THREE.FlatShading
+						map : object.material.map
+					object.material.overdraw = true
+					object.material.side = THREE.DoubleSide
 
 				if object.geometry?
 					object.geometry.computeFaceNormals();
@@ -473,16 +472,13 @@ class App
 			
 		@scene = result.scene;
 		@scene.position.set(0,-450,0)
-		# @canvasFloorScene.position.set(0,-450,0)
 		@css3DScene.position.set(0,-450,0)
 
 		@scene.scale.set(@SCENE_SCALE_MULTIPLIER,@SCENE_SCALE_MULTIPLIER,@SCENE_SCALE_MULTIPLIER)
-		# @canvasFloorScene.scale.set(@SCENE_SCALE_MULTIPLIER,@SCENE_SCALE_MULTIPLIER,@SCENE_SCALE_MULTIPLIER)
+
 		@scene.updateMatrix();	
-		# @canvasFloorScene.updateMatrix();	
 		@css3DScene.updateMatrix();	
 
-		# @scene.updateMatrix();
 		@hideLoading()
 
 		# TweenMax.to @htmlMain, 1,
@@ -760,8 +756,6 @@ class App
 		@raycaster.set( @camera.position, vector.sub( @camera.position ).normalize() );
 		intersects = @raycaster.intersectObjects( @scene.children );
 
-		# console.log(intersects.length);
-
 		if @doPicking
 			if intersects.length > 0
 				@handlePicking(intersects[ 0 ].object)
@@ -769,7 +763,6 @@ class App
 				# doesn't intersect
 				if @overObject && @isWebGLCapable
 					# if !@isFocused
-					# 	console.log("OUT: "+@overObject.link)
 					# 	ga('send', 'event', '3d-plane:'+@overObject.link, 'out');
 					
 					TweenMax.to( @overObject.material.uniforms.color_opacity, 1, {value:0} );
@@ -788,7 +781,6 @@ class App
 				TweenMax.to( @overObject.material.uniforms.color_opacity, 1, {value:0} );	
 				# if !@isFocused
 				# 	ga('send', 'event', '3d-plane:'+@overObject.link, 'out');
-				# 	console.log("OUT: "+@overObject.link)
 
 			if @excludeFromPicking.indexOf(object.name) == -1 
 				# filter picked objects
