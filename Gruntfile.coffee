@@ -55,16 +55,16 @@ module.exports = (grunt)->
             files: [gruntConfig.pkg.watch_folder+"/**/*.css"]
             tasks: ["cssmin"]
         imagemin :
-            files: [gruntConfig.pkg.watch_folder+"images/**/*.{jpg,png,gif}"]
+            files: [gruntConfig.pkg.watch_folder+"/images/**/*.{jpg,png,gif}"]
             tasks: ["imagemin:site"]
         imagemin2 :
-            files: [gruntConfig.pkg.watch_folder+"maya/images/**/*.{jpg,png,gif}"]
+            files: [gruntConfig.pkg.watch_folder+"/maya/images/**/*.{jpg,png,gif}"]
             tasks: ["imagemin:maya"]
         copy :
             files: [gruntConfig.pkg.watch_folder+"/include/**"]
             tasks: ["copy"]
         jsonmin:
-            files: [gruntConfig.pkg.watch_folder+"maya/data/*.json"]
+            files: [gruntConfig.pkg.watch_folder+"/maya/data/*.json"]
             tasks: ["jsonmin"]            
 
 
@@ -126,6 +126,7 @@ module.exports = (grunt)->
                 "public_html/js/essential.min.js" : [
                     "src/js/essential/jquery.min.js"
                     "src/js/essential/jquery.leanModal.min.js"
+                    "src/js/essential/modernizr.js"
                     "src/js/essential/essential.js"
                 ]
 
@@ -143,10 +144,10 @@ module.exports = (grunt)->
     gruntConfig.modernizr =
         dist:
             devFile    : "modernizr.dev.js"
-            outputFile : gruntConfig.pkg.js_folder+"/modernizr.js"
-            uglify     : true
-            files : 
-                src: [gruntConfig.pkg.www_folder+"/**/*.js",gruntConfig.pkg.www_folder+"/**/*.css"]
+            outputFile : gruntConfig.pkg.js_folder+"/essential/modernizr.js"
+            uglify     : false
+            # files : 
+            #     src: [gruntConfig.pkg.www_folder+"/js/*.js",gruntConfig.pkg.watch_folder+"/css/*.css"]
                 
             
     gruntConfig.copy =
@@ -169,6 +170,7 @@ module.exports = (grunt)->
             files: {}
 
     gruntConfig.jsonmin.maya.files[gruntConfig.pkg.www_folder+"/maya/data/scene.json"] =  "src/maya/data/scene.json"
+    gruntConfig.jsonmin.maya.files[gruntConfig.pkg.www_folder+"/maya/data/scene_canvas.json"] =  "src/maya/data/scene_canvas.json"
 
 
     gruntConfig.clean =

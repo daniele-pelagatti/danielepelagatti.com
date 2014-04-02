@@ -15,8 +15,11 @@ class App
 	camera                   : null;
 	scene                    : null;
 	css3DScene               : null;
-	webglRenderer            : null;
+	renderer            	 : null;
 	css3dRenderer            : null;
+	isWebGLCapable			 : false;
+	isCSS3DCapable			 : false;
+	isCanvasCapable			 : false;
 	
 	mouseX                   : 0;
 	mouseY                   : 0;
@@ -25,8 +28,6 @@ class App
 	
 	windowHalfX              : @SCREEN_WIDTH / 2;
 	windowHalfY              : @SCREEN_HEIGHT / 2;
-	
-	has_gl                   : false;
 	
 	projector                : null;
 	raycaster                : null;
@@ -62,10 +63,13 @@ class App
 
 	constructor:->
 
-
 		isIE11 = !!window.MSInputMethodContext;
+		@isCSS3DCapable = Modernizr.csstransforms3d && !isIE11
+		@isWebGLCapable = @checkWebGL() && Modernizr.webgl
+		# disable canvas mode, too slow on ipads
+		# @isCanvasCapable = Modernizr.canvas
 
-		if @checkWebGL() && window.navigator.userAgent.indexOf("MSIE ") == -1 && !isIE11
+		if @isCSS3DCapable && ( @isCanvasCapable || @isWebGLCapable )# minimum requirements
 			@showLoading()
 			@htmlMain = $("main")
 			@htmlMain.remove();
@@ -262,16 +266,18 @@ class App
 		# RENDERER
 
 		try 
-			@webglRenderer = new THREE.WebGLRenderer({antialias:true});
-			@webglRenderer.setClearColor( 0xffffff );
-			@webglRenderer.setSize( @SCREEN_WIDTH, @SCREEN_HEIGHT );
-			@webglRenderer.domElement.style.position = "relative";
-			$(@webglRenderer.domElement).addClass("threejs-container");
-			@container.append( @webglRenderer.domElement );
+			if @isWebGLCapable
+				@renderer = new THREE.WebGLRenderer({antialias:true});
+			else if @isCanvasCapable
+				@renderer = new THREE.CanvasRenderer();
 
-			@has_gl = true;
+			@renderer.setClearColor( 0xffffff );
+			@renderer.setSize( @SCREEN_WIDTH, @SCREEN_HEIGHT );
+			@renderer.domElement.style.position = "relative";
+			$(@renderer.domElement).addClass("threejs-container");
+			@container.append( @renderer.domElement );
 
-		# @container.append("<div class='threejsMousePonter'></div>");
+
 
 		@css3dRenderer = new THREE.CSS3DRenderer()
 		@css3dRenderer.setClearColor( 0xffffff );
@@ -282,20 +288,14 @@ class App
 		$(@css3dRenderer.domElement).addClass("css3d-container");
 		@container.append( @css3dRenderer.domElement );
 
-
-		# STATS
-
-		# @stats = new Stats();
-		# @stats.domElement.style.position = 'absolute';
-		# @stats.domElement.style.top = '0px';
-		# @stats.domElement.style.zIndex = 100;
-		# @container.append( @stats.domElement );
-
 		@projector = new THREE.Projector();
 		@raycaster = new THREE.Raycaster();
 
 		loader = new THREE.SceneLoader();
-		loader.load( @pageBase+"maya/data/scene.json", @sceneLoadCallback );
+		if @isWebGLCapable
+			loader.load( @pageBase+"maya/data/scene.json", @sceneLoadCallback );
+		else
+			loader.load( @pageBase+"maya/data/scene_canvas.json", @sceneLoadCallback );
 
 		$(window).bind( 'resize', @onWindowResize );
 		@container.bind( 'mousemove touchmove touchstart', @onMouseMove );
@@ -397,32 +397,35 @@ class App
 					@initialObjectsProperties[object.name].quaternion = object.quaternion.clone();
 					@initialObjectsProperties[object.name].scale = object.scale.clone();
 
-					uniforms = THREE.UniformsUtils.clone(THREE.PlaneShader.uniforms)
-					uniforms.focus_balance.value = 0;
-					uniforms.ovelay_unfocused_alpha.value = 1;
-					uniforms.opacity.value = 1;
-					uniforms.diffuse.value.set( @colors[objectIndex].rgb[0] / 255 , @colors[objectIndex].rgb[1] /255 , @colors[objectIndex].rgb[2] /255 )
-					uniforms.map.value = object.material.map
-					# uniforms.focused_map.value = THREE.ImageUtils.loadTexture(@pageBase+'maya/images/focused.jpg')
-					# uniforms.overlay_map.value = THREE.ImageUtils.loadTexture(@pageBase+'maya/images/overlay.png')
-
-					defines = {}
-					defines["USE_MAP"] = "";
+					if @isWebGLCapable
+						uniforms = THREE.UniformsUtils.clone(THREE.PlaneShader.uniforms)
+						# uniforms.focus_balance.value = 0;
+						uniforms.color_opacity.value = 0;
+						uniforms.opacity.value = 1;
+						uniforms.diffuse.value.set( @colors[objectIndex].rgb[0] / 255 , @colors[objectIndex].rgb[1] /255 , @colors[objectIndex].rgb[2] /255 )
+						uniforms.map.value = object.material.map
 
 
-					material = new THREE.ShaderMaterial
-						uniforms: uniforms
-						attributes: {}
-						vertexShader: THREE.PlaneShader.vertexShader
-						fragmentShader: THREE.PlaneShader.fragmentShader
-						transparent: true
-						lights : false
-						fog : false
-						shading: THREE.FlatShading
-						defines : defines;
+						defines = {}
+						defines["USE_MAP"] = "";
 
-					object.material = material;
 
+						material = new THREE.ShaderMaterial
+							uniforms: uniforms
+							attributes: {}
+							vertexShader: THREE.PlaneShader.vertexShader
+							fragmentShader: THREE.PlaneShader.fragmentShader
+							transparent: true
+							lights : false
+							fog : false
+							shading: THREE.FlatShading
+							defines : defines;
+
+						object.material = material;
+						
+
+					object.material.transparent = true;
+					object.material.opacity = 1;
 					object.material.side = THREE.DoubleSide;
 
 					if @config[objectIndex]?
@@ -445,17 +448,24 @@ class App
 
 
 					objectIndex++
+				# else
+				# 	if object.geometry? && !@isWebGLCapable
+				# 		result.scene.remove(object)
+				# 		@canvasFloorScene.add(object)
+				# 		object.updateMatrix();	
 
 
-				object.updateMatrix();
+				if !@isWebGLCapable
+					object.material?.overdraw = true
 
-				if object.geometry
+				if object.geometry?
 					object.geometry.computeFaceNormals();
 					object.geometry.computeVertexNormals();
-					object.geometry.computeCentroids();
+					# object.geometry.computeCentroids();
 					object.geometry.computeTangents();
 					object.geometry.computeBoundingBox();
 
+				object.updateMatrix();
 
 
 
@@ -463,10 +473,13 @@ class App
 			
 		@scene = result.scene;
 		@scene.position.set(0,-450,0)
+		# @canvasFloorScene.position.set(0,-450,0)
 		@css3DScene.position.set(0,-450,0)
 
 		@scene.scale.set(@SCENE_SCALE_MULTIPLIER,@SCENE_SCALE_MULTIPLIER,@SCENE_SCALE_MULTIPLIER)
+		# @canvasFloorScene.scale.set(@SCENE_SCALE_MULTIPLIER,@SCENE_SCALE_MULTIPLIER,@SCENE_SCALE_MULTIPLIER)
 		@scene.updateMatrix();	
+		# @canvasFloorScene.updateMatrix();	
 		@css3DScene.updateMatrix();	
 
 		# @scene.updateMatrix();
@@ -575,8 +588,13 @@ class App
 				object.cssObj.scale.set(object.scale.x * @PAGE_SCALE_MULTIPLIER,object.scale.y * @PAGE_SCALE_MULTIPLIER,object.scale.z * @PAGE_SCALE_MULTIPLIER)	
 				# console.log(object.scale.x * @PAGE_SCALE_MULTIPLIER)					
 
-		TweenMax.to @clickedObject.material.uniforms.focus_balance, @TRANSITION_DURATION,
-			value:1
+		if @isWebGLCapable
+			TweenMax.to @clickedObject.material.uniforms.opacity, @TRANSITION_DURATION,
+				value:0
+		else
+			TweenMax.to @clickedObject.material, @TRANSITION_DURATION,
+				opacity:0		
+				# onUpdate:=> @clickedObject.material.needsUpdate = true		
 
 		@clickedObject.page.css 
 			display : "block"
@@ -656,8 +674,13 @@ class App
 			onUpdate:(object)=>
 				object.cssObj.scale.set(object.scale.x * @PAGE_SCALE_MULTIPLIER,object.scale.y * @PAGE_SCALE_MULTIPLIER,object.scale.z * @PAGE_SCALE_MULTIPLIER)					
 
-		TweenMax.to @clickedObject.material.uniforms.focus_balance, @TRANSITION_DURATION,
-			value:0
+		if @isWebGLCapable
+			TweenMax.to @clickedObject.material.uniforms.opacity, @TRANSITION_DURATION,
+				value:1
+		else
+			TweenMax.to @clickedObject.material, @TRANSITION_DURATION,
+				opacity:1
+				# onUpdate:=> @clickedObject.material.needsUpdate = true
 
 
 		
@@ -688,7 +711,7 @@ class App
 		@camera.updateProjectionMatrix();
 
 
-		@webglRenderer?.setSize( @SCREEN_WIDTH, @SCREEN_HEIGHT );
+		@renderer?.setSize( @SCREEN_WIDTH, @SCREEN_HEIGHT );
 		@css3dRenderer?.setSize( @SCREEN_WIDTH, @SCREEN_HEIGHT );
 
 		if @isFocused
@@ -728,8 +751,7 @@ class App
 			@camera.lookAt( @cameraLookAt );
 		
 
-		
-		@webglRenderer?.render( @scene, @camera );
+		@renderer?.render( @scene, @camera );
 		@css3dRenderer?.render( @css3DScene, @camera );
 
 
@@ -745,12 +767,12 @@ class App
 				@handlePicking(intersects[ 0 ].object)
 			else 
 				# doesn't intersect
-				if @overObject
+				if @overObject && @isWebGLCapable
 					# if !@isFocused
 					# 	console.log("OUT: "+@overObject.link)
 					# 	ga('send', 'event', '3d-plane:'+@overObject.link, 'out');
 					
-					TweenMax.to( @overObject.material.uniforms.ovelay_unfocused_alpha, 1, {value:1} );
+					TweenMax.to( @overObject.material.uniforms.color_opacity, 1, {value:0} );
 				@overObject = null;
 
 		if @overObject? && !@isFocused
@@ -762,8 +784,8 @@ class App
 	handlePicking:(object)=>
 		if @overObject != object
 			# intersects and it's different from before
-			if @overObject
-				TweenMax.to( @overObject.material.uniforms.ovelay_unfocused_alpha, 1, {value:1} );	
+			if @overObject && @isWebGLCapable
+				TweenMax.to( @overObject.material.uniforms.color_opacity, 1, {value:0} );	
 				# if !@isFocused
 				# 	ga('send', 'event', '3d-plane:'+@overObject.link, 'out');
 				# 	console.log("OUT: "+@overObject.link)
@@ -771,7 +793,8 @@ class App
 			if @excludeFromPicking.indexOf(object.name) == -1 
 				# filter picked objects
 				@overObject = object;
-				TweenMax.to( @overObject.material.uniforms.ovelay_unfocused_alpha, 1, {value:0} );
+				if @isWebGLCapable
+					TweenMax.to( @overObject.material.uniforms.color_opacity, 1, {value:1} );
 				if !@isFocused
 					ga('send', 'event', '3d-plane:'+@overObject.link, 'over');
 					# console.log("OVER: "+@overObject.link)
@@ -780,7 +803,7 @@ class App
 		else
 			# intersects but it's no different from before
 			# if ( @overObject && intersects[ 0 ].object.name == "scene_baked_pPlane1" ) 
-			# 	TweenMax.to( @overObject.material.uniforms.ovelay_unfocused_alpha, 1, {value:1} );		
+			# 	TweenMax.to( @overObject.material.uniforms.color_opacity, 1, {value:0} );		
 
 	getUpDirs:(howMany)=>
 		retValue = ""

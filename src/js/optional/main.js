@@ -28,9 +28,15 @@
 
     App.prototype.css3DScene = null;
 
-    App.prototype.webglRenderer = null;
+    App.prototype.renderer = null;
 
     App.prototype.css3dRenderer = null;
+
+    App.prototype.isWebGLCapable = false;
+
+    App.prototype.isCSS3DCapable = false;
+
+    App.prototype.isCanvasCapable = false;
 
     App.prototype.mouseX = 0;
 
@@ -43,8 +49,6 @@
     App.prototype.windowHalfX = App.SCREEN_WIDTH / 2;
 
     App.prototype.windowHalfY = App.SCREEN_HEIGHT / 2;
-
-    App.prototype.has_gl = false;
 
     App.prototype.projector = null;
 
@@ -122,7 +126,9 @@
       this.onConfigLoaded = __bind(this.onConfigLoaded, this);
       var isIE11;
       isIE11 = !!window.MSInputMethodContext;
-      if (this.checkWebGL() && window.navigator.userAgent.indexOf("MSIE ") === -1 && !isIE11) {
+      this.isCSS3DCapable = Modernizr.csstransforms3d && !isIE11;
+      this.isWebGLCapable = this.checkWebGL() && Modernizr.webgl;
+      if (this.isCSS3DCapable && (this.isCanvasCapable || this.isWebGLCapable)) {
         this.showLoading();
         this.htmlMain = $("main");
         this.htmlMain.remove();
@@ -297,15 +303,18 @@
       this.css3DScene.scale.set(this.CSS3D_SCALE_MULTIPLIER, this.CSS3D_SCALE_MULTIPLIER, this.CSS3D_SCALE_MULTIPLIER);
       this.css3DScene.updateMatrix();
       try {
-        this.webglRenderer = new THREE.WebGLRenderer({
-          antialias: true
-        });
-        this.webglRenderer.setClearColor(0xffffff);
-        this.webglRenderer.setSize(this.SCREEN_WIDTH, this.SCREEN_HEIGHT);
-        this.webglRenderer.domElement.style.position = "relative";
-        $(this.webglRenderer.domElement).addClass("threejs-container");
-        this.container.append(this.webglRenderer.domElement);
-        this.has_gl = true;
+        if (this.isWebGLCapable) {
+          this.renderer = new THREE.WebGLRenderer({
+            antialias: true
+          });
+        } else if (this.isCanvasCapable) {
+          this.renderer = new THREE.CanvasRenderer();
+        }
+        this.renderer.setClearColor(0xffffff);
+        this.renderer.setSize(this.SCREEN_WIDTH, this.SCREEN_HEIGHT);
+        this.renderer.domElement.style.position = "relative";
+        $(this.renderer.domElement).addClass("threejs-container");
+        this.container.append(this.renderer.domElement);
       } catch (_error) {}
       this.css3dRenderer = new THREE.CSS3DRenderer();
       this.css3dRenderer.setClearColor(0xffffff);
@@ -318,7 +327,11 @@
       this.projector = new THREE.Projector();
       this.raycaster = new THREE.Raycaster();
       loader = new THREE.SceneLoader();
-      loader.load(this.pageBase + "maya/data/scene.json", this.sceneLoadCallback);
+      if (this.isWebGLCapable) {
+        loader.load(this.pageBase + "maya/data/scene.json", this.sceneLoadCallback);
+      } else {
+        loader.load(this.pageBase + "maya/data/scene_canvas.json", this.sceneLoadCallback);
+      }
       $(window).bind('resize', this.onWindowResize);
       this.container.bind('mousemove touchmove touchstart', this.onMouseMove);
       this.container.bind('click touchend', this.on3DSceneMouseClick);
@@ -393,33 +406,36 @@
       objectIndex = 0;
       result.scene.traverse((function(_this) {
         return function(object) {
-          var container, defines, link, material, uniforms;
+          var container, defines, link, material, uniforms, _ref;
           object.rotation.order = "ZYX";
           if (object.material && _this.excludeFromPicking.indexOf(object.name) === -1) {
             _this.initialObjectsProperties[object.name] = {};
             _this.initialObjectsProperties[object.name].position = object.position.clone();
             _this.initialObjectsProperties[object.name].quaternion = object.quaternion.clone();
             _this.initialObjectsProperties[object.name].scale = object.scale.clone();
-            uniforms = THREE.UniformsUtils.clone(THREE.PlaneShader.uniforms);
-            uniforms.focus_balance.value = 0;
-            uniforms.ovelay_unfocused_alpha.value = 1;
-            uniforms.opacity.value = 1;
-            uniforms.diffuse.value.set(_this.colors[objectIndex].rgb[0] / 255, _this.colors[objectIndex].rgb[1] / 255, _this.colors[objectIndex].rgb[2] / 255);
-            uniforms.map.value = object.material.map;
-            defines = {};
-            defines["USE_MAP"] = "";
-            material = new THREE.ShaderMaterial({
-              uniforms: uniforms,
-              attributes: {},
-              vertexShader: THREE.PlaneShader.vertexShader,
-              fragmentShader: THREE.PlaneShader.fragmentShader,
-              transparent: true,
-              lights: false,
-              fog: false,
-              shading: THREE.FlatShading,
-              defines: defines
-            });
-            object.material = material;
+            if (_this.isWebGLCapable) {
+              uniforms = THREE.UniformsUtils.clone(THREE.PlaneShader.uniforms);
+              uniforms.color_opacity.value = 0;
+              uniforms.opacity.value = 1;
+              uniforms.diffuse.value.set(_this.colors[objectIndex].rgb[0] / 255, _this.colors[objectIndex].rgb[1] / 255, _this.colors[objectIndex].rgb[2] / 255);
+              uniforms.map.value = object.material.map;
+              defines = {};
+              defines["USE_MAP"] = "";
+              material = new THREE.ShaderMaterial({
+                uniforms: uniforms,
+                attributes: {},
+                vertexShader: THREE.PlaneShader.vertexShader,
+                fragmentShader: THREE.PlaneShader.fragmentShader,
+                transparent: true,
+                lights: false,
+                fog: false,
+                shading: THREE.FlatShading,
+                defines: defines
+              });
+              object.material = material;
+            }
+            object.material.transparent = true;
+            object.material.opacity = 1;
             object.material.side = THREE.DoubleSide;
             if (_this.config[objectIndex] != null) {
               _this.page3DObjects[_this.config[objectIndex].link] = object;
@@ -436,14 +452,18 @@
             }
             objectIndex++;
           }
-          object.updateMatrix();
-          if (object.geometry) {
+          if (!_this.isWebGLCapable) {
+            if ((_ref = object.material) != null) {
+              _ref.overdraw = true;
+            }
+          }
+          if (object.geometry != null) {
             object.geometry.computeFaceNormals();
             object.geometry.computeVertexNormals();
-            object.geometry.computeCentroids();
             object.geometry.computeTangents();
-            return object.geometry.computeBoundingBox();
+            object.geometry.computeBoundingBox();
           }
+          return object.updateMatrix();
         };
       })(this));
       this.scene = result.scene;
@@ -552,9 +572,15 @@
           };
         })(this)
       });
-      TweenMax.to(this.clickedObject.material.uniforms.focus_balance, this.TRANSITION_DURATION, {
-        value: 1
-      });
+      if (this.isWebGLCapable) {
+        TweenMax.to(this.clickedObject.material.uniforms.opacity, this.TRANSITION_DURATION, {
+          value: 0
+        });
+      } else {
+        TweenMax.to(this.clickedObject.material, this.TRANSITION_DURATION, {
+          opacity: 0
+        });
+      }
       this.clickedObject.page.css({
         display: "block"
       });
@@ -637,9 +663,15 @@
           };
         })(this)
       });
-      TweenMax.to(this.clickedObject.material.uniforms.focus_balance, this.TRANSITION_DURATION, {
-        value: 0
-      });
+      if (this.isWebGLCapable) {
+        TweenMax.to(this.clickedObject.material.uniforms.opacity, this.TRANSITION_DURATION, {
+          value: 1
+        });
+      } else {
+        TweenMax.to(this.clickedObject.material, this.TRANSITION_DURATION, {
+          opacity: 1
+        });
+      }
       TweenMax.to(this.clickedObject.page[0], this.TRANSITION_DURATION, {
         css: {
           opacity: 0
@@ -665,7 +697,7 @@
       this.windowHalfY = this.SCREEN_HEIGHT / 2;
       this.camera.aspect = this.SCREEN_WIDTH / this.SCREEN_HEIGHT;
       this.camera.updateProjectionMatrix();
-      if ((_ref = this.webglRenderer) != null) {
+      if ((_ref = this.renderer) != null) {
         _ref.setSize(this.SCREEN_WIDTH, this.SCREEN_HEIGHT);
       }
       if ((_ref1 = this.css3dRenderer) != null) {
@@ -704,7 +736,7 @@
         this.camera.position.y = Math.max(this.FLOOR, this.camera.position.y);
         this.camera.lookAt(this.cameraLookAt);
       }
-      if ((_ref = this.webglRenderer) != null) {
+      if ((_ref = this.renderer) != null) {
         _ref.render(this.scene, this.camera);
       }
       if ((_ref1 = this.css3dRenderer) != null) {
@@ -718,9 +750,9 @@
         if (intersects.length > 0) {
           this.handlePicking(intersects[0].object);
         } else {
-          if (this.overObject) {
-            TweenMax.to(this.overObject.material.uniforms.ovelay_unfocused_alpha, 1, {
-              value: 1
+          if (this.overObject && this.isWebGLCapable) {
+            TweenMax.to(this.overObject.material.uniforms.color_opacity, 1, {
+              value: 0
             });
           }
           this.overObject = null;
@@ -735,16 +767,18 @@
 
     App.prototype.handlePicking = function(object) {
       if (this.overObject !== object) {
-        if (this.overObject) {
-          TweenMax.to(this.overObject.material.uniforms.ovelay_unfocused_alpha, 1, {
-            value: 1
+        if (this.overObject && this.isWebGLCapable) {
+          TweenMax.to(this.overObject.material.uniforms.color_opacity, 1, {
+            value: 0
           });
         }
         if (this.excludeFromPicking.indexOf(object.name) === -1) {
           this.overObject = object;
-          TweenMax.to(this.overObject.material.uniforms.ovelay_unfocused_alpha, 1, {
-            value: 0
-          });
+          if (this.isWebGLCapable) {
+            TweenMax.to(this.overObject.material.uniforms.color_opacity, 1, {
+              value: 1
+            });
+          }
           if (!this.isFocused) {
             return ga('send', 'event', '3d-plane:' + this.overObject.link, 'over');
           }
