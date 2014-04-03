@@ -36,7 +36,7 @@ module.exports = (grunt)->
 
                 jadeConfig = globalJadeConfig[parsed.meta.id+"-"+parsed.meta.lang] =
                     options: 
-                        pretty : true
+                        pretty : if options.environment == "prod" then false else true
                         data : {}
                     files : {}
 

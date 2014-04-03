@@ -3,10 +3,10 @@ $(document).ready(function() {
 	var showHide = function() {
 		ga('send', 'event', 'show-menu-button', 'click');
 
-		if( $('menu').hasClass('force-show') ) { 
-			$('menu').removeClass('force-show')
+		if( $('.menu').hasClass('force-show') ) { 
+			$('.menu').removeClass('force-show')
 		} else { 
-			$('menu').addClass('force-show') 
+			$('.menu').addClass('force-show') 
 		} 
 		if( $('.show-menu').hasClass('force-hide') ) {
 			$('.show-menu').removeClass('force-hide') 
@@ -25,7 +25,7 @@ $(document).ready(function() {
 		ga('send', 'event', "no-webgl-warning-button" , 'click');
 	}
 	var hide = function() {
-		$('menu').removeClass('force-show') 
+		$('.menu').removeClass('force-show') 
 		$('.show-menu').removeClass('force-hide') 
 	}
 	

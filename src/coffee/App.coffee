@@ -381,45 +381,18 @@ class App
 		objectIndex = 0;
 
 		result.scene.traverse (object)=> 
-				object.rotation.order  = "ZYX";
-				if object.material && @excludeFromPicking.indexOf(object.name) == -1
+			object.rotation.order  = "ZYX";
 
+
+			if object.material?
+
+				if @excludeFromPicking.indexOf(object.name) == -1
 					@initialObjectsProperties[object.name] = {}
 					@initialObjectsProperties[object.name].position = object.position.clone();
 					@initialObjectsProperties[object.name].quaternion = object.quaternion.clone();
 					@initialObjectsProperties[object.name].scale = object.scale.clone();
 
-					if @isWebGLCapable
-						uniforms = THREE.UniformsUtils.clone(THREE.PlaneShader.uniforms)
-						# uniforms.focus_balance.value = 0;
-						uniforms.color_opacity.value = 0;
-						uniforms.opacity.value = 1;
-						uniforms.diffuse.value.set( @colors[objectIndex].rgb[0] / 255 , @colors[objectIndex].rgb[1] /255 , @colors[objectIndex].rgb[2] /255 )
-						uniforms.map.value = object.material.map
 
-
-						defines = {}
-						defines["USE_MAP"] = "";
-
-
-						material = new THREE.ShaderMaterial
-							uniforms: uniforms
-							attributes: {}
-							vertexShader: THREE.PlaneShader.vertexShader
-							fragmentShader: THREE.PlaneShader.fragmentShader
-							transparent: true
-							lights : false
-							fog : false
-							shading: THREE.FlatShading
-							defines : defines;
-
-						object.material = material;
-
-
-
-					object.material.transparent = true;
-					object.material.opacity = 1;
-					object.material.side = THREE.DoubleSide;
 
 					if @config[objectIndex]?
 
@@ -440,31 +413,34 @@ class App
 						@excludeFromPicking.push(object.name)
 
 
-					objectIndex++
-				# else
-				# 	if object.geometry? && !@isWebGLCapable
-				# 		result.scene.remove(object)
-				# 		@canvasFloorScene.add(object)
-				# 		object.updateMatrix();	
+					objectIndex++;
 
 
-				if !@isWebGLCapable && object.material?
+				if @isWebGLCapable
+					# replace material with our simple webgl one
+					@replaceThreeJsMaterial(object,objectIndex)
+				else
+					# replace material with a simple threejs one
 					object.material = new THREE.MeshBasicMaterial
 						lights : false
 						fog: false
 						shading: THREE.FlatShading
 						map : object.material.map
 					object.material.overdraw = true
-					object.material.side = THREE.DoubleSide
 
-				if object.geometry?
-					object.geometry.computeFaceNormals();
-					object.geometry.computeVertexNormals();
-					# object.geometry.computeCentroids();
-					object.geometry.computeTangents();
-					object.geometry.computeBoundingBox();
+				object.material.transparent = true;
+				object.material.opacity = 1;
+				object.material.side = THREE.DoubleSide;				
 
-				object.updateMatrix();
+
+			if object.geometry?
+				object.geometry.computeFaceNormals();
+				object.geometry.computeVertexNormals();
+				# object.geometry.computeCentroids();
+				object.geometry.computeTangents();
+				object.geometry.computeBoundingBox();
+
+			object.updateMatrix();
 
 
 
@@ -499,6 +475,32 @@ class App
 
 		null;
 	
+
+	replaceThreeJsMaterial:(object,objectIndex)=>
+		uniforms = THREE.UniformsUtils.clone(THREE.PlaneShader.uniforms)
+		# uniforms.focus_balance.value = 0;
+		uniforms.color_opacity.value = 0;
+		uniforms.opacity.value = 1;
+		uniforms.diffuse.value.set( @colors[objectIndex].rgb[0] / 255 , @colors[objectIndex].rgb[1] /255 , @colors[objectIndex].rgb[2] /255 )
+		uniforms.map.value = object.material.map
+
+
+		defines = {}
+		defines["USE_MAP"] = "";
+
+
+		material = new THREE.ShaderMaterial
+			uniforms: uniforms
+			attributes: {}
+			vertexShader: THREE.PlaneShader.vertexShader
+			fragmentShader: THREE.PlaneShader.fragmentShader
+			transparent: true
+			lights : false
+			fog : false
+			shading: THREE.FlatShading
+			defines : defines;
+
+		object.material = material;		
 
 	handleFocus:()=>
 		if !@isFocused
@@ -589,8 +591,7 @@ class App
 				value:0
 		else
 			TweenMax.to @clickedObject.material, @TRANSITION_DURATION,
-				opacity:0		
-				# onUpdate:=> @clickedObject.material.needsUpdate = true		
+				opacity:0			
 
 		@clickedObject.page.css 
 			display : "block"
@@ -676,7 +677,6 @@ class App
 		else
 			TweenMax.to @clickedObject.material, @TRANSITION_DURATION,
 				opacity:1
-				# onUpdate:=> @clickedObject.material.needsUpdate = true
 
 
 		
@@ -775,6 +775,8 @@ class App
 
 
 	handlePicking:(object)=>
+		# return if !@object?
+
 		if @overObject != object
 			# intersects and it's different from before
 			if @overObject && @isWebGLCapable

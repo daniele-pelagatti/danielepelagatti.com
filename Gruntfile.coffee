@@ -3,8 +3,24 @@ module.exports = (grunt)->
     # debugger
 
     env = grunt.option("env") || "prod";
+    deploy_user = grunt.option("user");
 
     rewriteModule = require("http-rewrite-middleware");
+
+    optional_files = [
+        "src/js/optional/three.js" 
+        "src/js/optional/spin.js"
+        "src/js/optional/*.js"
+        "src/js/optional/shaders.js"
+        "src/js/optional/main.js"
+    ]
+
+    essential_files = [
+        "src/js/essential/jquery.js"
+        "src/js/essential/jquery.leanModal.js"
+        "src/js/essential/essential.js"
+    ]
+
 
     gruntConfig = 
         pkg: grunt.file.readJSON("package.json")
@@ -35,25 +51,32 @@ module.exports = (grunt)->
             livereload: 35729                
         coffee:
             files: [gruntConfig.pkg.watch_folder+"/**/*.coffee"]
-            tasks: ["percolator"]
+            tasks: if env == "prod" then ["percolator","uglify:optional"] else ["percolator","concat:optional"]
+        glsl_threejs:
+            files: [gruntConfig.pkg.watch_folder+"/**/*.{frag,vert}"]
+            tasks: if env == "prod" then ["glsl_threejs","uglify:optional"] else ["glsl_threejs","concat:optional"]
         compass:
             files: [gruntConfig.pkg.watch_folder+"/**/*.{scss,sass}"]
-            tasks: ["compass"]
+            tasks: if env == "prod" then ["compass","cssmin"] else ["compass","concat:css"]
+        jsonmin:
+            files: [gruntConfig.pkg.watch_folder+"/maya/data/*.json"]
+            tasks: if env == "prod" then  ["jsonmin"] else ["copy:json"]            
         jade:
             files: [gruntConfig.pkg.watch_folder+"/**/*.{jade,md}"]
             tasks: ["compile_markdown_files"]
-        glsl_threejs:
-            files: [gruntConfig.pkg.watch_folder+"/**/*.{frag,vert}"]
-            tasks: ["glsl_threejs"]
+
         uglify_essential :
             files: [gruntConfig.pkg.watch_folder+"/js/essential/*.js"]
-            tasks: ["uglify:essential"]
-        uglify_optional :
-            files: [gruntConfig.pkg.watch_folder+"/js/optional/*.js"]
-            tasks: ["uglify:optional"]
-        cssmin :
-            files: [gruntConfig.pkg.watch_folder+"/**/*.css"]
-            tasks: ["cssmin"]
+            tasks: if env == "prod" then  ["uglify:essential"] else ["concat:essential"]
+
+        # uglify_optional :
+        #     files: [gruntConfig.pkg.watch_folder+"/js/optional/*.js"]
+        #     tasks: ["uglify:optional"]
+        # cssmin :
+        #     files: [gruntConfig.pkg.watch_folder+"/**/*.css"]
+        #     tasks: ["cssmin"]
+
+
         imagemin :
             files: [gruntConfig.pkg.watch_folder+"/images/**/*.{jpg,png,gif}"]
             tasks: ["imagemin:site"]
@@ -63,9 +86,6 @@ module.exports = (grunt)->
         copy :
             files: [gruntConfig.pkg.watch_folder+"/include/**"]
             tasks: ["copy"]
-        jsonmin:
-            files: [gruntConfig.pkg.watch_folder+"/maya/data/*.json"]
-            tasks: ["jsonmin"]            
 
 
     gruntConfig.concurrent =
@@ -110,25 +130,12 @@ module.exports = (grunt)->
         options :
             banner       : "/*! <%= pkg.name %> <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
             drop_console : true
-            # mangle       : false
-            # beautify     : true
         optional :
-            files : 
-                "public_html/js/optional.min.js" : [
-                    "src/js/optional/three.min.js" 
-                    "src/js/optional/spin.js"
-                    "src/js/optional/*.js"
-                    "src/js/optional/shaders.js"
-                    "src/js/optional/main.js"
-                ]
+            files : {}
         essential:
-            files:
-                "public_html/js/essential.min.js" : [
-                    "src/js/essential/jquery.js"
-                    "src/js/essential/jquery.leanModal.js"
-                    "src/js/essential/essential.js"
-                ]
-
+            files: {}
+    gruntConfig.uglify.optional.files[gruntConfig.pkg.minified_optional_js_file] = optional_files
+    gruntConfig.uglify.optional.files[gruntConfig.pkg.minified_essential_js_file] = essential_files
 
 
     gruntConfig.cssmin =
@@ -144,8 +151,8 @@ module.exports = (grunt)->
     gruntConfig.modernizr =
         dist:
             devFile             : "modernizr.dev.js"
-            outputFile          : gruntConfig.pkg.watch_folder+"/include/js/modernizr.js"
-            uglify              : true
+            outputFile          : gruntConfig.pkg.www_folder+"/js/modernizr.js"
+            uglify              : if env == "prod" then true else false
             matchCommunityTests : true
             files : 
                 src: ["src/**/*.{css,js}"]
@@ -162,6 +169,33 @@ module.exports = (grunt)->
                     dot    : true
                 }
             ]
+        json:
+            files : [
+                {
+                    expand : true
+                    cwd    : "src/maya/data/"
+                    src    : ["*.json"]
+                    dest   : gruntConfig.pkg.www_folder+"/maya/data"
+                    dot    : true
+                }
+            ]            
+
+
+    gruntConfig.concat =
+        optional:
+            options:
+                separator : ";"
+            src  : optional_files
+            dest : gruntConfig.pkg.minified_optional_js_file
+        essential:
+            options:
+                separator : ";"            
+            src  : essential_files
+            dest : gruntConfig.pkg.minified_essential_js_file
+        css:
+            src  : gruntConfig.pkg.compass_output_folder+"/**/*.css"
+            dest : gruntConfig.pkg.minified_main_css_file
+
 
     gruntConfig.jsonmin =
         maya:
@@ -190,7 +224,7 @@ module.exports = (grunt)->
     gruntConfig.imagemin = 
         site:
             options:
-                optimizationLevel : 6
+                optimizationLevel : 5
             #     pngquant          : false
             #     interlaced        : true
             #     progressive       : true
@@ -202,7 +236,7 @@ module.exports = (grunt)->
             ]
         maya:
             options:
-                optimizationLevel : 6
+                optimizationLevel : 5
             #     pngquant          : false
             #     interlaced        : true
             #     progressive       : true
@@ -223,8 +257,8 @@ module.exports = (grunt)->
         dist:   
             options:
                 src  : gruntConfig.pkg.www_folder
-                dest : "/home2/danielep"
-                host : "danielep@danielepelagatti.com"
+                dest : "/home2/"+deploy_user
+                host : deploy_user+"@danielepelagatti.com"
 
     grunt.initConfig(gruntConfig)
 
@@ -233,6 +267,12 @@ module.exports = (grunt)->
 
     
     # Default task(s).
-    grunt.registerTask("build", ["clean","imagemin","copy","percolator","compass","glsl_threejs","compile_markdown_files","uglify","cssmin","jsonmin"]);
     grunt.registerTask("deploy", ["rsync"]);
+
+    if env == "prod"
+        grunt.registerTask("build", ["clean","imagemin","copy:include","percolator","compass","glsl_threejs","compile_markdown_files","uglify","cssmin","jsonmin","modernizr"]);
+        # deploy only production
+    else
+        grunt.registerTask("build", ["clean","imagemin","copy","percolator","compass","glsl_threejs","compile_markdown_files","concat","modernizr"]);
+    
     grunt.registerTask("default", ["build","concurrent"]);

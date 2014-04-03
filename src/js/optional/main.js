@@ -111,6 +111,7 @@
       this.getFocusedPagePosition = __bind(this.getFocusedPagePosition, this);
       this.focus = __bind(this.focus, this);
       this.handleFocus = __bind(this.handleFocus, this);
+      this.replaceThreeJsMaterial = __bind(this.replaceThreeJsMaterial, this);
       this.sceneLoadCallback = __bind(this.sceneLoadCallback, this);
       this.hideLoading = __bind(this.hideLoading, this);
       this.showLoading = __bind(this.showLoading, this);
@@ -410,60 +411,42 @@
       objectIndex = 0;
       result.scene.traverse((function(_this) {
         return function(object) {
-          var container, defines, link, material, uniforms;
+          var container, link;
           object.rotation.order = "ZYX";
-          if (object.material && _this.excludeFromPicking.indexOf(object.name) === -1) {
-            _this.initialObjectsProperties[object.name] = {};
-            _this.initialObjectsProperties[object.name].position = object.position.clone();
-            _this.initialObjectsProperties[object.name].quaternion = object.quaternion.clone();
-            _this.initialObjectsProperties[object.name].scale = object.scale.clone();
+          if (object.material != null) {
+            if (_this.excludeFromPicking.indexOf(object.name) === -1) {
+              _this.initialObjectsProperties[object.name] = {};
+              _this.initialObjectsProperties[object.name].position = object.position.clone();
+              _this.initialObjectsProperties[object.name].quaternion = object.quaternion.clone();
+              _this.initialObjectsProperties[object.name].scale = object.scale.clone();
+              if (_this.config[objectIndex] != null) {
+                _this.page3DObjects[_this.config[objectIndex].link] = object;
+                link = object.link = _this.config[objectIndex].link;
+                container = $("<div class='object3DContainer' permalink='" + link + "'></div>");
+                if (_this.config[objectIndex].meta.permalink === _this.pagePermalink) {
+                  _this.htmlMain.find("#no-webgl-warning").remove();
+                  _this.htmlMain.find(".no-webgl-warning-button").remove();
+                  container.append(_this.htmlMain);
+                }
+                _this.setupCSS3DPage(container, object, link);
+              } else {
+                _this.excludeFromPicking.push(object.name);
+              }
+              objectIndex++;
+            }
             if (_this.isWebGLCapable) {
-              uniforms = THREE.UniformsUtils.clone(THREE.PlaneShader.uniforms);
-              uniforms.color_opacity.value = 0;
-              uniforms.opacity.value = 1;
-              uniforms.diffuse.value.set(_this.colors[objectIndex].rgb[0] / 255, _this.colors[objectIndex].rgb[1] / 255, _this.colors[objectIndex].rgb[2] / 255);
-              uniforms.map.value = object.material.map;
-              defines = {};
-              defines["USE_MAP"] = "";
-              material = new THREE.ShaderMaterial({
-                uniforms: uniforms,
-                attributes: {},
-                vertexShader: THREE.PlaneShader.vertexShader,
-                fragmentShader: THREE.PlaneShader.fragmentShader,
-                transparent: true,
+              _this.replaceThreeJsMaterial(object, objectIndex);
+            } else {
+              object.material = new THREE.MeshBasicMaterial({
                 lights: false,
                 fog: false,
                 shading: THREE.FlatShading,
-                defines: defines
+                map: object.material.map
               });
-              object.material = material;
+              object.material.overdraw = true;
             }
             object.material.transparent = true;
             object.material.opacity = 1;
-            object.material.side = THREE.DoubleSide;
-            if (_this.config[objectIndex] != null) {
-              _this.page3DObjects[_this.config[objectIndex].link] = object;
-              link = object.link = _this.config[objectIndex].link;
-              container = $("<div class='object3DContainer' permalink='" + link + "'></div>");
-              if (_this.config[objectIndex].meta.permalink === _this.pagePermalink) {
-                _this.htmlMain.find("#no-webgl-warning").remove();
-                _this.htmlMain.find(".no-webgl-warning-button").remove();
-                container.append(_this.htmlMain);
-              }
-              _this.setupCSS3DPage(container, object, link);
-            } else {
-              _this.excludeFromPicking.push(object.name);
-            }
-            objectIndex++;
-          }
-          if (!_this.isWebGLCapable && (object.material != null)) {
-            object.material = new THREE.MeshBasicMaterial({
-              lights: false,
-              fog: false,
-              shading: THREE.FlatShading,
-              map: object.material.map
-            });
-            object.material.overdraw = true;
             object.material.side = THREE.DoubleSide;
           }
           if (object.geometry != null) {
@@ -483,6 +466,29 @@
       this.css3DScene.updateMatrix();
       this.hideLoading();
       return null;
+    };
+
+    App.prototype.replaceThreeJsMaterial = function(object, objectIndex) {
+      var defines, material, uniforms;
+      uniforms = THREE.UniformsUtils.clone(THREE.PlaneShader.uniforms);
+      uniforms.color_opacity.value = 0;
+      uniforms.opacity.value = 1;
+      uniforms.diffuse.value.set(this.colors[objectIndex].rgb[0] / 255, this.colors[objectIndex].rgb[1] / 255, this.colors[objectIndex].rgb[2] / 255);
+      uniforms.map.value = object.material.map;
+      defines = {};
+      defines["USE_MAP"] = "";
+      material = new THREE.ShaderMaterial({
+        uniforms: uniforms,
+        attributes: {},
+        vertexShader: THREE.PlaneShader.vertexShader,
+        fragmentShader: THREE.PlaneShader.fragmentShader,
+        transparent: true,
+        lights: false,
+        fog: false,
+        shading: THREE.FlatShading,
+        defines: defines
+      });
+      return object.material = material;
     };
 
     App.prototype.handleFocus = function() {

@@ -15,8 +15,8 @@
   "jade_folder": "src/jade",
   "default_document": "index.html",
   "js_folder": "src/js",
-  "minified_vendor_js_file": "public_html/js/vendor.min.js",
-  "minified_main_js_file": "public_html/js/main.min.js",
+  "minified_essential_js_file": "public_html/js/essential.min.js",
+  "minified_optional_js_file": "public_html/js/optional.min.js",
   "minified_main_css_input_file": "public_html/css/main.css",
   "minified_main_css_file": "public_html/css/main.min.css",
   "config_json": "public_html/config.json",
@@ -47,6 +47,7 @@
     "chalk": "^0.4.0",
     "grunt-contrib-clean": "^0.5.0",
     "grunt-jsonmin": "~0.2.4",
-    "grunt-contrib-imagemin": "~0.6.1"
+    "grunt-contrib-imagemin": "~0.6.1",
+    "grunt-contrib-concat": "~0.4.0"
   }
 }
