@@ -811,13 +811,9 @@
         rangeY = this.maxCameraY - this.minCameraY;
         camX = (this.mouseX * rangeX) / this.SCREEN_WIDTH;
         camY = (-this.mouseY * rangeY) / this.SCREEN_HEIGHT;
-        TweenMax.to(this.camera.position, 1, {
-          x: camX,
-          y: camY
-        });
+        this.camera.position.x += (camX - this.camera.position.x) * 0.05;
+        this.camera.position.y += (camY - this.camera.position.y) * 0.05;
         this.camera.lookAt(this.cameraLookAt);
-      } else {
-        TweenMax.killTweensOf(this.camera.position);
       }
       this.calcPicking();
       if ((_ref = this.renderer) != null) {

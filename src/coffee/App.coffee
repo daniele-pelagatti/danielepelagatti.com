@@ -802,13 +802,17 @@ class App
 			camX = ( @mouseX * rangeX ) / @SCREEN_WIDTH
 			camY = ( -@mouseY * rangeY ) / @SCREEN_HEIGHT
 
-			TweenMax.to @camera.position, 1,
-				x: camX
-				y: camY
+
+			@camera.position.x += ( camX - @camera.position.x ) * 0.05;
+			@camera.position.y += ( camY - @camera.position.y ) * 0.05;
+
+			# TweenMax.to @camera.position, 1,
+			# 	x: camX
+			# 	y: camY
 
 			@camera.lookAt( @cameraLookAt );
-		else 
-			TweenMax.killTweensOf(@camera.position)
+		# else 
+		# 	TweenMax.killTweensOf(@camera.position)
 
 		@calcPicking();
 
