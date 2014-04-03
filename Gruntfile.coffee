@@ -97,7 +97,7 @@ module.exports = (grunt)->
         default:
             options:
                 port       : 8000
-                hostname   : "localhost"
+                hostname   : "*"
                 keepalive  : true
                 livereload : 35729
                 base       : gruntConfig.pkg.www_folder

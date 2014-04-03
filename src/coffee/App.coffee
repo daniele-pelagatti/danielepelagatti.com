@@ -14,11 +14,11 @@ class App
 	camera                   : null;
 	scene                    : null;
 	css3DScene               : null;
-	renderer            	 : null;
+	renderer                 : null;
 	css3dRenderer            : null;
-	isWebGLCapable			 : false;
-	isCSS3DCapable			 : false;
-	isCanvasCapable			 : false;
+	isWebGLCapable           : false;
+	isCSS3DCapable           : false;
+	isCanvasCapable          : false;
 	
 	mouseX                   : 0;
 	mouseY                   : 0;
@@ -40,6 +40,7 @@ class App
 	clickedObjectWRotation   : null;
 	clickedObjectWScale      : null;
 	isFocused                : false;
+	doRender                 : true;
 	
 	pageLanguage             : window.PAGE_LANG;
 	pagePermalink            : window.PAGE_PERMALINK;
@@ -59,27 +60,43 @@ class App
 	
 	htmlMain                 : null
 	delayID                  : -1
+	minCameraX               : -250
+	maxCameraX               : 250
+	minCameraY               : -50
+	maxCameraY               : 300
+
 
 	constructor:->
 
-		isIE11 = !!window.MSInputMethodContext;
-		@isCSS3DCapable = Modernizr.csstransforms3d && !isIE11
-		@isWebGLCapable = @checkWebGL() && Modernizr.webgl
+		isIE11              = !!window.MSInputMethodContext;
+		@isCSS3DCapable     = Modernizr.csstransforms3d && !isIE11
+		@isWebGLCapable     = @checkWebGL() && Modernizr.webgl
+		@isPushStateCapable = Modernizr.history
 		# disable canvas mode, too slow on ipads
 		# @isCanvasCapable = Modernizr.canvas
 
-		if @isCSS3DCapable && ( @isCanvasCapable || @isWebGLCapable )# minimum requirements
-			@showLoading()
+		if @isCSS3DCapable && @isPushStateCapable && ( @isCanvasCapable || @isWebGLCapable )# minimum requirements
 			@htmlMain = $("main")
-			@htmlMain.remove();
+			ga('send', 'event', 'webgl-test', 'passed');
+
+			TweenMax.to @htmlMain, 1,
+				css:
+					opacity:0
+				onComplete:(thisPage)=>
+					@showLoading()
+					TweenMax.to(@htmlMain,0,{css:{opacity: 1}});
+					@htmlMain.remove()
 
 			
-			$("body").css("overflow-y","hidden");
-			$.ajax(@pageBase+"config.json",
-				success : @onConfigLoaded
-				error : @onConfigError
-			)
-			ga('send', 'event', 'webgl-test', 'passed');
+					$("body").css("overflow-y","hidden");
+
+					$.ajax @pageBase+"config.json",
+						success : @onConfigLoaded
+						error   : @onConfigError
+					
+
+					@init();
+					@animate();			
 		else
 			# we cannot continue, no webgl support
 			ga('send', 'event', 'webgl-test', 'failed');
@@ -100,8 +117,14 @@ class App
 		if !@config?
 			throw "Cannot find config for this language"
 
-		@init();
-		@animate();
+		# load scene
+		loader = new THREE.SceneLoader();
+		if @isWebGLCapable
+			loader.load( @pageBase+"maya/data/scene.json", @sceneLoadCallback );
+		else
+			loader.load( @pageBase+"maya/data/scene_canvas.json", @sceneLoadCallback );
+
+		
 		null
 
 	onCloseClick:=>
@@ -199,6 +222,7 @@ class App
 	on3DSceneMouseClick:(event)=>
 
 		# @onMouseMove(event);
+		@calcPicking()
 
 		if !@overObject?
 			# required to unfocus ( click outside focused plane )
@@ -277,11 +301,7 @@ class App
 		@projector = new THREE.Projector();
 		@raycaster = new THREE.Raycaster();
 
-		loader = new THREE.SceneLoader();
-		if @isWebGLCapable
-			loader.load( @pageBase+"maya/data/scene.json", @sceneLoadCallback );
-		else
-			loader.load( @pageBase+"maya/data/scene_canvas.json", @sceneLoadCallback );
+
 
 		$(window).bind( 'resize', @onWindowResize );
 		@container.bind( 'mousemove touchmove touchstart', @onMouseMove );
@@ -296,10 +316,13 @@ class App
 
 		@onWindowResize()
 
-		# TweenMax.to( $(".threejs-container"), 0, {css:{opacity:0}} )
-		# TweenMax.to( $(".css3d-container"), 0, {css:{opacity:0}} )
+		TweenMax.to( $(".threejs-container"), 0, {css:{opacity:0}} )
+		TweenMax.to( $(".css3d-container"), 0, {css:{opacity:0}} )
 
 	
+	onTouchStart:(event)=>
+	onTouchMove:(event)=>
+	onTouchEnd:(event)=>
 
 	
 	setupCSS3DPage: ( pageObj, object, link )=>
@@ -330,17 +353,17 @@ class App
 		@css3DScene.add( cssObj )
 
 		# show page belonging to loaded page on browser
-		linkArr = link.split("/");
-		if linkArr[1] == @pageLanguage && linkArr[2] == @pagePermalink
-			_.delay( =>
-				@handlePushState(link);
-			, 1000 );
+		# linkArr = link.split("/");
+		# if linkArr[1] == @pageLanguage && linkArr[2] == @pagePermalink
+		# 	_.delay( =>
+		# 		@handlePushState(link);
+		# 	, 1000 );
 			
 		null; 
 
 
 	showLoading:=>
-		$(".javascriptContent").spin
+		$("body").spin
 			lines     : 8, # The number of lines to draw
 			length    : 8, # The length of each line
 			width     : 5, # The line thickness
@@ -355,10 +378,10 @@ class App
 			hwaccel   : true, # Whether to use hardware acceleration
 			className : 'spinner', # The CSS class to assign to the spinner
 			zIndex    : 2e9, # The z-index (defaults to 2000000000)
-			top       : '47%', # Top position relative to parent in px
-			left      : '47%' # Left position relative to parent in px	
+			top       : '50%', # Top position relative to parent in px
+			left      : '50%' # Left position relative to parent in px	
 	hideLoading:=>
-		$(".javascriptContent").spin(false)		
+		$("body").spin(false)		
 	
 	sceneLoadCallback: ( result )=> 
 
@@ -380,9 +403,10 @@ class App
 		@colors = paletteGenerator.diffSort(@colors);
 		objectIndex = 0;
 
+		thisPage = null;
+
 		result.scene.traverse (object)=> 
 			object.rotation.order  = "ZYX";
-
 
 			if object.material?
 
@@ -395,6 +419,7 @@ class App
 
 
 					if @config[objectIndex]?
+						object.config = @config[objectIndex]
 
 						@page3DObjects[@config[objectIndex].link] = object;
 
@@ -402,13 +427,14 @@ class App
 
 						container = $("<div class='object3DContainer' permalink='"+link+"'></div>")
 
-						if @config[objectIndex].meta.permalink == @pagePermalink
+						if object.config.meta.permalink == @pagePermalink || ( object.config.meta.permalink == null && @pagePermalink == "" )
 							# don't load ourselves
 							@htmlMain.find("#no-webgl-warning").remove()
 							@htmlMain.find(".no-webgl-warning-button").remove()
 							container.append(@htmlMain)
+							thisPage = link
 
-						@setupCSS3DPage( container , object, link )
+						@setupCSS3DPage( container , object, link )		
 					else
 						@excludeFromPicking.push(object.name)
 
@@ -460,22 +486,24 @@ class App
 
 		@hideLoading()
 
-		# TweenMax.to @htmlMain, 1,
-		# 	css:
-		# 		opacity:0
-		# 	onComplete :=>
-		# 		@htmlMain.remove()
+
 
 		
-		# TweenMax.to $(".threejs-container"), 0,
-		# 	css:
-		# 		opacity:1
+		TweenMax.to $(".threejs-container"), 1,
+			css:
+				opacity:1
 
 
-		# TweenMax.to $(".css3d-container"), 0,
-		# 	css:
-		# 		opacity:1
+		TweenMax.to $(".css3d-container"), 1,
+			css:
+				opacity:1
 
+			onCompleteParams: [thisPage]
+
+			onCompleteParams: [thisPage]
+			onComplete:(thisPage)=>
+				if thisPage?
+					@handlePushState(thisPage)
 		null;
 	
 
@@ -519,7 +547,6 @@ class App
 	focus:()=>
 		@isFocused = true;
 
-
 		pageIsLoaded = @clickedObject.page.find("main").length > 0
 
 		if !pageIsLoaded
@@ -551,16 +578,19 @@ class App
 
 
 		TweenMax.to @clickedObject.position, @TRANSITION_DURATION, 
-			x:newPos.x
-			y:newPos.y
-			z:newPos.z
-			onUpdateParams : [@clickedObject]
+			x                : newPos.x
+			y                : newPos.y
+			z                : newPos.z
+			onUpdateParams   : [@clickedObject]
+			onUpdate         : @syncCss3dPlanePosition
 			onCompleteParams : [@clickedObject]
-			onUpdate:(object)=>
-				object.cssObj.position.set( object.position.x * @SCENE_SCALE_MULTIPLIER,object.position.y * @SCENE_SCALE_MULTIPLIER,object.position.z * @SCENE_SCALE_MULTIPLIER)
-			onComplete:(object)=>
+			onComplete       : (object)=>
 				object.page.css
 					"pointer-events" : ""
+				@doRender = false;
+				@syncCss3dPlanePosition(object);
+				@onWindowResize();
+				@render();
 
 		camRot = @camera.quaternion.clone();
 		rot2 = new THREE.Quaternion();
@@ -569,25 +599,23 @@ class App
 		camRot.multiply(rot2);
 		
 		TweenMax.to @clickedObject.quaternion, @TRANSITION_DURATION,
-			x:camRot.x
-			y:camRot.y
-			z:camRot.z
-			w:camRot.w
-			onUpdateParams : [@clickedObject]
-			onUpdate:(object)=>
-				object.cssObj.quaternion.set(object.quaternion.x,object.quaternion.y,object.quaternion.z,object.quaternion.w)					
-				rot2 = new THREE.Quaternion();
-				rot2.setFromAxisAngle( new THREE.Vector3( 1, 0, 0 ), -Math.PI / 2 );
-				object.cssObj.quaternion.multiply(rot2);						
+			x                : camRot.x
+			y                : camRot.y
+			z                : camRot.z
+			w                : camRot.w
+			onUpdateParams   : [@clickedObject]
+			onUpdate         : @syncCss3dPlaneRotation
+			onCompleteParams : [@clickedObject]
+			onComplete       : @syncCss3dPlaneRotation					
 
 		TweenMax.to @clickedObject.scale, @TRANSITION_DURATION,
-			x:1
-			y:1
-			z:1
-			onUpdateParams : [@clickedObject]
-			onUpdate:(object)=>
-				object.cssObj.scale.set(object.scale.x * @PAGE_SCALE_MULTIPLIER,object.scale.y * @PAGE_SCALE_MULTIPLIER,object.scale.z * @PAGE_SCALE_MULTIPLIER)	
-				# console.log(object.scale.x * @PAGE_SCALE_MULTIPLIER)					
+			x                : 1
+			y                : 1
+			z                : 1
+			onUpdateParams   : [@clickedObject]
+			onUpdate         : @syncCss3dPlaneScale		
+			onCompleteParams : [@clickedObject]
+			onComplete       : @syncCss3dPlaneScale					
 
 		if @isWebGLCapable
 			TweenMax.to @clickedObject.material.uniforms.opacity, @TRANSITION_DURATION,
@@ -608,6 +636,76 @@ class App
 
 		null;
 
+	
+
+	unfocus:=>
+		@doRender = true
+		@isFocused = false;
+		@animate()
+
+		TweenMax.to @clickedObject.position, @TRANSITION_DURATION,
+			x                : @clickedObjectWPosition.x
+			y                : @clickedObjectWPosition.y
+			z                : @clickedObjectWPosition.z
+			onUpdateParams   : [@clickedObject]
+			onUpdate         : @syncCss3dPlanePosition
+			onCompleteParams : [@clickedObject]
+			onComplete       : @syncCss3dPlanePosition
+
+
+		TweenMax.to @clickedObject.quaternion, @TRANSITION_DURATION,
+			x                : @clickedObjectWRotation.x
+			y                : @clickedObjectWRotation.y
+			z                : @clickedObjectWRotation.z
+			w                : @clickedObjectWRotation.w
+			onUpdateParams   : [@clickedObject]
+			onUpdate         : @syncCss3dPlaneRotation
+			onCompleteParams : [@clickedObject]
+			onComplete       : @syncCss3dPlaneRotation
+					
+
+		TweenMax.to @clickedObject.scale, @TRANSITION_DURATION,
+			x                : @clickedObjectWScale.x
+			y                : @clickedObjectWScale.y
+			z                : @clickedObjectWScale.z
+			onUpdateParams   : [@clickedObject]
+			onUpdate         : @syncCss3dPlaneScale		
+			onCompleteParams : [@clickedObject]
+			onComplete       : @syncCss3dPlaneScale					
+
+		if @isWebGLCapable
+			TweenMax.to @clickedObject.material.uniforms.opacity, @TRANSITION_DURATION,
+				value:1
+		else
+			TweenMax.to @clickedObject.material, @TRANSITION_DURATION,
+				opacity:1
+
+
+		
+
+		TweenMax.to @clickedObject.page[0], @TRANSITION_DURATION,
+			css:
+				opacity:0
+			onComplete:()=>
+				@clickedObject.page.css 
+					display : "none"	
+
+
+		$(".close-page").hide();
+		null;				
+
+	syncCss3dPlaneScale:(object)=>
+		object.cssObj.scale.set(object.scale.x * @PAGE_SCALE_MULTIPLIER,object.scale.y * @PAGE_SCALE_MULTIPLIER,object.scale.z * @PAGE_SCALE_MULTIPLIER)	
+
+	syncCss3dPlanePosition:(object)=>
+		object.cssObj.position.set(object.position.x * @SCENE_SCALE_MULTIPLIER,object.position.y * @SCENE_SCALE_MULTIPLIER,object.position.z * @SCENE_SCALE_MULTIPLIER)	
+
+	syncCss3dPlaneRotation:(object)=>
+		object.cssObj.quaternion.set(object.quaternion.x,object.quaternion.y,object.quaternion.z,object.quaternion.w)					
+		rot2 = new THREE.Quaternion();
+		rot2.setFromAxisAngle( new THREE.Vector3( 1, 0, 0 ), -Math.PI / 2 );
+		object.cssObj.quaternion.multiply(rot2);
+	
 	getFocusedPagePosition:=>
 		rotMat = new THREE.Matrix4();
 		rotMat.makeRotationFromQuaternion(@camera.quaternion);
@@ -641,62 +739,7 @@ class App
 		newPos.add(right);
 		newPos.add(forward);
 
-		return newPos;		
-
-	unfocus:=>
-		TweenMax.to @clickedObject.position, @TRANSITION_DURATION,
-			x:@clickedObjectWPosition.x
-			y:@clickedObjectWPosition.y
-			z:@clickedObjectWPosition.z
-			onComplete:()=>
-				@isFocused = false;
-			onUpdateParams : [@clickedObject]
-			onUpdate:(object)=>
-				object.cssObj.position.set(object.position.x * @SCENE_SCALE_MULTIPLIER,object.position.y * @SCENE_SCALE_MULTIPLIER,object.position.z * @SCENE_SCALE_MULTIPLIER)					
-
-		TweenMax.to @clickedObject.quaternion, @TRANSITION_DURATION,
-			x:@clickedObjectWRotation.x
-			y:@clickedObjectWRotation.y
-			z:@clickedObjectWRotation.z
-			w:@clickedObjectWRotation.w
-			onUpdateParams : [@clickedObject]
-			onUpdate:(object)=>
-				object.cssObj.quaternion.set(object.quaternion.x,object.quaternion.y,object.quaternion.z,object.quaternion.w)					
-				rot2 = new THREE.Quaternion();
-				rot2.setFromAxisAngle( new THREE.Vector3( 1, 0, 0 ), -Math.PI / 2 );
-				object.cssObj.quaternion.multiply(rot2);					
-
-		TweenMax.to @clickedObject.scale, @TRANSITION_DURATION,
-			x:@clickedObjectWScale.x
-			y:@clickedObjectWScale.y
-			z:@clickedObjectWScale.z
-			onUpdateParams : [@clickedObject]
-			onUpdate:(object)=>
-				object.cssObj.scale.set(object.scale.x * @PAGE_SCALE_MULTIPLIER,object.scale.y * @PAGE_SCALE_MULTIPLIER,object.scale.z * @PAGE_SCALE_MULTIPLIER)					
-
-		if @isWebGLCapable
-			TweenMax.to @clickedObject.material.uniforms.opacity, @TRANSITION_DURATION,
-				value:1
-		else
-			TweenMax.to @clickedObject.material, @TRANSITION_DURATION,
-				opacity:1
-
-
-		
-
-		TweenMax.to @clickedObject.page[0], @TRANSITION_DURATION,
-			css:
-				opacity:0
-			onComplete:()=>
-				@clickedObject.page.css 
-					display : "none"	
-
-
-		$(".close-page").hide();
-		null;				
-
-	
-
+		return newPos;	
 
 	onWindowResize:()=> 
 		@CONTAINER_X = @container.position().left;
@@ -718,6 +761,9 @@ class App
 			@clickedObject.position.set(pos.x,pos.y,pos.z)
 			@clickedObject.cssObj.position.set(pos.x* @SCENE_SCALE_MULTIPLIER,pos.y* @SCENE_SCALE_MULTIPLIER,pos.z* @SCENE_SCALE_MULTIPLIER)
 
+		@render()
+
+
 
 
 
@@ -726,11 +772,15 @@ class App
 		if !@isFocused
 			event.originalEvent.preventDefault();
 
+
+
 		mx = event.clientX || event.originalEvent.touches?[0]?.clientX || 0
 		my = event.clientY || event.originalEvent.touches?[0]?.clientY || 0
 
-		@mouseX = ( (mx - @CONTAINER_X) - @windowHalfX ) * 0.5;
-		@mouseY = ( my - @windowHalfY ) * 0.5;
+		@mouseX = ( (mx - @CONTAINER_X) - @windowHalfX );
+		@mouseY = ( my - @windowHalfY );
+		# @mouseX = mx - @CONTAINER_X;
+		# @mouseY = my;
 
 		@pickMouseX = ( (mx - @CONTAINER_X) / @SCREEN_WIDTH ) * 2 - 1;			
 		@pickMouseY = - ( my / @SCREEN_HEIGHT ) * 2 + 1;	
@@ -738,22 +788,35 @@ class App
 		# console.log("MOVE")
 
 	animate:()=>
-		requestAnimationFrame( @animate );
 		@render();
 		# @stats.update();
+		requestAnimationFrame( @animate ) if @doRender;
 
 	render:()=> 
 		if !@isFocused
-			@camera.position.x += ( @mouseX - @camera.position.x ) * 0.05;
-			@camera.position.y += ( - @mouseY - @camera.position.y ) * 0.05;
-			@camera.position.y = Math.max( @FLOOR, @camera.position.y );
+			rangeX = @maxCameraX - @minCameraX
+			rangeY = @maxCameraY - @minCameraY
+
+			# range : SCREEN_WIDTH = x : mouseX 
+
+			camX = ( @mouseX * rangeX ) / @SCREEN_WIDTH
+			camY = ( -@mouseY * rangeY ) / @SCREEN_HEIGHT
+
+			TweenMax.to @camera.position, 1,
+				x: camX
+				y: camY
+
 			@camera.lookAt( @cameraLookAt );
-		
+		else 
+			TweenMax.killTweensOf(@camera.position)
+
+		@calcPicking();
 
 		@renderer?.render( @scene, @camera );
 		@css3dRenderer?.render( @css3DScene, @camera );
 
 
+	calcPicking:=>
 		vector = new THREE.Vector3( @pickMouseX, @pickMouseY, 1 );
 		@projector.unprojectVector( vector, @camera );
 		@raycaster.set( @camera.position, vector.sub( @camera.position ).normalize() );
@@ -810,15 +873,9 @@ class App
 		
 
 	getRelativeLink:(objectPermalink)=>
-		thisDepth = @pageDepth;
-		# otherDepth = objectToLink.depth
-		updirs = @getUpDirs(thisDepth);
-		if(thisDepth > 0)
+		updirs = @getUpDirs(@pageDepth);
+		if(@pageDepth > 0)
 			return updirs.substr(0,updirs.length-1)+objectPermalink;	
 		else
 			return 	"."+objectPermalink;
 
-	cleanupPathName:(path)=>
-		arr = path.split("/")
-
-		return "/"+arr[ arr.length-3 ] + "/" +arr[ arr.length-2 ]+"/"

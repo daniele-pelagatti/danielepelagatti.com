@@ -70,6 +70,8 @@
 
     App.prototype.isFocused = false;
 
+    App.prototype.doRender = true;
+
     App.prototype.pageLanguage = window.PAGE_LANG;
 
     App.prototype.pagePermalink = window.PAGE_PERMALINK;
@@ -98,17 +100,28 @@
 
     App.prototype.delayID = -1;
 
+    App.prototype.minCameraX = -250;
+
+    App.prototype.maxCameraX = 250;
+
+    App.prototype.minCameraY = -50;
+
+    App.prototype.maxCameraY = 300;
+
     function App() {
-      this.cleanupPathName = __bind(this.cleanupPathName, this);
       this.getRelativeLink = __bind(this.getRelativeLink, this);
       this.getUpDirs = __bind(this.getUpDirs, this);
       this.handlePicking = __bind(this.handlePicking, this);
+      this.calcPicking = __bind(this.calcPicking, this);
       this.render = __bind(this.render, this);
       this.animate = __bind(this.animate, this);
       this.onMouseMove = __bind(this.onMouseMove, this);
       this.onWindowResize = __bind(this.onWindowResize, this);
-      this.unfocus = __bind(this.unfocus, this);
       this.getFocusedPagePosition = __bind(this.getFocusedPagePosition, this);
+      this.syncCss3dPlaneRotation = __bind(this.syncCss3dPlaneRotation, this);
+      this.syncCss3dPlanePosition = __bind(this.syncCss3dPlanePosition, this);
+      this.syncCss3dPlaneScale = __bind(this.syncCss3dPlaneScale, this);
+      this.unfocus = __bind(this.unfocus, this);
       this.focus = __bind(this.focus, this);
       this.handleFocus = __bind(this.handleFocus, this);
       this.replaceThreeJsMaterial = __bind(this.replaceThreeJsMaterial, this);
@@ -116,6 +129,9 @@
       this.hideLoading = __bind(this.hideLoading, this);
       this.showLoading = __bind(this.showLoading, this);
       this.setupCSS3DPage = __bind(this.setupCSS3DPage, this);
+      this.onTouchEnd = __bind(this.onTouchEnd, this);
+      this.onTouchMove = __bind(this.onTouchMove, this);
+      this.onTouchStart = __bind(this.onTouchStart, this);
       this.onConfigError = __bind(this.onConfigError, this);
       this.onMenuLinkOut = __bind(this.onMenuLinkOut, this);
       this.handlePushState = __bind(this.handlePushState, this);
@@ -129,16 +145,33 @@
       isIE11 = !!window.MSInputMethodContext;
       this.isCSS3DCapable = Modernizr.csstransforms3d && !isIE11;
       this.isWebGLCapable = this.checkWebGL() && Modernizr.webgl;
-      if (this.isCSS3DCapable && (this.isCanvasCapable || this.isWebGLCapable)) {
-        this.showLoading();
+      this.isPushStateCapable = Modernizr.history;
+      if (this.isCSS3DCapable && this.isPushStateCapable && (this.isCanvasCapable || this.isWebGLCapable)) {
         this.htmlMain = $("main");
-        this.htmlMain.remove();
-        $("body").css("overflow-y", "hidden");
-        $.ajax(this.pageBase + "config.json", {
-          success: this.onConfigLoaded,
-          error: this.onConfigError
-        });
         ga('send', 'event', 'webgl-test', 'passed');
+        TweenMax.to(this.htmlMain, 1, {
+          css: {
+            opacity: 0
+          },
+          onComplete: (function(_this) {
+            return function(thisPage) {
+              _this.showLoading();
+              TweenMax.to(_this.htmlMain, 0, {
+                css: {
+                  opacity: 1
+                }
+              });
+              _this.htmlMain.remove();
+              $("body").css("overflow-y", "hidden");
+              $.ajax(_this.pageBase + "config.json", {
+                success: _this.onConfigLoaded,
+                error: _this.onConfigError
+              });
+              _this.init();
+              return _this.animate();
+            };
+          })(this)
+        });
       } else {
         ga('send', 'event', 'webgl-test', 'failed');
       }
@@ -156,13 +189,18 @@
     };
 
     App.prototype.onConfigLoaded = function(data, textStatus, jqXHR) {
+      var loader;
       this.allLanguagesConfig = data;
       this.config = data[this.pageLanguage];
       if (this.config == null) {
         throw "Cannot find config for this language";
       }
-      this.init();
-      this.animate();
+      loader = new THREE.SceneLoader();
+      if (this.isWebGLCapable) {
+        loader.load(this.pageBase + "maya/data/scene.json", this.sceneLoadCallback);
+      } else {
+        loader.load(this.pageBase + "maya/data/scene_canvas.json", this.sceneLoadCallback);
+      }
       return null;
     };
 
@@ -252,6 +290,7 @@
     };
 
     App.prototype.on3DSceneMouseClick = function(event) {
+      this.calcPicking();
       if (this.overObject == null) {
         this.handleFocus();
         ga('send', 'event', '3d-empty-space', 'click');
@@ -287,7 +326,6 @@
     };
 
     App.prototype.init = function() {
-      var loader;
       this.container = $('.javascriptContent');
       this.CONTAINER_X = this.container.position().left;
       this.SCREEN_WIDTH = window.innerWidth - this.CONTAINER_X;
@@ -322,12 +360,6 @@
       this.container.append(this.css3dRenderer.domElement);
       this.projector = new THREE.Projector();
       this.raycaster = new THREE.Raycaster();
-      loader = new THREE.SceneLoader();
-      if (this.isWebGLCapable) {
-        loader.load(this.pageBase + "maya/data/scene.json", this.sceneLoadCallback);
-      } else {
-        loader.load(this.pageBase + "maya/data/scene_canvas.json", this.sceneLoadCallback);
-      }
       $(window).bind('resize', this.onWindowResize);
       this.container.bind('mousemove touchmove touchstart', this.onMouseMove);
       this.container.bind('click touchend', this.on3DSceneMouseClick);
@@ -337,11 +369,27 @@
       $(".projectsMenu").find("a").click(this.onMenuLinkClick);
       $(".close-page").click(this.onCloseClick);
       $(window).bind("popstate", this.onPopStateChange);
-      return this.onWindowResize();
+      this.onWindowResize();
+      TweenMax.to($(".threejs-container"), 0, {
+        css: {
+          opacity: 0
+        }
+      });
+      return TweenMax.to($(".css3d-container"), 0, {
+        css: {
+          opacity: 0
+        }
+      });
     };
 
+    App.prototype.onTouchStart = function(event) {};
+
+    App.prototype.onTouchMove = function(event) {};
+
+    App.prototype.onTouchEnd = function(event) {};
+
     App.prototype.setupCSS3DPage = function(pageObj, object, link) {
-      var cssObj, linkArr, rot2;
+      var cssObj, rot2;
       pageObj.css({
         opacity: 0,
         display: "none"
@@ -357,19 +405,11 @@
       object.page = pageObj;
       object.cssObj = cssObj;
       this.css3DScene.add(cssObj);
-      linkArr = link.split("/");
-      if (linkArr[1] === this.pageLanguage && linkArr[2] === this.pagePermalink) {
-        _.delay((function(_this) {
-          return function() {
-            return _this.handlePushState(link);
-          };
-        })(this), 1000);
-      }
       return null;
     };
 
     App.prototype.showLoading = function() {
-      return $(".javascriptContent").spin({
+      return $("body").spin({
         lines: 8,
         length: 8,
         width: 5,
@@ -384,17 +424,17 @@
         hwaccel: true,
         className: 'spinner',
         zIndex: 2e9,
-        top: '47%',
-        left: '47%'
+        top: '50%',
+        left: '50%'
       });
     };
 
     App.prototype.hideLoading = function() {
-      return $(".javascriptContent").spin(false);
+      return $("body").spin(false);
     };
 
     App.prototype.sceneLoadCallback = function(result) {
-      var objectIndex;
+      var objectIndex, thisPage;
       $(".page-container").css({
         display: "none"
       });
@@ -405,6 +445,7 @@
       }, false, 50);
       this.colors = paletteGenerator.diffSort(this.colors);
       objectIndex = 0;
+      thisPage = null;
       result.scene.traverse((function(_this) {
         return function(object) {
           var container, link;
@@ -416,13 +457,15 @@
               _this.initialObjectsProperties[object.name].quaternion = object.quaternion.clone();
               _this.initialObjectsProperties[object.name].scale = object.scale.clone();
               if (_this.config[objectIndex] != null) {
+                object.config = _this.config[objectIndex];
                 _this.page3DObjects[_this.config[objectIndex].link] = object;
                 link = object.link = _this.config[objectIndex].link;
                 container = $("<div class='object3DContainer' permalink='" + link + "'></div>");
-                if (_this.config[objectIndex].meta.permalink === _this.pagePermalink) {
+                if (object.config.meta.permalink === _this.pagePermalink || (object.config.meta.permalink === null && _this.pagePermalink === "")) {
                   _this.htmlMain.find("#no-webgl-warning").remove();
                   _this.htmlMain.find(".no-webgl-warning-button").remove();
                   container.append(_this.htmlMain);
+                  thisPage = link;
                 }
                 _this.setupCSS3DPage(container, object, link);
               } else {
@@ -464,6 +507,25 @@
       this.scene.updateMatrix();
       this.css3DScene.updateMatrix();
       this.hideLoading();
+      TweenMax.to($(".threejs-container"), 1, {
+        css: {
+          opacity: 1
+        }
+      });
+      TweenMax.to($(".css3d-container"), 1, {
+        css: {
+          opacity: 1
+        },
+        onCompleteParams: [thisPage],
+        onCompleteParams: [thisPage],
+        onComplete: (function(_this) {
+          return function(thisPage) {
+            if (thisPage != null) {
+              return _this.handlePushState(thisPage);
+            }
+          };
+        })(this)
+      });
       return null;
     };
 
@@ -542,17 +604,17 @@
         y: newPos.y,
         z: newPos.z,
         onUpdateParams: [this.clickedObject],
+        onUpdate: this.syncCss3dPlanePosition,
         onCompleteParams: [this.clickedObject],
-        onUpdate: (function(_this) {
-          return function(object) {
-            return object.cssObj.position.set(object.position.x * _this.SCENE_SCALE_MULTIPLIER, object.position.y * _this.SCENE_SCALE_MULTIPLIER, object.position.z * _this.SCENE_SCALE_MULTIPLIER);
-          };
-        })(this),
         onComplete: (function(_this) {
           return function(object) {
-            return object.page.css({
+            object.page.css({
               "pointer-events": ""
             });
+            _this.doRender = false;
+            _this.syncCss3dPlanePosition(object);
+            _this.onWindowResize();
+            return _this.render();
           };
         })(this)
       });
@@ -566,25 +628,18 @@
         z: camRot.z,
         w: camRot.w,
         onUpdateParams: [this.clickedObject],
-        onUpdate: (function(_this) {
-          return function(object) {
-            object.cssObj.quaternion.set(object.quaternion.x, object.quaternion.y, object.quaternion.z, object.quaternion.w);
-            rot2 = new THREE.Quaternion();
-            rot2.setFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI / 2);
-            return object.cssObj.quaternion.multiply(rot2);
-          };
-        })(this)
+        onUpdate: this.syncCss3dPlaneRotation,
+        onCompleteParams: [this.clickedObject],
+        onComplete: this.syncCss3dPlaneRotation
       });
       TweenMax.to(this.clickedObject.scale, this.TRANSITION_DURATION, {
         x: 1,
         y: 1,
         z: 1,
         onUpdateParams: [this.clickedObject],
-        onUpdate: (function(_this) {
-          return function(object) {
-            return object.cssObj.scale.set(object.scale.x * _this.PAGE_SCALE_MULTIPLIER, object.scale.y * _this.PAGE_SCALE_MULTIPLIER, object.scale.z * _this.PAGE_SCALE_MULTIPLIER);
-          };
-        })(this)
+        onUpdate: this.syncCss3dPlaneScale,
+        onCompleteParams: [this.clickedObject],
+        onComplete: this.syncCss3dPlaneScale
       });
       if (this.isWebGLCapable) {
         TweenMax.to(this.clickedObject.material.uniforms.opacity, this.TRANSITION_DURATION, {
@@ -605,6 +660,79 @@
       });
       $(".close-page").show();
       return null;
+    };
+
+    App.prototype.unfocus = function() {
+      this.doRender = true;
+      this.isFocused = false;
+      this.animate();
+      TweenMax.to(this.clickedObject.position, this.TRANSITION_DURATION, {
+        x: this.clickedObjectWPosition.x,
+        y: this.clickedObjectWPosition.y,
+        z: this.clickedObjectWPosition.z,
+        onUpdateParams: [this.clickedObject],
+        onUpdate: this.syncCss3dPlanePosition,
+        onCompleteParams: [this.clickedObject],
+        onComplete: this.syncCss3dPlanePosition
+      });
+      TweenMax.to(this.clickedObject.quaternion, this.TRANSITION_DURATION, {
+        x: this.clickedObjectWRotation.x,
+        y: this.clickedObjectWRotation.y,
+        z: this.clickedObjectWRotation.z,
+        w: this.clickedObjectWRotation.w,
+        onUpdateParams: [this.clickedObject],
+        onUpdate: this.syncCss3dPlaneRotation,
+        onCompleteParams: [this.clickedObject],
+        onComplete: this.syncCss3dPlaneRotation
+      });
+      TweenMax.to(this.clickedObject.scale, this.TRANSITION_DURATION, {
+        x: this.clickedObjectWScale.x,
+        y: this.clickedObjectWScale.y,
+        z: this.clickedObjectWScale.z,
+        onUpdateParams: [this.clickedObject],
+        onUpdate: this.syncCss3dPlaneScale,
+        onCompleteParams: [this.clickedObject],
+        onComplete: this.syncCss3dPlaneScale
+      });
+      if (this.isWebGLCapable) {
+        TweenMax.to(this.clickedObject.material.uniforms.opacity, this.TRANSITION_DURATION, {
+          value: 1
+        });
+      } else {
+        TweenMax.to(this.clickedObject.material, this.TRANSITION_DURATION, {
+          opacity: 1
+        });
+      }
+      TweenMax.to(this.clickedObject.page[0], this.TRANSITION_DURATION, {
+        css: {
+          opacity: 0
+        },
+        onComplete: (function(_this) {
+          return function() {
+            return _this.clickedObject.page.css({
+              display: "none"
+            });
+          };
+        })(this)
+      });
+      $(".close-page").hide();
+      return null;
+    };
+
+    App.prototype.syncCss3dPlaneScale = function(object) {
+      return object.cssObj.scale.set(object.scale.x * this.PAGE_SCALE_MULTIPLIER, object.scale.y * this.PAGE_SCALE_MULTIPLIER, object.scale.z * this.PAGE_SCALE_MULTIPLIER);
+    };
+
+    App.prototype.syncCss3dPlanePosition = function(object) {
+      return object.cssObj.position.set(object.position.x * this.SCENE_SCALE_MULTIPLIER, object.position.y * this.SCENE_SCALE_MULTIPLIER, object.position.z * this.SCENE_SCALE_MULTIPLIER);
+    };
+
+    App.prototype.syncCss3dPlaneRotation = function(object) {
+      var rot2;
+      object.cssObj.quaternion.set(object.quaternion.x, object.quaternion.y, object.quaternion.z, object.quaternion.w);
+      rot2 = new THREE.Quaternion();
+      rot2.setFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI / 2);
+      return object.cssObj.quaternion.multiply(rot2);
     };
 
     App.prototype.getFocusedPagePosition = function() {
@@ -633,75 +761,6 @@
       return newPos;
     };
 
-    App.prototype.unfocus = function() {
-      TweenMax.to(this.clickedObject.position, this.TRANSITION_DURATION, {
-        x: this.clickedObjectWPosition.x,
-        y: this.clickedObjectWPosition.y,
-        z: this.clickedObjectWPosition.z,
-        onComplete: (function(_this) {
-          return function() {
-            return _this.isFocused = false;
-          };
-        })(this),
-        onUpdateParams: [this.clickedObject],
-        onUpdate: (function(_this) {
-          return function(object) {
-            return object.cssObj.position.set(object.position.x * _this.SCENE_SCALE_MULTIPLIER, object.position.y * _this.SCENE_SCALE_MULTIPLIER, object.position.z * _this.SCENE_SCALE_MULTIPLIER);
-          };
-        })(this)
-      });
-      TweenMax.to(this.clickedObject.quaternion, this.TRANSITION_DURATION, {
-        x: this.clickedObjectWRotation.x,
-        y: this.clickedObjectWRotation.y,
-        z: this.clickedObjectWRotation.z,
-        w: this.clickedObjectWRotation.w,
-        onUpdateParams: [this.clickedObject],
-        onUpdate: (function(_this) {
-          return function(object) {
-            var rot2;
-            object.cssObj.quaternion.set(object.quaternion.x, object.quaternion.y, object.quaternion.z, object.quaternion.w);
-            rot2 = new THREE.Quaternion();
-            rot2.setFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI / 2);
-            return object.cssObj.quaternion.multiply(rot2);
-          };
-        })(this)
-      });
-      TweenMax.to(this.clickedObject.scale, this.TRANSITION_DURATION, {
-        x: this.clickedObjectWScale.x,
-        y: this.clickedObjectWScale.y,
-        z: this.clickedObjectWScale.z,
-        onUpdateParams: [this.clickedObject],
-        onUpdate: (function(_this) {
-          return function(object) {
-            return object.cssObj.scale.set(object.scale.x * _this.PAGE_SCALE_MULTIPLIER, object.scale.y * _this.PAGE_SCALE_MULTIPLIER, object.scale.z * _this.PAGE_SCALE_MULTIPLIER);
-          };
-        })(this)
-      });
-      if (this.isWebGLCapable) {
-        TweenMax.to(this.clickedObject.material.uniforms.opacity, this.TRANSITION_DURATION, {
-          value: 1
-        });
-      } else {
-        TweenMax.to(this.clickedObject.material, this.TRANSITION_DURATION, {
-          opacity: 1
-        });
-      }
-      TweenMax.to(this.clickedObject.page[0], this.TRANSITION_DURATION, {
-        css: {
-          opacity: 0
-        },
-        onComplete: (function(_this) {
-          return function() {
-            return _this.clickedObject.page.css({
-              display: "none"
-            });
-          };
-        })(this)
-      });
-      $(".close-page").hide();
-      return null;
-    };
-
     App.prototype.onWindowResize = function() {
       var pos, _ref, _ref1;
       this.CONTAINER_X = this.container.position().left;
@@ -720,8 +779,9 @@
       if (this.isFocused) {
         pos = this.getFocusedPagePosition();
         this.clickedObject.position.set(pos.x, pos.y, pos.z);
-        return this.clickedObject.cssObj.position.set(pos.x * this.SCENE_SCALE_MULTIPLIER, pos.y * this.SCENE_SCALE_MULTIPLIER, pos.z * this.SCENE_SCALE_MULTIPLIER);
+        this.clickedObject.cssObj.position.set(pos.x * this.SCENE_SCALE_MULTIPLIER, pos.y * this.SCENE_SCALE_MULTIPLIER, pos.z * this.SCENE_SCALE_MULTIPLIER);
       }
+      return this.render();
     };
 
     App.prototype.onMouseMove = function(event) {
@@ -731,31 +791,43 @@
       }
       mx = event.clientX || ((_ref = event.originalEvent.touches) != null ? (_ref1 = _ref[0]) != null ? _ref1.clientX : void 0 : void 0) || 0;
       my = event.clientY || ((_ref2 = event.originalEvent.touches) != null ? (_ref3 = _ref2[0]) != null ? _ref3.clientY : void 0 : void 0) || 0;
-      this.mouseX = ((mx - this.CONTAINER_X) - this.windowHalfX) * 0.5;
-      this.mouseY = (my - this.windowHalfY) * 0.5;
+      this.mouseX = (mx - this.CONTAINER_X) - this.windowHalfX;
+      this.mouseY = my - this.windowHalfY;
       this.pickMouseX = ((mx - this.CONTAINER_X) / this.SCREEN_WIDTH) * 2 - 1;
       return this.pickMouseY = -(my / this.SCREEN_HEIGHT) * 2 + 1;
     };
 
     App.prototype.animate = function() {
-      requestAnimationFrame(this.animate);
-      return this.render();
+      this.render();
+      if (this.doRender) {
+        return requestAnimationFrame(this.animate);
+      }
     };
 
     App.prototype.render = function() {
-      var intersects, vector, _ref, _ref1;
+      var camX, camY, rangeX, rangeY, _ref, _ref1;
       if (!this.isFocused) {
-        this.camera.position.x += (this.mouseX - this.camera.position.x) * 0.05;
-        this.camera.position.y += (-this.mouseY - this.camera.position.y) * 0.05;
-        this.camera.position.y = Math.max(this.FLOOR, this.camera.position.y);
+        rangeX = this.maxCameraX - this.minCameraX;
+        rangeY = this.maxCameraY - this.minCameraY;
+        camX = (this.mouseX * rangeX) / this.SCREEN_WIDTH;
+        camY = (-this.mouseY * rangeY) / this.SCREEN_HEIGHT;
+        TweenMax.to(this.camera.position, 1, {
+          x: camX,
+          y: camY
+        });
         this.camera.lookAt(this.cameraLookAt);
+      } else {
+        TweenMax.killTweensOf(this.camera.position);
       }
+      this.calcPicking();
       if ((_ref = this.renderer) != null) {
         _ref.render(this.scene, this.camera);
       }
-      if ((_ref1 = this.css3dRenderer) != null) {
-        _ref1.render(this.css3DScene, this.camera);
-      }
+      return (_ref1 = this.css3dRenderer) != null ? _ref1.render(this.css3DScene, this.camera) : void 0;
+    };
+
+    App.prototype.calcPicking = function() {
+      var intersects, vector;
       vector = new THREE.Vector3(this.pickMouseX, this.pickMouseY, 1);
       this.projector.unprojectVector(vector, this.camera);
       this.raycaster.set(this.camera.position, vector.sub(this.camera.position).normalize());
@@ -814,20 +886,13 @@
     };
 
     App.prototype.getRelativeLink = function(objectPermalink) {
-      var thisDepth, updirs;
-      thisDepth = this.pageDepth;
-      updirs = this.getUpDirs(thisDepth);
-      if (thisDepth > 0) {
+      var updirs;
+      updirs = this.getUpDirs(this.pageDepth);
+      if (this.pageDepth > 0) {
         return updirs.substr(0, updirs.length - 1) + objectPermalink;
       } else {
         return "." + objectPermalink;
       }
-    };
-
-    App.prototype.cleanupPathName = function(path) {
-      var arr;
-      arr = path.split("/");
-      return "/" + arr[arr.length - 3] + "/" + arr[arr.length - 2] + "/";
     };
 
     return App;
