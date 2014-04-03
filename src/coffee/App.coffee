@@ -251,11 +251,11 @@ class App
 		if @isWebGLCapable
 			@renderer = new THREE.WebGLRenderer
 				antialias   : true
-				sortObjects : false
+				# sortObjects : false
 		else if @isCanvasCapable
 			@renderer = new THREE.CanvasRenderer
-				sortObjects  : false
-				sortElements : false
+				# sortObjects  : false
+				# sortElements : false
 
 		@renderer.setClearColor( 0xffffff, 1 );
 		@renderer.setSize( @SCREEN_WIDTH, @SCREEN_HEIGHT );
@@ -419,6 +419,9 @@ class App
 				if @isWebGLCapable
 					# replace material with our simple webgl one
 					@replaceThreeJsMaterial(object,objectIndex)
+
+					if object.name != "scene_baked_pPlane1"
+						object.material.uniforms.fresnelIntensity.value = 1;
 				else
 					# replace material with a simple threejs one
 					object.material = new THREE.MeshBasicMaterial

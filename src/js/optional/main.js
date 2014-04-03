@@ -302,14 +302,10 @@
       this.css3DScene.updateMatrix();
       if (this.isWebGLCapable) {
         this.renderer = new THREE.WebGLRenderer({
-          antialias: true,
-          sortObjects: false
+          antialias: true
         });
       } else if (this.isCanvasCapable) {
-        this.renderer = new THREE.CanvasRenderer({
-          sortObjects: false,
-          sortElements: false
-        });
+        this.renderer = new THREE.CanvasRenderer;
       }
       this.renderer.setClearColor(0xffffff, 1);
       this.renderer.setSize(this.SCREEN_WIDTH, this.SCREEN_HEIGHT);
@@ -436,6 +432,9 @@
             }
             if (_this.isWebGLCapable) {
               _this.replaceThreeJsMaterial(object, objectIndex);
+              if (object.name !== "scene_baked_pPlane1") {
+                object.material.uniforms.fresnelIntensity.value = 1;
+              }
             } else {
               object.material = new THREE.MeshBasicMaterial({
                 lights: false,

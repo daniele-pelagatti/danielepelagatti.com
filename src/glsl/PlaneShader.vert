@@ -7,8 +7,20 @@
 
 //#THREE.ShaderChunk["map_pars_vertex"]
 
+// varying float vFresnel;
+varying vec3 vTransformedNormal;
+varying vec4 vPosition;
+
 void main() {
 	//#THREE.ShaderChunk["map_vertex"]
 	//#THREE.ShaderChunk["default_vertex"]
+	//#THREE.ShaderChunk[ "defaultnormal_vertex" ]
+
+
+	vPosition = mvPosition;
+	vTransformedNormal = transformedNormal;
+
+
 	//#THREE.ShaderChunk["worldpos_vertex"]
+
 }
