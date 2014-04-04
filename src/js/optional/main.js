@@ -108,10 +108,12 @@
 
     App.prototype.maxCameraY = 300;
 
+    App.prototype.unfocusingTween = null;
+
     function App() {
       this.getRelativeLink = __bind(this.getRelativeLink, this);
       this.getUpDirs = __bind(this.getUpDirs, this);
-      this.handlePicking = __bind(this.handlePicking, this);
+      this.handleMouseOverObject = __bind(this.handleMouseOverObject, this);
       this.calcPicking = __bind(this.calcPicking, this);
       this.render = __bind(this.render, this);
       this.animate = __bind(this.animate, this);
@@ -149,6 +151,8 @@
       if (this.isCSS3DCapable && this.isPushStateCapable && (this.isCanvasCapable || this.isWebGLCapable)) {
         this.htmlMain = $("main");
         ga('send', 'event', 'webgl-test', 'passed');
+        $("body").css("overflow-y", "hidden");
+        $("html").css("overflow-y", "hidden");
         TweenMax.to(this.htmlMain, 1, {
           css: {
             opacity: 0
@@ -162,7 +166,6 @@
                 }
               });
               _this.htmlMain.remove();
-              $("body").css("overflow-y", "hidden");
               $.ajax(_this.pageBase + "config.json", {
                 success: _this.onConfigLoaded,
                 error: _this.onConfigError
@@ -230,26 +233,25 @@
       this.pageBase = this.thisPageConfig.base;
       document.title = "Daniele Pelagatti - " + this.thisPageConfig.meta.title;
       obj3D = this.page3DObjects[newPath];
-      if (this.isFocused) {
-        if (this.clickedObject !== obj3D) {
-          this.doPicking = false;
-          this.overObject = null;
-          this.handleFocus();
-          if (this.delayID !== -1) {
-            clearTimeout(this.delayID);
-          }
-          this.delayID = _.delay((function(_this) {
+      if (this.unfocusingTween != null) {
+        this.unfocusingTween.vars.onCompleteParams[1] = (function(_this) {
+          return function() {
+            _this.clickedObject = _this.overObject = obj3D;
+            return _this.focus();
+          };
+        })(this);
+      } else if (this.isFocused) {
+        if (newPath !== this.currentHistoryState) {
+          this.unfocus((function(_this) {
             return function() {
-              _this.overObject = obj3D;
-              _this.isFocused = false;
-              _this.handleFocus();
-              return _this.doPicking = true;
+              _this.clickedObject = _this.overObject = obj3D;
+              return _this.focus();
             };
-          })(this), (this.TRANSITION_DURATION * 1000) + 100);
+          })(this));
         }
       } else {
-        this.overObject = obj3D;
-        this.handleFocus();
+        this.overObject = this.clickedObject = obj3D;
+        this.focus();
       }
       languageLinks = $(".languagesMenu").find("a");
       for (_j = 0, _len1 = languageLinks.length; _j < _len1; _j++) {
@@ -265,7 +267,7 @@
       projectsLinks = $(".projectsMenu").find("a");
       for (_l = 0, _len3 = projectsLinks.length; _l < _len3; _l++) {
         projectLink = projectsLinks[_l];
-        if ($(projectLink).attr("permalink") === this.currentHistoryState) {
+        if ($(projectLink).attr("permalink") === newPath) {
           $(projectLink).addClass("selected");
         } else {
           $(projectLink).removeClass("selected");
@@ -280,12 +282,13 @@
       var obj3D;
       obj3D = this.page3DObjects[$(event.currentTarget).attr("permalink")];
       this.doPicking = false;
-      this.handlePicking(obj3D);
+      this.handleMouseOverObject(obj3D);
       return null;
     };
 
     App.prototype.onMenuLinkClick = function(event) {
       event.originalEvent.preventDefault();
+      this.overObject = null;
       return this.handlePushState($(event.currentTarget).attr("permalink"));
     };
 
@@ -307,13 +310,13 @@
       };
       if (path !== this.currentHistoryState) {
         history.pushState(stateObj, "Title", this.pageBase + path.substr(1));
-        this.currentHistoryState = path;
       }
-      return this.onPopStateChange({
+      this.onPopStateChange({
         originalEvent: {
           state: stateObj
         }
       });
+      return this.currentHistoryState = path;
     };
 
     App.prototype.onMenuLinkOut = function(event) {
@@ -375,11 +378,16 @@
           opacity: 0
         }
       });
-      return TweenMax.to($(".css3d-container"), 0, {
+      TweenMax.to($(".css3d-container"), 0, {
         css: {
           opacity: 0
         }
       });
+      if ((this.pagePermalink != null) && this.pagePermalink !== "") {
+        return this.currentHistoryState = "/" + this.pageLanguage + "/" + this.pagePermalink + "/";
+      } else {
+        return this.currentHistoryState = "/" + this.pageLanguage + "/";
+      }
     };
 
     App.prototype.onTouchStart = function(event) {};
@@ -566,7 +574,7 @@
       return null;
     };
 
-    App.prototype.focus = function() {
+    App.prototype.focus = function(callback) {
       var camRot, newPos, pageIsLoaded, rot2;
       this.isFocused = true;
       pageIsLoaded = this.clickedObject.page.find("main").length > 0;
@@ -605,16 +613,17 @@
         z: newPos.z,
         onUpdateParams: [this.clickedObject],
         onUpdate: this.syncCss3dPlanePosition,
-        onCompleteParams: [this.clickedObject],
+        onCompleteParams: [this.clickedObject, callback],
         onComplete: (function(_this) {
-          return function(object) {
+          return function(object, callback) {
             object.page.css({
               "pointer-events": ""
             });
             _this.doRender = false;
             _this.syncCss3dPlanePosition(object);
             _this.onWindowResize();
-            return _this.render();
+            _this.render();
+            return typeof callback === "function" ? callback() : void 0;
           };
         })(this)
       });
@@ -662,7 +671,7 @@
       return null;
     };
 
-    App.prototype.unfocus = function() {
+    App.prototype.unfocus = function(callback) {
       this.doRender = true;
       this.isFocused = false;
       this.animate();
@@ -703,15 +712,19 @@
           opacity: 1
         });
       }
-      TweenMax.to(this.clickedObject.page[0], this.TRANSITION_DURATION, {
+      this.unfocusingTween = TweenMax.to(this.clickedObject.page[0], this.TRANSITION_DURATION, {
         css: {
           opacity: 0
         },
+        onCompleteParams: [this.clickedObject, callback],
         onComplete: (function(_this) {
-          return function() {
-            return _this.clickedObject.page.css({
+          return function(object, callback) {
+            object.page.find("main").remove();
+            object.page.css({
               display: "none"
             });
+            _this.unfocusingTween = null;
+            return typeof callback === "function" ? callback() : void 0;
           };
         })(this)
       });
@@ -830,7 +843,7 @@
       intersects = this.raycaster.intersectObjects(this.scene.children);
       if (this.doPicking) {
         if (intersects.length > 0) {
-          this.handlePicking(intersects[0].object);
+          this.handleMouseOverObject(intersects[0].object);
         } else {
           if (this.overObject && this.isWebGLCapable) {
             TweenMax.to(this.overObject.material.uniforms.color_opacity, 1, {
@@ -847,7 +860,7 @@
       }
     };
 
-    App.prototype.handlePicking = function(object) {
+    App.prototype.handleMouseOverObject = function(object) {
       if (this.overObject !== object) {
         if (this.overObject && this.isWebGLCapable) {
           TweenMax.to(this.overObject.material.uniforms.color_opacity, 1, {

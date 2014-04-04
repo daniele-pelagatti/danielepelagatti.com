@@ -2,6 +2,7 @@ uniform float opacity;
 //#THREE.ShaderChunk["map_pars_fragment"]
 uniform float color_opacity;
 uniform float fresnelIntensity;
+uniform vec3 fresnelColor;
 uniform vec3 diffuse;
 // varying float vFresnel;
 varying vec3 vTransformedNormal;
@@ -29,9 +30,10 @@ void main() {
 	float fresnel = clamp( pow( abs( f ) , fresnelPow ) , 0.0, 1.0 ) ;
 
 
+	float fresnelFactor = fresnel * fresnelIntensity;
 
 	// gl_FragColor.xyz = mix( gl_FragColor.xyz, white, fresnel );
-	gl_FragColor.xyz = mix( gl_FragColor.xyz, vec3( 0.9, 0.9, 0.9 ), fresnel * fresnelIntensity );
+	gl_FragColor.xyz = mix( gl_FragColor.xyz, vec3(0.9,0.9,0.9), fresnelFactor );
 	// gl_FragColor.w *= ( 1.0 - fresnel );
 
 	// #THREE.ShaderChunk["alphatest_fragment"]

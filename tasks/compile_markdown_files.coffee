@@ -75,7 +75,7 @@ module.exports = (grunt)->
                     copyJadeConfig.files = {}
                     copyJadeConfig.files[options.www_folder+"/"+options.default_document] = input
                     
-                    copyJadeConfig.options.data.link  = "/"
+                    copyJadeConfig.options.data.link  = "/"+copyJadeConfig.options.data.lang+"/"
                     copyJadeConfig.options.data.base  = "./"
                     copyJadeConfig.options.data.depth = 0
 

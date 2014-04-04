@@ -64,6 +64,7 @@ class App
 	maxCameraX               : 250
 	minCameraY               : -50
 	maxCameraY               : 300
+	unfocusingTween          : null
 
 
 	constructor:->
@@ -78,6 +79,8 @@ class App
 		if @isCSS3DCapable && @isPushStateCapable && ( @isCanvasCapable || @isWebGLCapable )# minimum requirements
 			@htmlMain = $("main")
 			ga('send', 'event', 'webgl-test', 'passed');
+			$("body").css("overflow-y","hidden");
+			$("html").css("overflow-y","hidden");
 
 			TweenMax.to @htmlMain, 1,
 				css:
@@ -88,7 +91,6 @@ class App
 					@htmlMain.remove()
 
 			
-					$("body").css("overflow-y","hidden");
 
 					$.ajax @pageBase+"config.json",
 						success : @onConfigLoaded
@@ -133,7 +135,7 @@ class App
 
 
 	onPopStateChange:(event)=>
-		return if !event.originalEvent.state?;
+		return if !event.originalEvent.state?
 
 		newPath = event.originalEvent.state.path;
 
@@ -153,51 +155,42 @@ class App
 
 		obj3D =  @page3DObjects[newPath];
 
-		if @isFocused
-			if @clickedObject != obj3D
+		if @unfocusingTween?
+			# we are in the middle of an unfocus tween
+			# we need to replace what happens next on the fly
+			@unfocusingTween.vars.onCompleteParams[1] = =>
+				@clickedObject = @overObject = obj3D
+				@focus()
 
-				@doPicking = false
+		else if @isFocused
+			# we are focused on a page
 
-				# make focused object retract
-				@overObject = null;
-				@handleFocus()
-
-				if @delayID != -1
-					clearTimeout(@delayID)
-
-				# delay new plane in focus
-				@delayID = _.delay ()=> 
-					@overObject = obj3D;
-					@isFocused = false;				
-					@handleFocus()
-					@doPicking = true;
-				,(@TRANSITION_DURATION*1000)+100
-				
-			
+			if newPath != @currentHistoryState
+				# a different page needs to be focused
+				# we need to unfocus then focus again next
+				@unfocus =>
+					@clickedObject = @overObject = obj3D
+					@focus()				
 		else
-			@overObject = obj3D;
-			@handleFocus()
+			# we are roaming free in the 3d space, we need to focus on a page
+			@overObject = @clickedObject = obj3D;
+			@focus()
 
 
 		# change language change link on languages menu to go to the current page
 		languageLinks = $(".languagesMenu").find("a");
 		for languageLink in languageLinks
-
 			languageConfig = @allLanguagesConfig[languageLink.id]
-
 			for page in languageConfig
 				if page.meta.id == @pageId
-					# console.log("OK");
+					$(languageLink).attr("href", @getRelativeLink(page.link) )
 
-					$(languageLink).attr("href", @getRelativeLink(page.link) )#.split("/")
-					# hrefArr[2] = page.link;
-					# $(languageLink).attr( "href" , hrefArr.join("/") )
 
 
 		#update selected project on the menu
 		projectsLinks = $(".projectsMenu").find("a");
 		for projectLink in projectsLinks
-			if $(projectLink).attr("permalink") == @currentHistoryState
+			if $(projectLink).attr("permalink") == newPath
 				$(projectLink).addClass("selected")
 			else
 				$(projectLink).removeClass("selected")
@@ -212,11 +205,12 @@ class App
 	onMenuLinkOver:(event)=>
 		obj3D =  @page3DObjects[ $(event.currentTarget).attr("permalink") ];
 		@doPicking = false;
-		@handlePicking(obj3D)
+		@handleMouseOverObject(obj3D)
 		null
 
 	onMenuLinkClick:(event)=>
 		event.originalEvent.preventDefault();
+		@overObject = null
 		@handlePushState( $(event.currentTarget).attr("permalink") ) 
 
 	on3DSceneMouseClick:(event)=>
@@ -229,6 +223,7 @@ class App
 			@handleFocus();
 			ga('send', 'event', '3d-empty-space', 'click');
 			return;
+
 		ga('send', 'event', '3d-plane:'+@overObject.link, 'click');
 		@handlePushState(@overObject.link)
 
@@ -236,14 +231,13 @@ class App
 		stateObj = {path:path}
 
 		if path != @currentHistoryState
-
 			history.pushState(stateObj,"Title",@pageBase+path.substr(1))
-			@currentHistoryState = path;
-
 
 		@onPopStateChange 
 			originalEvent:
 				state: stateObj
+		
+		@currentHistoryState = path;
 
 	onMenuLinkOut:(event)=>
 		@doPicking = true;
@@ -318,6 +312,11 @@ class App
 
 		TweenMax.to( $(".threejs-container"), 0, {css:{opacity:0}} )
 		TweenMax.to( $(".css3d-container"), 0, {css:{opacity:0}} )
+
+		if @pagePermalink? && @pagePermalink != ""
+			@currentHistoryState = "/"+@pageLanguage+"/"+@pagePermalink+"/"
+		else
+			@currentHistoryState = "/"+@pageLanguage+"/"
 
 	
 	onTouchStart:(event)=>
@@ -544,16 +543,17 @@ class App
 
 		null;
 
-	focus:()=>
+	focus:(callback)=>
 		@isFocused = true;
 
 		pageIsLoaded = @clickedObject.page.find("main").length > 0
 
 		if !pageIsLoaded
+			
 			@showLoading()
-			$.ajax( @getRelativeLink( @clickedObject.page.attr("permalink") ),
+
+			$.ajax @getRelativeLink( @clickedObject.page.attr("permalink") ),
 				success : ( data, textStatus, jqXHR  ) =>
-					# @setupCSS3DPage(data,object,link)
 					mainArticle = $(data).find("main")
 					mainArticle.find("#no-webgl-warning").remove()
 					mainArticle.find(".no-webgl-warning-button").remove()
@@ -561,7 +561,7 @@ class App
 					@focus()
 				error : (jqXHR,textStatus,errorThrown ) =>
 					console.error(textStatus);
-			)			
+					
 			return
 
 		@hideLoading();
@@ -583,14 +583,15 @@ class App
 			z                : newPos.z
 			onUpdateParams   : [@clickedObject]
 			onUpdate         : @syncCss3dPlanePosition
-			onCompleteParams : [@clickedObject]
-			onComplete       : (object)=>
+			onCompleteParams : [@clickedObject,callback]
+			onComplete       : (object,callback)=>
 				object.page.css
 					"pointer-events" : ""
 				@doRender = false;
 				@syncCss3dPlanePosition(object);
 				@onWindowResize();
 				@render();
+				callback?();
 
 		camRot = @camera.quaternion.clone();
 		rot2 = new THREE.Quaternion();
@@ -638,7 +639,7 @@ class App
 
 	
 
-	unfocus:=>
+	unfocus:(callback)=>
 		@doRender = true
 		@isFocused = false;
 		@animate()
@@ -683,12 +684,18 @@ class App
 
 		
 
-		TweenMax.to @clickedObject.page[0], @TRANSITION_DURATION,
+		@unfocusingTween = TweenMax.to @clickedObject.page[0], @TRANSITION_DURATION,
 			css:
 				opacity:0
-			onComplete:()=>
-				@clickedObject.page.css 
-					display : "none"	
+			onCompleteParams: [@clickedObject,callback]
+			onComplete:(object,callback)=>
+				
+				object.page.find("main").remove()
+
+				object.page.css 
+					display : "none"
+				@unfocusingTween = null
+				callback?();
 
 
 		$(".close-page").hide();
@@ -828,7 +835,7 @@ class App
 
 		if @doPicking
 			if intersects.length > 0
-				@handlePicking(intersects[ 0 ].object)
+				@handleMouseOverObject(intersects[ 0 ].object)
 			else 
 				# doesn't intersect
 				if @overObject && @isWebGLCapable
@@ -844,7 +851,7 @@ class App
 			$("body").css('cursor', '');
 
 
-	handlePicking:(object)=>
+	handleMouseOverObject:(object)=>
 		# return if !@object?
 
 		if @overObject != object

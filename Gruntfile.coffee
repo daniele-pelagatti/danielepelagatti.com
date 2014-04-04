@@ -224,7 +224,7 @@ module.exports = (grunt)->
     gruntConfig.imagemin = 
         site:
             options:
-                optimizationLevel : 5
+                optimizationLevel : 7
             #     pngquant          : false
             #     interlaced        : true
             #     progressive       : true
@@ -236,7 +236,7 @@ module.exports = (grunt)->
             ]
         maya:
             options:
-                optimizationLevel : 5
+                optimizationLevel : 7
             #     pngquant          : false
             #     interlaced        : true
             #     progressive       : true
@@ -274,5 +274,8 @@ module.exports = (grunt)->
         # deploy only production
     else
         grunt.registerTask("build", ["clean","imagemin","copy","percolator","compass","glsl_threejs","compile_markdown_files","concat","modernizr"]);
+    
+
+    grunt.registerTask("minify", ["copy:include","percolator","compass","glsl_threejs","compile_markdown_files","uglify","cssmin","jsonmin","modernizr"]);
     
     grunt.registerTask("default", ["build","concurrent"]);

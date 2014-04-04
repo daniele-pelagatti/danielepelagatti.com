@@ -26,7 +26,7 @@ $(document).ready(function() {
 	}
 	var hide = function() {
 		$('.menu').removeClass('force-show') 
-		$('.show-menu').removeClass('force-hide') 
+		$('.show-menu').removeClass('force-hide')
 	}
 	
 	$(".show-menu").click(showHide);
