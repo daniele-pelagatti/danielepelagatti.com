@@ -71,7 +71,7 @@ class App
 	constructor:->
 
 		@isIE11              = !!window.MSInputMethodContext;
-		@isCSS3DCapable      = Modernizr.csstransforms3d && Modernizr.transformstylepreserve3d 
+		@isCSS3DCapable      = Modernizr.csstransforms3d && !@isIE11#Modernizr.transformstylepreserve3d 
 		@isWebGLCapable      = @checkWebGL() && Modernizr.webgl
 		@isPushStateCapable  = Modernizr.history
 		# disable canvas mode, too slow on ipads

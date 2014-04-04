@@ -146,7 +146,7 @@
       this.onCloseClick = __bind(this.onCloseClick, this);
       this.onConfigLoaded = __bind(this.onConfigLoaded, this);
       this.isIE11 = !!window.MSInputMethodContext;
-      this.isCSS3DCapable = Modernizr.csstransforms3d && Modernizr.transformstylepreserve3d;
+      this.isCSS3DCapable = Modernizr.csstransforms3d && !this.isIE11;
       this.isWebGLCapable = this.checkWebGL() && Modernizr.webgl;
       this.isPushStateCapable = Modernizr.history;
       if (this.isCSS3DCapable && this.isPushStateCapable && (this.isCanvasCapable || this.isWebGLCapable)) {
