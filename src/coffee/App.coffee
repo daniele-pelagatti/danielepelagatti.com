@@ -19,6 +19,7 @@ class App
 	isWebGLCapable           : false;
 	isCSS3DCapable           : false;
 	isCanvasCapable          : false;
+	isIE11                   : false;
 	
 	mouseX                   : 0;
 	mouseY                   : 0;
@@ -69,10 +70,10 @@ class App
 
 	constructor:->
 
-		isIE11              = !!window.MSInputMethodContext;
-		@isCSS3DCapable     = Modernizr.csstransforms3d && !isIE11
-		@isWebGLCapable     = @checkWebGL() && Modernizr.webgl
-		@isPushStateCapable = Modernizr.history
+		@isIE11              = !!window.MSInputMethodContext;
+		@isCSS3DCapable      = Modernizr.csstransforms3d && Modernizr.transformstylepreserve3d 
+		@isWebGLCapable      = @checkWebGL() && Modernizr.webgl
+		@isPushStateCapable  = Modernizr.history
 		# disable canvas mode, too slow on ipads
 		# @isCanvasCapable = Modernizr.canvas
 
@@ -517,6 +518,9 @@ class App
 
 		defines = {}
 		defines["USE_MAP"] = "";
+		if @isIE11
+			# IE11 doesn't support gl_frontFacing
+			defines["NO_FRESNEL"] = "";
 
 
 		material = new THREE.ShaderMaterial

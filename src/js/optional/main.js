@@ -38,6 +38,8 @@
 
     App.prototype.isCanvasCapable = false;
 
+    App.prototype.isIE11 = false;
+
     App.prototype.mouseX = 0;
 
     App.prototype.mouseY = 0;
@@ -143,9 +145,8 @@
       this.onPopStateChange = __bind(this.onPopStateChange, this);
       this.onCloseClick = __bind(this.onCloseClick, this);
       this.onConfigLoaded = __bind(this.onConfigLoaded, this);
-      var isIE11;
-      isIE11 = !!window.MSInputMethodContext;
-      this.isCSS3DCapable = Modernizr.csstransforms3d && !isIE11;
+      this.isIE11 = !!window.MSInputMethodContext;
+      this.isCSS3DCapable = Modernizr.csstransforms3d && Modernizr.transformstylepreserve3d;
       this.isWebGLCapable = this.checkWebGL() && Modernizr.webgl;
       this.isPushStateCapable = Modernizr.history;
       if (this.isCSS3DCapable && this.isPushStateCapable && (this.isCanvasCapable || this.isWebGLCapable)) {
@@ -546,6 +547,9 @@
       uniforms.map.value = object.material.map;
       defines = {};
       defines["USE_MAP"] = "";
+      if (this.isIE11) {
+        defines["NO_FRESNEL"] = "";
+      }
       material = new THREE.ShaderMaterial({
         uniforms: uniforms,
         attributes: {},
