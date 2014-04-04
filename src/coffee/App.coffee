@@ -1,3 +1,6 @@
+#import utils/MotionAnalysis
+#import utils/QueryString
+
 class App
 
 	CONTAINER_X              : 200;
@@ -65,14 +68,23 @@ class App
 	minCameraY               : -50
 	maxCameraY               : 300
 	unfocusingTween          : null
+	motionAnalysis           : null
+	prevMotionAnalysis       : 
+		x : 0
+		y : 0
+		z : 0
 
 
 	constructor:->
+
+
 
 		isIE11              = !!window.MSInputMethodContext;
 		@isCSS3DCapable     = Modernizr.csstransforms3d && !isIE11
 		@isWebGLCapable     = @checkWebGL() && Modernizr.webgl
 		@isPushStateCapable = Modernizr.history
+
+
 		# disable canvas mode, too slow on ipads
 		# @isCanvasCapable = Modernizr.canvas
 
@@ -253,6 +265,9 @@ class App
 		@SCREEN_HEIGHT = window.innerHeight;
 		@windowHalfX   = @SCREEN_WIDTH / 2;
 		@windowHalfY   = @SCREEN_HEIGHT / 2;
+
+		@motionAnalysis = new MotionAnalysis()
+		
 
 
 		@camera = new THREE.PerspectiveCamera( 75, @SCREEN_WIDTH / @SCREEN_HEIGHT, 1, 10000 );
@@ -517,6 +532,7 @@ class App
 
 		defines = {}
 		defines["USE_MAP"] = "";
+		defines["GAMMA_OUTPUT"] = "";
 
 
 		material = new THREE.ShaderMaterial
@@ -799,27 +815,48 @@ class App
 		# @stats.update();
 		requestAnimationFrame( @animate ) if @doRender;
 
+	lockedOnDeviceMotion : false
+	deviceMotionChangeTimes : 0
+
 	render:()=> 
+
+
 		if !@isFocused
+
 			rangeX = @maxCameraX - @minCameraX
 			rangeY = @maxCameraY - @minCameraY
 
-			# range : SCREEN_WIDTH = x : mouseX 
+			if @lockedOnDeviceMotion || @prevMotionAnalysis.x != @motionAnalysis.rotation.x || @prevMotionAnalysis.y != @motionAnalysis.rotation.y || @prevMotionAnalysis.z != @motionAnalysis.rotation.z
+				
+				@deviceMotionChangeTimes++;
 
-			camX = ( @mouseX * rangeX ) / @SCREEN_WIDTH
-			camY = ( -@mouseY * rangeY ) / @SCREEN_HEIGHT
+				if @deviceMotionChangeTimes >= 4
+					@lockedOnDeviceMotion = true
+				
+				lim = 4
+
+				mrX = Math.max( Math.min( @motionAnalysis.rotation.x , lim ), -lim );
+				mrY = Math.max( Math.min( @motionAnalysis.rotation.z , lim ), -lim );
+
+				camX = ( mrX * rangeX ) / (lim*2)
+				camY = ( mrY * rangeY ) / (lim*2)
+			else
+
+				camX = ( @mouseX * rangeX ) / @SCREEN_WIDTH
+				camY = ( -@mouseY * rangeY ) / @SCREEN_HEIGHT
 
 
 			@camera.position.x += ( camX - @camera.position.x ) * 0.05;
 			@camera.position.y += ( camY - @camera.position.y ) * 0.05;
 
-			# TweenMax.to @camera.position, 1,
-			# 	x: camX
-			# 	y: camY
+
 
 			@camera.lookAt( @cameraLookAt );
-		# else 
-		# 	TweenMax.killTweensOf(@camera.position)
+
+
+		@prevMotionAnalysis.x = @motionAnalysis.rotation.x
+		@prevMotionAnalysis.y = @motionAnalysis.rotation.y
+		@prevMotionAnalysis.z = @motionAnalysis.rotation.z
 
 		@calcPicking();
 
