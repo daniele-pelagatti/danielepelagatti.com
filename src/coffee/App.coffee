@@ -284,6 +284,9 @@ class App
 			@renderer = new THREE.WebGLRenderer
 				antialias   : true
 				# sortObjects : false
+
+			@renderer.gammeInput = true;
+			@renderer.gammeOutput = true;
 		else if @isCanvasCapable
 			@renderer = new THREE.CanvasRenderer
 				# sortObjects  : false
@@ -531,7 +534,7 @@ class App
 
 		defines = {}
 		defines["USE_MAP"] = "";
-		defines["GAMMA_OUTPUT"] = "";
+		# defines["GAMMA_OUTPUT"] = "";
 		if @isIE11
 			# IE11 doesn't support gl_frontFacing
 			defines["NO_FRESNEL"] = "";
