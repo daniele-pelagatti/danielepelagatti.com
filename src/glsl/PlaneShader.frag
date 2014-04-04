@@ -21,20 +21,20 @@ void main() {
 	gl_FragColor.xyz *= texture2D( map, vUv ).xyz;
 
 
-	// fresnel reflection
-	float flipNormal = -1.0 + ( 2.0 * float( gl_FrontFacing ) );
-	vec3 transformedNormal = vTransformedNormal * flipNormal;
+	//fresnel reflection
+	#ifdef NO_FRESNEL
+		float flipNormal = 1.0;
+	#else
+		float flipNormal = -1.0 + ( 2.0 * float( gl_FrontFacing ) );
+		vec3 transformedNormal = vTransformedNormal * flipNormal;
+		float fresnelPow = 5.0 ;
+		float f = 1.0 + dot( normalize( vPosition.xyz ) , normalize( transformedNormal.xyz ) ) ;
+		float fresnel = clamp( pow( abs( f ) , fresnelPow ) , 0.0, 1.0 ) ;
+		float fresnelFactor = fresnel * fresnelIntensity;
+		gl_FragColor.xyz = mix( gl_FragColor.xyz, vec3(0.9,0.9,0.9), fresnelFactor );
+	#endif
 
-	float fresnelPow = 5.0 ;
-	float f = 1.0 + dot( normalize( vPosition.xyz ) , normalize( transformedNormal.xyz ) ) ;
-	float fresnel = clamp( pow( abs( f ) , fresnelPow ) , 0.0, 1.0 ) ;
 
-
-	float fresnelFactor = fresnel * fresnelIntensity;
-
-	// gl_FragColor.xyz = mix( gl_FragColor.xyz, white, fresnel );
-	gl_FragColor.xyz = mix( gl_FragColor.xyz, vec3(0.9,0.9,0.9), fresnelFactor );
-	// gl_FragColor.w *= ( 1.0 - fresnel );
 
 	// #THREE.ShaderChunk["alphatest_fragment"]
 	//#THREE.ShaderChunk["linear_to_gamma_fragment"]
