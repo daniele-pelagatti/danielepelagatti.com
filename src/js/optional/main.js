@@ -258,6 +258,7 @@
       this.on3DSceneMouseClick = __bind(this.on3DSceneMouseClick, this);
       this.onMenuLinkClick = __bind(this.onMenuLinkClick, this);
       this.onMenuLinkOver = __bind(this.onMenuLinkOver, this);
+      this.scrollMenuToItem = __bind(this.scrollMenuToItem, this);
       this.onPopStateChange = __bind(this.onPopStateChange, this);
       this.onCloseClick = __bind(this.onCloseClick, this);
       this.onConfigLoaded = __bind(this.onConfigLoaded, this);
@@ -330,7 +331,7 @@
     };
 
     App.prototype.onPopStateChange = function(event) {
-      var languageConfig, languageLink, languageLinks, newPath, obj3D, page, projectLink, projectsLinks, _i, _j, _k, _l, _len, _len1, _len2, _len3, _ref;
+      var languageConfig, languageLink, languageLinks, newPath, obj3D, page, projectLink, projectsLinks, selectedMenuItem, _i, _j, _k, _l, _len, _len1, _len2, _len3, _ref;
       if (event.originalEvent.state == null) {
         return;
       }
@@ -370,29 +371,49 @@
         this.overObject = this.clickedObject = obj3D;
         this.focus();
       }
-      languageLinks = $(".languagesMenu").find("a");
-      for (_j = 0, _len1 = languageLinks.length; _j < _len1; _j++) {
-        languageLink = languageLinks[_j];
-        languageConfig = this.allLanguagesConfig[languageLink.id];
-        for (_k = 0, _len2 = languageConfig.length; _k < _len2; _k++) {
-          page = languageConfig[_k];
-          if (page.meta.id === this.pageId) {
-            $(languageLink).attr("href", this.getRelativeLink(page.link));
+      if (newPath !== this.currentHistoryState) {
+        languageLinks = $(".languagesMenu").find("a");
+        for (_j = 0, _len1 = languageLinks.length; _j < _len1; _j++) {
+          languageLink = languageLinks[_j];
+          languageConfig = this.allLanguagesConfig[languageLink.id];
+          for (_k = 0, _len2 = languageConfig.length; _k < _len2; _k++) {
+            page = languageConfig[_k];
+            if (page.meta.id === this.pageId) {
+              $(languageLink).attr("href", this.getRelativeLink(page.link));
+            }
           }
         }
-      }
-      projectsLinks = $(".projectsMenu").find("a");
-      for (_l = 0, _len3 = projectsLinks.length; _l < _len3; _l++) {
-        projectLink = projectsLinks[_l];
-        if ($(projectLink).attr("permalink") === newPath) {
-          $(projectLink).addClass("selected");
-        } else {
-          $(projectLink).removeClass("selected");
+        projectsLinks = $(".projectsMenu").find("a");
+        for (_l = 0, _len3 = projectsLinks.length; _l < _len3; _l++) {
+          projectLink = projectsLinks[_l];
+          if ($(projectLink).attr("permalink") === newPath) {
+            $(projectLink).addClass("selected");
+            selectedMenuItem = $(projectLink);
+          } else {
+            $(projectLink).removeClass("selected");
+          }
+          $(projectLink).attr("href", this.pageBase + this.getRelativeLink($(projectLink).attr("permalink")).substr(1));
         }
-        $(projectLink).attr("href", this.pageBase + this.getRelativeLink($(projectLink).attr("permalink")).substr(1));
+        if (selectedMenuItem != null) {
+          this.scrollMenuToItem(selectedMenuItem);
+        }
       }
       ga('send', 'pageview', this.thisPageConfig.link);
       return null;
+    };
+
+    App.prototype.scrollMenuToItem = function(item) {
+      var scrollTarget, scrollToY, scroller, targetPosition;
+      scrollTarget = $(".menu");
+      targetPosition = item.position();
+      scroller = scrollTarget.scrollTop();
+      scrollToY = (targetPosition.top + scroller) - (this.SCREEN_HEIGHT / 2);
+      return TweenMax.to(scrollTarget[0], 2, {
+        scrollTo: {
+          y: scrollToY
+        },
+        ease: Power2.easeOut
+      });
     };
 
     App.prototype.onMenuLinkOver = function(event) {
@@ -988,7 +1009,7 @@
           this.handleMouseOverObject(intersects[0].object);
         } else {
           if (this.overObject && this.isWebGLCapable) {
-            TweenMax.to(this.overObject.material.uniforms.color_opacity, 1, {
+            TweenMax.to(this.overObject.material.uniforms.color_opacity, 0.5, {
               value: 0
             });
           }
@@ -1005,14 +1026,14 @@
     App.prototype.handleMouseOverObject = function(object) {
       if (this.overObject !== object) {
         if (this.overObject && this.isWebGLCapable) {
-          TweenMax.to(this.overObject.material.uniforms.color_opacity, 1, {
+          TweenMax.to(this.overObject.material.uniforms.color_opacity, 0.5, {
             value: 0
           });
         }
         if (this.excludeFromPicking.indexOf(object.name) === -1) {
           this.overObject = object;
           if (this.isWebGLCapable) {
-            TweenMax.to(this.overObject.material.uniforms.color_opacity, 1, {
+            TweenMax.to(this.overObject.material.uniforms.color_opacity, 0.5, {
               value: 1
             });
           }

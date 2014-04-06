@@ -188,31 +188,45 @@ class App
 			@focus()
 
 
-		# change language change link on languages menu to go to the current page
-		languageLinks = $(".languagesMenu").find("a");
-		for languageLink in languageLinks
-			languageConfig = @allLanguagesConfig[languageLink.id]
-			for page in languageConfig
-				if page.meta.id == @pageId
-					$(languageLink).attr("href", @getRelativeLink(page.link) )
+		if newPath != @currentHistoryState
+			# change language change link on languages menu to go to the current page
+			languageLinks = $(".languagesMenu").find("a");
+			for languageLink in languageLinks
+				languageConfig = @allLanguagesConfig[languageLink.id]
+				for page in languageConfig
+					if page.meta.id == @pageId
+						$(languageLink).attr("href", @getRelativeLink(page.link) )
 
 
 
-		#update selected project on the menu
-		projectsLinks = $(".projectsMenu").find("a");
-		for projectLink in projectsLinks
-			if $(projectLink).attr("permalink") == newPath
-				$(projectLink).addClass("selected")
-			else
-				$(projectLink).removeClass("selected")
+			#update selected project on the menu
 
-			$(projectLink).attr("href", @pageBase+@getRelativeLink( $(projectLink).attr("permalink") ).substr(1) )
 
-		
+			projectsLinks = $(".projectsMenu").find("a");
+			for projectLink in projectsLinks
+				if $(projectLink).attr("permalink") == newPath
+					$(projectLink).addClass("selected")
+					selectedMenuItem = $(projectLink)
+				else
+					$(projectLink).removeClass("selected")
+
+				$(projectLink).attr("href", @pageBase+@getRelativeLink( $(projectLink).attr("permalink") ).substr(1) )
+
+			# scroll menu to selected item
+			@scrollMenuToItem(selectedMenuItem) if selectedMenuItem?
+
+
 		ga('send', 'pageview', @thisPageConfig.link);
 
 		null
 
+	scrollMenuToItem:(item)=>
+		scrollTarget = $(".menu")
+		targetPosition = item.position()
+		scroller = scrollTarget.scrollTop()
+		scrollToY = (targetPosition.top+scroller) - (@SCREEN_HEIGHT/2)
+
+		TweenMax.to(scrollTarget[0], 2, {scrollTo:{y:scrollToY}, ease:Power2.easeOut});
 	onMenuLinkOver:(event)=>
 		obj3D =  @page3DObjects[ $(event.currentTarget).attr("permalink") ];
 		@doPicking = false;
@@ -884,7 +898,7 @@ class App
 					# if !@isFocused
 					# 	ga('send', 'event', '3d-plane:'+@overObject.link, 'out');
 					
-					TweenMax.to( @overObject.material.uniforms.color_opacity, 1, {value:0} );
+					TweenMax.to( @overObject.material.uniforms.color_opacity, 0.5, {value:0} );
 				@overObject = null;
 
 		if @overObject? && !@isFocused
@@ -899,7 +913,7 @@ class App
 		if @overObject != object
 			# intersects and it's different from before
 			if @overObject && @isWebGLCapable
-				TweenMax.to( @overObject.material.uniforms.color_opacity, 1, {value:0} );	
+				TweenMax.to( @overObject.material.uniforms.color_opacity, 0.5, {value:0} );	
 				# if !@isFocused
 				# 	ga('send', 'event', '3d-plane:'+@overObject.link, 'out');
 
@@ -907,7 +921,7 @@ class App
 				# filter picked objects
 				@overObject = object;
 				if @isWebGLCapable
-					TweenMax.to( @overObject.material.uniforms.color_opacity, 1, {value:1} );
+					TweenMax.to( @overObject.material.uniforms.color_opacity, 0.5, {value:1} );
 				if !@isFocused
 					ga('send', 'event', '3d-plane:'+@overObject.link, 'over');
 					# console.log("OVER: "+@overObject.link)
