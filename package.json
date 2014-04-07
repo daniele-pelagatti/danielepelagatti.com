@@ -48,6 +48,6 @@
   },
   "scripts": {
     "test": "grunt minify",
-    "preinstall": ""
+    "preinstall": "npm install -g grunt-cli coffee-script jade compass"
   }
 }
