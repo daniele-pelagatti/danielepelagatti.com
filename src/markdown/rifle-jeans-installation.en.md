@@ -19,8 +19,6 @@ twittertags :
 
 Displayed at the opening party for the first Rifle flagship store at Milan, the installation transformed passers by into models walking the Fashion Week runway. All they had to do was to tweet #RIFLEJEANS.
 
-Rifle Jeans stands for the perfect mix of contemporaneity and all-Italian heritage in a total look for men and women. When Rifle approached us with the task to showcase their Fall/Winter Collection in a new, unique way, we thought an interactive installation would be the perfect way to bring modern day digital story-telling to traditional fashion shows.
-
 The installation is a fluid frame bringing real life and a social platform like Twitter into one. It’s basically a lookbook for the Rifle collection – you get to see all new items, as if you are standing at the first row of a fashion show. The twist is; the installation invites you to walk the runway yourself, dressed head to toe in Rifle. All you need to do is tweet #RIFLEJEANS to see your face appear in the illustrations, waiting to walk the runway at the store window.
 
 “The user (in the street, in front of the installation) becomes the protagonist of the installation”, explains creative director Francesco Bernabei, “one minute he walks the Rifle runway in the installation, and the next minute he may be wearing the same Rifle Jeans in the real world.”

@@ -152,9 +152,9 @@
 
     App.prototype.mouseY = 0;
 
-    App.prototype.pickMouseX = 0;
+    App.prototype.pickMouseX = -90000;
 
-    App.prototype.pickMouseY = 0;
+    App.prototype.pickMouseY = -90000;
 
     App.prototype.windowHalfX = App.SCREEN_WIDTH / 2;
 
@@ -222,6 +222,10 @@
 
     App.prototype.motionAnalysis = null;
 
+    App.prototype.lockedOnDeviceMotion = false;
+
+    App.prototype.deviceMotionChangeTimes = 0;
+
     App.prototype.prevMotionAnalysis = {
       x: 0,
       y: 0,
@@ -229,9 +233,11 @@
     };
 
     function App() {
+      this.hideLoading = __bind(this.hideLoading, this);
+      this.showLoading = __bind(this.showLoading, this);
       this.getRelativeLink = __bind(this.getRelativeLink, this);
       this.getUpDirs = __bind(this.getUpDirs, this);
-      this.handleMouseOverObject = __bind(this.handleMouseOverObject, this);
+      this.handle3DPlaneMouseInteraction = __bind(this.handle3DPlaneMouseInteraction, this);
       this.calcPicking = __bind(this.calcPicking, this);
       this.render = __bind(this.render, this);
       this.animate = __bind(this.animate, this);
@@ -243,24 +249,24 @@
       this.syncCss3dPlaneScale = __bind(this.syncCss3dPlaneScale, this);
       this.unfocus = __bind(this.unfocus, this);
       this.focus = __bind(this.focus, this);
-      this.handleFocus = __bind(this.handleFocus, this);
       this.replaceThreeJsMaterial = __bind(this.replaceThreeJsMaterial, this);
       this.sceneLoadCallback = __bind(this.sceneLoadCallback, this);
-      this.hideLoading = __bind(this.hideLoading, this);
-      this.showLoading = __bind(this.showLoading, this);
       this.setupCSS3DPage = __bind(this.setupCSS3DPage, this);
       this.onTouchEnd = __bind(this.onTouchEnd, this);
       this.onTouchMove = __bind(this.onTouchMove, this);
       this.onTouchStart = __bind(this.onTouchStart, this);
       this.onConfigError = __bind(this.onConfigError, this);
-      this.onMenuLinkOut = __bind(this.onMenuLinkOut, this);
       this.handlePushState = __bind(this.handlePushState, this);
       this.on3DSceneMouseClick = __bind(this.on3DSceneMouseClick, this);
+      this.findMenuItemByPermalink = __bind(this.findMenuItemByPermalink, this);
+      this.on3DPlaneMouseOut = __bind(this.on3DPlaneMouseOut, this);
+      this.on3DPlaneMouseOver = __bind(this.on3DPlaneMouseOver, this);
+      this.onCloseClick = __bind(this.onCloseClick, this);
       this.onMenuLinkClick = __bind(this.onMenuLinkClick, this);
+      this.onMenuLinkOut = __bind(this.onMenuLinkOut, this);
       this.onMenuLinkOver = __bind(this.onMenuLinkOver, this);
       this.scrollMenuToItem = __bind(this.scrollMenuToItem, this);
       this.onPopStateChange = __bind(this.onPopStateChange, this);
-      this.onCloseClick = __bind(this.onCloseClick, this);
       this.onConfigLoaded = __bind(this.onConfigLoaded, this);
       this.isIE11 = !!window.MSInputMethodContext;
       this.isCSS3DCapable = Modernizr.csstransforms3d && !this.isIE11;
@@ -296,175 +302,8 @@
       } else {
         ga('send', 'event', 'webgl-test', 'failed');
       }
+      null;
     }
-
-    App.prototype.checkWebGL = function() {
-      var isStockAndroid, ua;
-      ua = navigator.userAgent.toLowerCase();
-      isStockAndroid = /android/.test(ua) && !/chrome/.test(ua);
-      try {
-        return !!window.WebGLRenderingContext && !!document.createElement('canvas').getContext('experimental-webgl') && !isStockAndroid;
-      } catch (_error) {
-        return false;
-      }
-    };
-
-    App.prototype.onConfigLoaded = function(data, textStatus, jqXHR) {
-      var loader;
-      this.allLanguagesConfig = data;
-      this.config = data[this.pageLanguage];
-      if (this.config == null) {
-        throw "Cannot find config for this language";
-      }
-      loader = new THREE.SceneLoader();
-      if (this.isWebGLCapable) {
-        loader.load(this.pageBase + "maya/data/scene.json", this.sceneLoadCallback);
-      } else {
-        loader.load(this.pageBase + "maya/data/scene_canvas.json", this.sceneLoadCallback);
-      }
-      return null;
-    };
-
-    App.prototype.onCloseClick = function() {
-      ga('send', 'event', 'close-page-button', 'click');
-      return this.unfocus();
-    };
-
-    App.prototype.onPopStateChange = function(event) {
-      var languageConfig, languageLink, languageLinks, newPath, obj3D, page, projectLink, projectsLinks, selectedMenuItem, _i, _j, _k, _l, _len, _len1, _len2, _len3, _ref;
-      if (event.originalEvent.state == null) {
-        return;
-      }
-      newPath = event.originalEvent.state.path;
-      _ref = this.config;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        page = _ref[_i];
-        if (page.link === newPath) {
-          this.pageId = page.meta.id;
-          this.thisPageConfig = page;
-          break;
-        }
-      }
-      this.pageLanguage = this.thisPageConfig.lang;
-      this.pagePermalink = this.thisPageConfig.meta.permalink;
-      this.pageDepth = this.thisPageConfig.depth;
-      this.pageBase = this.thisPageConfig.base;
-      document.title = "Daniele Pelagatti - " + this.thisPageConfig.meta.title;
-      obj3D = this.page3DObjects[newPath];
-      if (this.unfocusingTween != null) {
-        this.unfocusingTween.vars.onCompleteParams[1] = (function(_this) {
-          return function() {
-            _this.clickedObject = _this.overObject = obj3D;
-            return _this.focus();
-          };
-        })(this);
-      } else if (this.isFocused) {
-        if (newPath !== this.currentHistoryState) {
-          this.unfocus((function(_this) {
-            return function() {
-              _this.clickedObject = _this.overObject = obj3D;
-              return _this.focus();
-            };
-          })(this));
-        }
-      } else {
-        this.overObject = this.clickedObject = obj3D;
-        this.focus();
-      }
-      if (newPath !== this.currentHistoryState) {
-        languageLinks = $(".languagesMenu").find("a");
-        for (_j = 0, _len1 = languageLinks.length; _j < _len1; _j++) {
-          languageLink = languageLinks[_j];
-          languageConfig = this.allLanguagesConfig[languageLink.id];
-          for (_k = 0, _len2 = languageConfig.length; _k < _len2; _k++) {
-            page = languageConfig[_k];
-            if (page.meta.id === this.pageId) {
-              $(languageLink).attr("href", this.getRelativeLink(page.link));
-            }
-          }
-        }
-        projectsLinks = $(".projectsMenu").find("a");
-        for (_l = 0, _len3 = projectsLinks.length; _l < _len3; _l++) {
-          projectLink = projectsLinks[_l];
-          if ($(projectLink).attr("permalink") === newPath) {
-            $(projectLink).addClass("selected");
-            selectedMenuItem = $(projectLink);
-          } else {
-            $(projectLink).removeClass("selected");
-          }
-          $(projectLink).attr("href", this.pageBase + this.getRelativeLink($(projectLink).attr("permalink")).substr(1));
-        }
-        if (selectedMenuItem != null) {
-          this.scrollMenuToItem(selectedMenuItem);
-        }
-      }
-      ga('send', 'pageview', this.thisPageConfig.link);
-      return null;
-    };
-
-    App.prototype.scrollMenuToItem = function(item) {
-      var scrollTarget, scrollToY, scroller, targetPosition;
-      scrollTarget = $(".menu");
-      targetPosition = item.position();
-      scroller = scrollTarget.scrollTop();
-      scrollToY = (targetPosition.top + scroller) - (this.SCREEN_HEIGHT / 2);
-      return TweenMax.to(scrollTarget[0], 2, {
-        scrollTo: {
-          y: scrollToY
-        },
-        ease: Power2.easeOut
-      });
-    };
-
-    App.prototype.onMenuLinkOver = function(event) {
-      var obj3D;
-      obj3D = this.page3DObjects[$(event.currentTarget).attr("permalink")];
-      this.doPicking = false;
-      this.handleMouseOverObject(obj3D);
-      return null;
-    };
-
-    App.prototype.onMenuLinkClick = function(event) {
-      event.originalEvent.preventDefault();
-      this.overObject = null;
-      return this.handlePushState($(event.currentTarget).attr("permalink"));
-    };
-
-    App.prototype.on3DSceneMouseClick = function(event) {
-      this.calcPicking();
-      if (this.overObject == null) {
-        this.handleFocus();
-        ga('send', 'event', '3d-empty-space', 'click');
-        return;
-      }
-      ga('send', 'event', '3d-plane:' + this.overObject.link, 'click');
-      return this.handlePushState(this.overObject.link);
-    };
-
-    App.prototype.handlePushState = function(path) {
-      var stateObj;
-      stateObj = {
-        path: path
-      };
-      if (path !== this.currentHistoryState) {
-        history.pushState(stateObj, "Title", this.pageBase + path.substr(1));
-      }
-      this.onPopStateChange({
-        originalEvent: {
-          state: stateObj
-        }
-      });
-      return this.currentHistoryState = path;
-    };
-
-    App.prototype.onMenuLinkOut = function(event) {
-      this.doPicking = true;
-      return null;
-    };
-
-    App.prototype.onConfigError = function(jqXHR, textStatus, errorThrown) {
-      throw errorThrown;
-    };
 
     App.prototype.init = function() {
       this.container = $('.javascriptContent');
@@ -511,6 +350,16 @@
       $(".projectsMenu").find("a").mouseover(this.onMenuLinkOver);
       $(".projectsMenu").find("a").mouseout(this.onMenuLinkOut);
       $(".projectsMenu").find("a").click(this.onMenuLinkClick);
+      $(".menu").find("a").mouseover((function(_this) {
+        return function() {
+          return _this.doPicking = false;
+        };
+      })(this));
+      $(".menu").find("a").mouseout((function(_this) {
+        return function() {
+          return _this.doPicking = true;
+        };
+      })(this));
       $(".close-page").click(this.onCloseClick);
       $(window).bind("popstate", this.onPopStateChange);
       this.onWindowResize();
@@ -525,10 +374,242 @@
         }
       });
       if ((this.pagePermalink != null) && this.pagePermalink !== "") {
-        return this.currentHistoryState = "/" + this.pageLanguage + "/" + this.pagePermalink + "/";
+        this.currentHistoryState = "/" + this.pageLanguage + "/" + this.pagePermalink + "/";
       } else {
-        return this.currentHistoryState = "/" + this.pageLanguage + "/";
+        this.currentHistoryState = "/" + this.pageLanguage + "/";
       }
+      return null;
+    };
+
+    App.prototype.onConfigLoaded = function(data, textStatus, jqXHR) {
+      var loader;
+      this.allLanguagesConfig = data;
+      this.config = data[this.pageLanguage];
+      if (this.config == null) {
+        throw "Cannot find config for this language";
+      }
+      loader = new THREE.SceneLoader();
+      if (this.isWebGLCapable) {
+        loader.load(this.pageBase + "maya/data/scene.json", this.sceneLoadCallback);
+      } else {
+        loader.load(this.pageBase + "maya/data/scene_canvas.json", this.sceneLoadCallback);
+      }
+      return null;
+    };
+
+    App.prototype.onPopStateChange = function(event) {
+      var languageConfig, languageLink, languageLinks, newPath, obj3D, page, selectedMenuItem, _i, _j, _k, _len, _len1, _len2, _ref;
+      if (event.originalEvent.state == null) {
+        return;
+      }
+      newPath = event.originalEvent.state.path;
+      _ref = this.config;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        page = _ref[_i];
+        if (page.link === newPath) {
+          this.pageId = page.meta.id;
+          this.thisPageConfig = page;
+          break;
+        }
+      }
+      this.pageLanguage = this.thisPageConfig.lang;
+      this.pagePermalink = this.thisPageConfig.meta.permalink;
+      this.pageDepth = this.thisPageConfig.depth;
+      this.pageBase = this.thisPageConfig.base;
+      document.title = "Daniele Pelagatti - " + this.thisPageConfig.meta.title;
+      obj3D = this.page3DObjects[newPath];
+      if ((this.unfocusingTween != null) && !this.unfocusingTween._active) {
+        this.unfocusingTween = null;
+      }
+      if (this.unfocusingTween != null) {
+        this.unfocusingTween.vars.onCompleteParams[1] = (function(_this) {
+          return function() {
+            _this.clickedObject = _this.overObject = obj3D;
+            _this.unfocusingTween = null;
+            return _this.focus();
+          };
+        })(this);
+      } else if (this.isFocused) {
+        if (newPath !== this.currentHistoryState) {
+          this.unfocus((function(_this) {
+            return function() {
+              _this.clickedObject = _this.overObject = obj3D;
+              return _this.focus();
+            };
+          })(this));
+        }
+      } else {
+        this.overObject = this.clickedObject = obj3D;
+        this.focus();
+      }
+      if (newPath !== this.currentHistoryState) {
+        languageLinks = $(".languagesMenu").find("a");
+        for (_j = 0, _len1 = languageLinks.length; _j < _len1; _j++) {
+          languageLink = languageLinks[_j];
+          languageConfig = this.allLanguagesConfig[languageLink.id];
+          for (_k = 0, _len2 = languageConfig.length; _k < _len2; _k++) {
+            page = languageConfig[_k];
+            if (page.meta.id === this.pageId) {
+              $(languageLink).attr("href", this.getRelativeLink(page.link));
+            }
+          }
+        }
+        selectedMenuItem = this.findMenuItemByPermalink(newPath, (function(_this) {
+          return function(item) {
+            return item.removeClass("selected");
+          };
+        })(this), (function(_this) {
+          return function(item) {
+            item.attr("href", _this.pageBase + _this.getRelativeLink(item.attr("permalink")).substr(1));
+            return item.parent().removeClass("hover");
+          };
+        })(this));
+        if (selectedMenuItem != null) {
+          selectedMenuItem.addClass("selected");
+          this.scrollMenuToItem(selectedMenuItem);
+        }
+        ga('send', 'pageview', this.thisPageConfig.link);
+        this.currentHistoryState = newPath;
+      }
+      return null;
+    };
+
+    App.prototype.scrollMenuToItem = function(item) {
+      var scrollTarget, scrollToY, scroller, targetPosition;
+      scrollTarget = $(".menu");
+      targetPosition = item.position();
+      scroller = scrollTarget.scrollTop();
+      scrollToY = (targetPosition.top + scroller) - (this.SCREEN_HEIGHT / 2);
+      TweenMax.to(scrollTarget[0], 0.5, {
+        scrollTo: {
+          y: scrollToY
+        },
+        ease: Power2.easeOut
+      });
+      return null;
+    };
+
+    App.prototype.onMenuLinkOver = function(event) {
+      var obj3D;
+      if (!this.isFocused) {
+        obj3D = this.page3DObjects[$(event.currentTarget).attr("permalink")];
+        this.handle3DPlaneMouseInteraction(obj3D, "menu");
+      }
+      return null;
+    };
+
+    App.prototype.onMenuLinkOut = function(event) {
+      return null;
+    };
+
+    App.prototype.onMenuLinkClick = function(event) {
+      event.originalEvent.preventDefault();
+      this.on3DPlaneMouseOut(this.overObject);
+      this.overObject = null;
+      this.handlePushState($(event.currentTarget).attr("permalink"));
+      return null;
+    };
+
+    App.prototype.onCloseClick = function() {
+      ga('send', 'event', 'close-page-button', 'click');
+      this.unfocus();
+      return null;
+    };
+
+    App.prototype.on3DPlaneMouseOver = function(plane, source) {
+      var menuItem;
+      if (!this.isFocused) {
+        if (this.isWebGLCapable) {
+          TweenMax.to(plane.material.uniforms.color_opacity, 0.5, {
+            value: 1
+          });
+        }
+        if (source !== "menu") {
+          menuItem = this.findMenuItemByPermalink(plane.page.attr("permalink"), function(item) {
+            return item.parent().removeClass("hover");
+          });
+          menuItem.parent().addClass("hover");
+          this.scrollMenuToItem(menuItem);
+        }
+      }
+      return null;
+    };
+
+    App.prototype.on3DPlaneMouseOut = function(plane, source) {
+      var menuItem;
+      if (plane == null) {
+        return;
+      }
+      if (this.isWebGLCapable) {
+        TweenMax.to(plane.material.uniforms.color_opacity, 0.5, {
+          value: 0
+        });
+      }
+      if (!this.isFocused) {
+        menuItem = this.findMenuItemByPermalink(plane.page.attr("permalink"));
+        menuItem.parent().removeClass("hover");
+      }
+      return null;
+    };
+
+    App.prototype.findMenuItemByPermalink = function(permalink, executeOnOthers, executeOnAll) {
+      var menuItem, projectLink, projectsLinks, retValue, _i, _len;
+      projectsLinks = $(".projectsMenu").find("a");
+      retValue = null;
+      for (_i = 0, _len = projectsLinks.length; _i < _len; _i++) {
+        menuItem = projectsLinks[_i];
+        projectLink = $(menuItem);
+        if (projectLink.attr("permalink") === permalink) {
+          retValue = projectLink;
+        } else {
+          if (typeof executeOnOthers === "function") {
+            executeOnOthers(projectLink);
+          }
+        }
+        if (typeof executeOnAll === "function") {
+          executeOnAll(projectLink);
+        }
+      }
+      return retValue;
+    };
+
+    App.prototype.on3DSceneMouseClick = function(event) {
+      this.calcPicking();
+      if (this.overObject == null) {
+        if (!this.isFocused) {
+          if (this.overObject) {
+            this.clickedObject = this.overObject;
+            this.focus();
+          }
+        } else {
+          if (!this.overObject) {
+            this.unfocus();
+          }
+        }
+        ga('send', 'event', '3d-empty-space', 'click');
+        return;
+      }
+      ga('send', 'event', '3d-plane:' + this.overObject.link, 'click');
+      return this.handlePushState(this.overObject.link);
+    };
+
+    App.prototype.handlePushState = function(path) {
+      var stateObj;
+      stateObj = {
+        path: path
+      };
+      if (path !== this.currentHistoryState) {
+        history.pushState(stateObj, "Title", this.pageBase + path.substr(1));
+      }
+      return this.onPopStateChange({
+        originalEvent: {
+          state: stateObj
+        }
+      });
+    };
+
+    App.prototype.onConfigError = function(jqXHR, textStatus, errorThrown) {
+      throw errorThrown;
     };
 
     App.prototype.onTouchStart = function(event) {};
@@ -555,31 +636,6 @@
       object.cssObj = cssObj;
       this.css3DScene.add(cssObj);
       return null;
-    };
-
-    App.prototype.showLoading = function() {
-      return $("body").spin({
-        lines: 8,
-        length: 8,
-        width: 5,
-        radius: 11,
-        corners: 1,
-        rotate: 0,
-        direction: 1,
-        color: '#444',
-        speed: 1.3,
-        trail: 60,
-        shadow: true,
-        hwaccel: true,
-        className: 'spinner',
-        zIndex: 2e9,
-        top: '50%',
-        left: '50%'
-      });
-    };
-
-    App.prototype.hideLoading = function() {
-      return $("body").spin(false);
     };
 
     App.prototype.sceneLoadCallback = function(result) {
@@ -704,20 +760,6 @@
       return object.material = material;
     };
 
-    App.prototype.handleFocus = function() {
-      if (!this.isFocused) {
-        if (this.overObject) {
-          this.clickedObject = this.overObject;
-          this.focus();
-        }
-      } else {
-        if (!this.overObject) {
-          this.unfocus();
-        }
-      }
-      return null;
-    };
-
     App.prototype.focus = function(callback) {
       var camRot, newPos, pageIsLoaded, rot2;
       this.isFocused = true;
@@ -744,6 +786,13 @@
         return;
       }
       this.hideLoading();
+      this.scene.traverse((function(_this) {
+        return function(object) {
+          if (object.material != null) {
+            return _this.on3DPlaneMouseOut(object);
+          }
+        };
+      })(this));
       this.clickedObjectWPosition = this.initialObjectsProperties[this.clickedObject.name].position.clone();
       this.clickedObjectWRotation = this.initialObjectsProperties[this.clickedObject.name].quaternion.clone();
       this.clickedObjectWScale = this.initialObjectsProperties[this.clickedObject.name].scale.clone();
@@ -961,10 +1010,6 @@
       }
     };
 
-    App.prototype.lockedOnDeviceMotion = false;
-
-    App.prototype.deviceMotionChangeTimes = 0;
-
     App.prototype.render = function() {
       var camX, camY, lim, mrX, mrY, rangeX, rangeY, _ref, _ref1;
       if (!this.isFocused) {
@@ -1006,13 +1051,9 @@
       intersects = this.raycaster.intersectObjects(this.scene.children);
       if (this.doPicking) {
         if (intersects.length > 0) {
-          this.handleMouseOverObject(intersects[0].object);
+          this.handle3DPlaneMouseInteraction(intersects[0].object, "3d");
         } else {
-          if (this.overObject && this.isWebGLCapable) {
-            TweenMax.to(this.overObject.material.uniforms.color_opacity, 0.5, {
-              value: 0
-            });
-          }
+          this.handle3DPlaneMouseInteraction(null, "3d");
           this.overObject = null;
         }
       }
@@ -1023,28 +1064,24 @@
       }
     };
 
-    App.prototype.handleMouseOverObject = function(object) {
+    App.prototype.handle3DPlaneMouseInteraction = function(object, initiator) {
+      if ((object == null) && (this.overObject != null)) {
+        this.on3DPlaneMouseOut(this.overObject);
+        return;
+      }
       if (this.overObject !== object) {
-        if (this.overObject && this.isWebGLCapable) {
-          TweenMax.to(this.overObject.material.uniforms.color_opacity, 0.5, {
-            value: 0
-          });
+        if (this.overObject) {
+          this.on3DPlaneMouseOut(this.overObject, initiator);
         }
         if (this.excludeFromPicking.indexOf(object.name) === -1) {
           this.overObject = object;
-          if (this.isWebGLCapable) {
-            TweenMax.to(this.overObject.material.uniforms.color_opacity, 0.5, {
-              value: 1
-            });
-          }
+          this.on3DPlaneMouseOver(this.overObject, initiator);
           if (!this.isFocused) {
             return ga('send', 'event', '3d-plane:' + this.overObject.link, 'over');
           }
         } else {
           return this.overObject = null;
         }
-      } else {
-
       }
     };
 
@@ -1065,6 +1102,44 @@
       } else {
         return "." + objectPermalink;
       }
+    };
+
+    App.prototype.checkWebGL = function() {
+      var isStockAndroid, ua;
+      ua = navigator.userAgent.toLowerCase();
+      isStockAndroid = /android/.test(ua) && !/chrome/.test(ua);
+      try {
+        return !!window.WebGLRenderingContext && !!document.createElement('canvas').getContext('experimental-webgl') && !isStockAndroid;
+      } catch (_error) {
+        return false;
+      }
+    };
+
+    App.prototype.showLoading = function() {
+      $("body").spin({
+        lines: 8,
+        length: 8,
+        width: 5,
+        radius: 11,
+        corners: 1,
+        rotate: 0,
+        direction: 1,
+        color: '#444',
+        speed: 1.3,
+        trail: 60,
+        shadow: true,
+        hwaccel: true,
+        className: 'spinner',
+        zIndex: 2e9,
+        top: '50%',
+        left: '50%'
+      });
+      return null;
+    };
+
+    App.prototype.hideLoading = function() {
+      $("body").spin(false);
+      return null;
     };
 
     return App;

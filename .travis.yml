@@ -1,0 +1,12 @@
+language : node_js
+node_js : 
+    - "0.8"
+before_install : 
+	- npm install -g grunt-cli 
+	- npm install -g coffee-script
+	- npm install -g uglify-js
+	- npm install -g jade
+	- npm install -g compass
+
+install: npm install
+before_script: grunt minify

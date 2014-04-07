@@ -907,7 +907,7 @@ main .videoWrapper {
   height: 0;
 }
 /* line 108, ../compass/main.sass */
-main .videoWrapper iframe {
+main .videoWrapper iframe, main .videoWrapper object {
   position: absolute;
   top: 0;
   left: 0;
@@ -1301,7 +1301,11 @@ main article * img {
 .menu nav ul li {
   list-style: none;
 }
-/* line 345, ../compass/main.sass */
+/* line 348, ../compass/main.sass */
+.menu nav ul li:hover a, .menu nav ul li.hover a {
+  background-color: #333333;
+}
+/* line 353, ../compass/main.sass */
 .menu nav ul li a {
   display: block;
   padding: 1em;
@@ -1309,22 +1313,21 @@ main article * img {
   font-weight: 300;
   font-size: 14px;
   font-size: 0.97222rem;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
-/* line 355, ../compass/main.sass */
+/* line 369, ../compass/main.sass */
 .menu nav ul li a:visited {
   color: #999999;
 }
-/* line 358, ../compass/main.sass */
-.menu nav ul li a:hover {
-  background-color: #333333;
-}
-/* line 361, ../compass/main.sass */
+/* line 375, ../compass/main.sass */
 .menu nav ul li a.selected {
   background-color: #1f8dd6;
   color: white;
 }
 
-/* line 366, ../compass/main.sass */
+/* line 380, ../compass/main.sass */
 #lean_overlay {
   position: absolute;
   z-index: 100;
@@ -1336,7 +1339,7 @@ main article * img {
   display: none;
 }
 
-/* line 378, ../compass/main.sass */
+/* line 392, ../compass/main.sass */
 #about {
   width: 70%;
   max-width: 450px;
@@ -1352,7 +1355,7 @@ main article * img {
   box-sizing: border-box;
 }
 
-/* line 397, ../compass/main.sass */
+/* line 411, ../compass/main.sass */
 #no-webgl-warning {
   position: relative;
   top: 0;
@@ -1368,16 +1371,16 @@ main article * img {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 411, ../compass/main.sass */
+/* line 425, ../compass/main.sass */
 #no-webgl-warning h4 {
   font-weight: 600;
 }
-/* line 413, ../compass/main.sass */
+/* line 427, ../compass/main.sass */
 #no-webgl-warning p {
   margin: auto auto 0.2em;
 }
 
-/* line 417, ../compass/main.sass */
+/* line 431, ../compass/main.sass */
 .no-webgl-warning-button {
   position: fixed;
   top: 1px;
@@ -1400,21 +1403,21 @@ main article * img {
   -moz-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
 }
-/* line 433, ../compass/main.sass */
+/* line 447, ../compass/main.sass */
 .no-webgl-warning-button:visited {
   color: #444444;
 }
-/* line 436, ../compass/main.sass */
+/* line 450, ../compass/main.sass */
 .no-webgl-warning-button:before {
   margin-left: -2px;
 }
-/* line 445, ../compass/main.sass */
+/* line 459, ../compass/main.sass */
 .no-webgl-warning-button:hover {
   color: black;
   background-color: #969696;
 }
 
-/* line 450, ../compass/main.sass */
+/* line 464, ../compass/main.sass */
 .show-menu {
   position: fixed;
   top: 1px;
@@ -1437,35 +1440,35 @@ main article * img {
   display: none;
   left: 221px;
 }
-/* line 464, ../compass/main.sass */
+/* line 478, ../compass/main.sass */
 .show-menu:before {
   margin-left: -2px;
 }
 @media screen and (min-width: 1000px) {
-  /* line 450, ../compass/main.sass */
+  /* line 464, ../compass/main.sass */
   .show-menu {
     display: none;
     left: 221px;
   }
 }
 @media screen and (max-width: 1000px) {
-  /* line 450, ../compass/main.sass */
+  /* line 464, ../compass/main.sass */
   .show-menu {
     display: block;
     left: 1px;
   }
 }
-/* line 482, ../compass/main.sass */
+/* line 496, ../compass/main.sass */
 .show-menu:hover {
   color: black;
   background-color: #969696;
 }
-/* line 487, ../compass/main.sass */
+/* line 501, ../compass/main.sass */
 .show-menu.force-hide {
   left: 221px;
 }
 
-/* line 490, ../compass/main.sass */
+/* line 504, ../compass/main.sass */
 .close-page {
   position: fixed;
   top: 1px;
@@ -1488,7 +1491,7 @@ main article * img {
   -webkit-border-radius: 2px;
   -khtml-border-radius: 2px;
 }
-/* line 512, ../compass/main.sass */
+/* line 526, ../compass/main.sass */
 .close-page:hover {
   color: black;
   background-color: #969696;

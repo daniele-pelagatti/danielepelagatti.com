@@ -26,8 +26,8 @@ class App
 	
 	mouseX                   : 0;
 	mouseY                   : 0;
-	pickMouseX               : 0;
-	pickMouseY               : 0;
+	pickMouseX               : -90000;
+	pickMouseY               : -90000;
 	
 	windowHalfX              : @SCREEN_WIDTH / 2;
 	windowHalfY              : @SCREEN_HEIGHT / 2;
@@ -70,6 +70,8 @@ class App
 	maxCameraY               : 300
 	unfocusingTween          : null
 	motionAnalysis           : null
+	lockedOnDeviceMotion     : false
+	deviceMotionChangeTimes  : 0		
 	prevMotionAnalysis       : 
 		x : 0
 		y : 0
@@ -115,160 +117,7 @@ class App
 			ga('send', 'event', 'webgl-test', 'failed');
 
 
-	checkWebGL:->
-		ua = navigator.userAgent.toLowerCase()
-		isStockAndroid = /android/.test(ua) and !/chrome/.test(ua)
-		try
-			return !!window.WebGLRenderingContext && !!document.createElement('canvas').getContext('experimental-webgl') and !isStockAndroid
-		catch
-			return false
-
-
-	onConfigLoaded:( data, textStatus, jqXHR  )=>
-		@allLanguagesConfig = data;
-		@config = data[@pageLanguage]
-		if !@config?
-			throw "Cannot find config for this language"
-
-		# load scene
-		loader = new THREE.SceneLoader();
-		if @isWebGLCapable
-			loader.load( @pageBase+"maya/data/scene.json", @sceneLoadCallback );
-		else
-			loader.load( @pageBase+"maya/data/scene_canvas.json", @sceneLoadCallback );
-
-		
 		null
-
-	onCloseClick:=>
-		ga('send', 'event', 'close-page-button', 'click');
-		@unfocus()
-
-
-	onPopStateChange:(event)=>
-		return if !event.originalEvent.state?
-
-		newPath = event.originalEvent.state.path;
-
-		for page in @config
-			if page.link == newPath
-				@pageId = page.meta.id
-				@thisPageConfig = page
-				break
-
-		@pageLanguage = @thisPageConfig.lang
-		@pagePermalink = @thisPageConfig.meta.permalink
-		@pageDepth = @thisPageConfig.depth
-		@pageBase = @thisPageConfig.base;
-
-
-		document.title = "Daniele Pelagatti - "+@thisPageConfig.meta.title
-
-		obj3D =  @page3DObjects[newPath];
-
-		if @unfocusingTween?
-			# we are in the middle of an unfocus tween
-			# we need to replace what happens next on the fly
-			@unfocusingTween.vars.onCompleteParams[1] = =>
-				@clickedObject = @overObject = obj3D
-				@focus()
-
-		else if @isFocused
-			# we are focused on a page
-
-			if newPath != @currentHistoryState
-				# a different page needs to be focused
-				# we need to unfocus then focus again next
-				@unfocus =>
-					@clickedObject = @overObject = obj3D
-					@focus()				
-		else
-			# we are roaming free in the 3d space, we need to focus on a page
-			@overObject = @clickedObject = obj3D;
-			@focus()
-
-
-		if newPath != @currentHistoryState
-			# change language change link on languages menu to go to the current page
-			languageLinks = $(".languagesMenu").find("a");
-			for languageLink in languageLinks
-				languageConfig = @allLanguagesConfig[languageLink.id]
-				for page in languageConfig
-					if page.meta.id == @pageId
-						$(languageLink).attr("href", @getRelativeLink(page.link) )
-
-
-
-			#update selected project on the menu
-
-
-			projectsLinks = $(".projectsMenu").find("a");
-			for projectLink in projectsLinks
-				if $(projectLink).attr("permalink") == newPath
-					$(projectLink).addClass("selected")
-					selectedMenuItem = $(projectLink)
-				else
-					$(projectLink).removeClass("selected")
-
-				$(projectLink).attr("href", @pageBase+@getRelativeLink( $(projectLink).attr("permalink") ).substr(1) )
-
-			# scroll menu to selected item
-			@scrollMenuToItem(selectedMenuItem) if selectedMenuItem?
-
-
-		ga('send', 'pageview', @thisPageConfig.link);
-
-		null
-
-	scrollMenuToItem:(item)=>
-		scrollTarget = $(".menu")
-		targetPosition = item.position()
-		scroller = scrollTarget.scrollTop()
-		scrollToY = (targetPosition.top+scroller) - (@SCREEN_HEIGHT/2)
-
-		TweenMax.to(scrollTarget[0], 2, {scrollTo:{y:scrollToY}, ease:Power2.easeOut});
-	onMenuLinkOver:(event)=>
-		obj3D =  @page3DObjects[ $(event.currentTarget).attr("permalink") ];
-		@doPicking = false;
-		@handleMouseOverObject(obj3D)
-		null
-
-	onMenuLinkClick:(event)=>
-		event.originalEvent.preventDefault();
-		@overObject = null
-		@handlePushState( $(event.currentTarget).attr("permalink") ) 
-
-	on3DSceneMouseClick:(event)=>
-
-		# @onMouseMove(event);
-		@calcPicking()
-
-		if !@overObject?
-			# required to unfocus ( click outside focused plane )
-			@handleFocus();
-			ga('send', 'event', '3d-empty-space', 'click');
-			return;
-
-		ga('send', 'event', '3d-plane:'+@overObject.link, 'click');
-		@handlePushState(@overObject.link)
-
-	handlePushState:(path)=>
-		stateObj = {path:path}
-
-		if path != @currentHistoryState
-			history.pushState(stateObj,"Title",@pageBase+path.substr(1))
-
-		@onPopStateChange 
-			originalEvent:
-				state: stateObj
-		
-		@currentHistoryState = path;
-
-	onMenuLinkOut:(event)=>
-		@doPicking = true;
-		null
-
-	onConfigError:(jqXHR,textStatus,errorThrown )=> throw errorThrown
 
 	init:-> 
 		@container = $( '.javascriptContent' );
@@ -336,6 +185,12 @@ class App
 		$(".projectsMenu").find("a").mouseover(@onMenuLinkOver)
 		$(".projectsMenu").find("a").mouseout(@onMenuLinkOut)
 		$(".projectsMenu").find("a").click(@onMenuLinkClick)
+
+		$(".menu").find("a").mouseover =>
+			@doPicking = false
+		$(".menu").find("a").mouseout =>
+			@doPicking = true
+
 		$(".close-page").click(@onCloseClick)
 		$(window).bind("popstate",@onPopStateChange);		
 
@@ -349,6 +204,214 @@ class App
 		else
 			@currentHistoryState = "/"+@pageLanguage+"/"
 
+		null
+
+
+	onConfigLoaded:( data, textStatus, jqXHR  )=>
+		@allLanguagesConfig = data;
+		@config = data[@pageLanguage]
+		if !@config?
+			throw "Cannot find config for this language"
+
+		# load scene
+		loader = new THREE.SceneLoader();
+		if @isWebGLCapable
+			loader.load( @pageBase+"maya/data/scene.json", @sceneLoadCallback );
+		else
+			loader.load( @pageBase+"maya/data/scene_canvas.json", @sceneLoadCallback );
+
+		
+		null
+
+
+	onPopStateChange:(event)=>
+		return if !event.originalEvent.state?
+
+		newPath = event.originalEvent.state.path;
+
+		for page in @config
+			if page.link == newPath
+				@pageId = page.meta.id
+				@thisPageConfig = page
+				break
+
+		@pageLanguage = @thisPageConfig.lang
+		@pagePermalink = @thisPageConfig.meta.permalink
+		@pageDepth = @thisPageConfig.depth
+		@pageBase = @thisPageConfig.base;
+
+
+		document.title = "Daniele Pelagatti - "+@thisPageConfig.meta.title
+
+		obj3D =  @page3DObjects[newPath];
+
+		if @unfocusingTween? && !@unfocusingTween._active
+			@unfocusingTween = null
+
+		if @unfocusingTween?
+			# we are in the middle of an unfocus tween
+			# we need to replace what happens next on the fly
+			@unfocusingTween.vars.onCompleteParams[1] = =>
+				@clickedObject = @overObject = obj3D
+				@unfocusingTween = null
+				@focus()
+
+		else if @isFocused
+			# we are focused on a page
+
+			if newPath != @currentHistoryState
+				# a different page needs to be focused
+				# we need to unfocus then focus again next
+				@unfocus =>
+					@clickedObject = @overObject = obj3D
+					@focus()				
+		else
+			# we are roaming free in the 3d space, we need to focus on a page
+			@overObject = @clickedObject = obj3D;
+			@focus()
+
+
+		if newPath != @currentHistoryState
+			# change language change link on languages menu to go to the current page
+			languageLinks = $(".languagesMenu").find("a");
+			for languageLink in languageLinks
+				languageConfig = @allLanguagesConfig[languageLink.id]
+				for page in languageConfig
+					if page.meta.id == @pageId
+						$(languageLink).attr("href", @getRelativeLink(page.link) )
+
+
+
+			#update selected project on the menu
+
+			selectedMenuItem = @findMenuItemByPermalink( newPath, 
+				(item)=>
+					item.removeClass("selected")
+				,
+				(item)=>
+					item.attr("href", @pageBase+@getRelativeLink( item.attr("permalink") ).substr(1) )
+					item.parent().removeClass("hover")
+				);
+
+			# scroll menu to selected item
+			if selectedMenuItem?
+				selectedMenuItem.addClass("selected")
+				@scrollMenuToItem(selectedMenuItem)
+
+
+			ga('send', 'pageview', @thisPageConfig.link);
+
+			@currentHistoryState = newPath;
+
+		null
+
+	scrollMenuToItem:(item)=>
+		scrollTarget = $(".menu")
+		targetPosition = item.position()
+		scroller = scrollTarget.scrollTop()
+		scrollToY = (targetPosition.top+scroller) - (@SCREEN_HEIGHT/2)
+
+		TweenMax.to(scrollTarget[0], 0.5, {scrollTo:{y:scrollToY}, ease:Power2.easeOut});
+		null
+
+	onMenuLinkOver:(event)=>
+		if !@isFocused
+			obj3D =  @page3DObjects[ $(event.currentTarget).attr("permalink") ];
+			@handle3DPlaneMouseInteraction(obj3D,"menu")
+		null
+
+	onMenuLinkOut:(event)=>
+		null
+
+	onMenuLinkClick:(event)=>
+		event.originalEvent.preventDefault();
+		@on3DPlaneMouseOut(@overObject)
+		@overObject = null
+		@handlePushState( $(event.currentTarget).attr("permalink") ) 
+		null
+
+	onCloseClick:=>
+		ga('send', 'event', 'close-page-button', 'click');
+		@unfocus()		
+		null
+
+	on3DPlaneMouseOver:(plane,source)=>
+		if !@isFocused
+			if @isWebGLCapable
+				TweenMax.to( plane.material.uniforms.color_opacity, 0.5, {value:1} );
+
+
+			if source != "menu"
+				menuItem = @findMenuItemByPermalink plane.page.attr("permalink"), (item) -> item.parent().removeClass("hover")
+				menuItem.parent().addClass("hover")
+				@scrollMenuToItem(menuItem)
+		null
+		
+	on3DPlaneMouseOut:(plane,source)=>
+		
+		return if !plane?
+
+		if @isWebGLCapable
+			TweenMax.to( plane.material.uniforms.color_opacity, 0.5, {value:0} );
+
+		if !@isFocused
+			menuItem = @findMenuItemByPermalink( plane.page.attr("permalink") )
+			menuItem.parent().removeClass("hover")
+		null
+
+	findMenuItemByPermalink:(permalink,executeOnOthers,executeOnAll)=>		
+		projectsLinks = $(".projectsMenu").find("a");
+		
+		retValue = null
+
+
+		for menuItem in projectsLinks
+			projectLink = $(menuItem)
+			if projectLink.attr("permalink") == permalink
+				retValue = projectLink
+			else
+				executeOnOthers?( projectLink )
+
+			executeOnAll?( projectLink )
+		
+		return retValue
+					
+
+	on3DSceneMouseClick:(event)=>
+
+		@calcPicking()
+
+		if !@overObject?
+			# required to unfocus ( click outside focused plane )
+			if !@isFocused
+				if @overObject
+					@clickedObject = @overObject;
+					@focus();
+			else
+				if !@overObject
+					@unfocus();
+			ga('send', 'event', '3d-empty-space', 'click');
+			return;
+
+		ga('send', 'event', '3d-plane:'+@overObject.link, 'click');
+		@handlePushState(@overObject.link)
+
+	handlePushState:(path)=>
+		stateObj = {path:path}
+
+		if path != @currentHistoryState
+			history.pushState(stateObj,"Title",@pageBase+path.substr(1))
+
+		@onPopStateChange 
+			originalEvent:
+				state: stateObj
+		
+		
+
+	onConfigError:(jqXHR,textStatus,errorThrown )=> throw errorThrown
+
+
+
 	
 	onTouchStart:(event)=>
 	onTouchMove:(event)=>
@@ -357,8 +420,6 @@ class App
 	
 	setupCSS3DPage: ( pageObj, object, link )=>
 
-
-		# pageObj = 
 		pageObj.css
 			opacity : 0
 			display : "none"
@@ -381,37 +442,9 @@ class App
 		object.cssObj = cssObj;
 
 		@css3DScene.add( cssObj )
-
-		# show page belonging to loaded page on browser
-		# linkArr = link.split("/");
-		# if linkArr[1] == @pageLanguage && linkArr[2] == @pagePermalink
-		# 	_.delay( =>
-		# 		@handlePushState(link);
-		# 	, 1000 );
-			
 		null; 
 
 
-	showLoading:=>
-		$("body").spin
-			lines     : 8, # The number of lines to draw
-			length    : 8, # The length of each line
-			width     : 5, # The line thickness
-			radius    : 11, # The radius of the inner circle
-			corners   : 1, # Corner roundness (0..1)
-			rotate    : 0, # The rotation offset
-			direction : 1, # 1: clockwise, -1: counterclockwise
-			color     : '#444', # #rgb or #rrggbb or array of colors
-			speed     : 1.3, # Rounds per second
-			trail     : 60, # Afterglow percentage
-			shadow    : true, # Whether to render a shadow
-			hwaccel   : true, # Whether to use hardware acceleration
-			className : 'spinner', # The CSS class to assign to the spinner
-			zIndex    : 2e9, # The z-index (defaults to 2000000000)
-			top       : '50%', # Top position relative to parent in px
-			left      : '50%' # Left position relative to parent in px	
-	hideLoading:=>
-		$("body").spin(false)		
 	
 	sceneLoadCallback: ( result )=> 
 
@@ -567,16 +600,7 @@ class App
 
 		object.material = material;		
 
-	handleFocus:()=>
-		if !@isFocused
-			if @overObject
-				@clickedObject = @overObject;
-				@focus();
-		else
-			if !@overObject
-				@unfocus();
 
-		null;
 
 	focus:(callback)=>
 		@isFocused = true;
@@ -600,6 +624,14 @@ class App
 			return
 
 		@hideLoading();
+
+
+		# mouseout all planes
+		@scene.traverse (object)=> 
+			if object.material?
+				@on3DPlaneMouseOut(object)
+
+
 		@clickedObjectWPosition = @initialObjectsProperties[@clickedObject.name].position.clone();
 		@clickedObjectWRotation = @initialObjectsProperties[@clickedObject.name].quaternion.clone();
 		@clickedObjectWScale    = @initialObjectsProperties[@clickedObject.name].scale.clone();
@@ -781,7 +813,7 @@ class App
 		newPos.add(right);
 		newPos.add(forward);
 
-		return newPos;	
+		return newPos;
 
 	onWindowResize:()=> 
 		@CONTAINER_X = @container.position().left;
@@ -806,15 +838,10 @@ class App
 		@render()
 
 
-
-
-
 	onMouseMove:(event)=> 
 
 		if !@isFocused
 			event.originalEvent.preventDefault();
-
-
 
 		mx = event.clientX || event.originalEvent.touches?[0]?.clientX || 0
 		my = event.clientY || event.originalEvent.touches?[0]?.clientY || 0
@@ -834,8 +861,7 @@ class App
 		# @stats.update();
 		requestAnimationFrame( @animate ) if @doRender;
 
-	lockedOnDeviceMotion : false
-	deviceMotionChangeTimes : 0
+
 
 	render:()=> 
 
@@ -883,7 +909,7 @@ class App
 		@css3dRenderer?.render( @css3DScene, @camera );
 
 
-	calcPicking:=>
+	calcPicking:()=>
 		vector = new THREE.Vector3( @pickMouseX, @pickMouseY, 1 );
 		@projector.unprojectVector( vector, @camera );
 		@raycaster.set( @camera.position, vector.sub( @camera.position ).normalize() );
@@ -891,15 +917,12 @@ class App
 
 		if @doPicking
 			if intersects.length > 0
-				@handleMouseOverObject(intersects[ 0 ].object)
+				@handle3DPlaneMouseInteraction(intersects[ 0 ].object,"3d")
 			else 
-				# doesn't intersect
-				if @overObject && @isWebGLCapable
-					# if !@isFocused
-					# 	ga('send', 'event', '3d-plane:'+@overObject.link, 'out');
+				@handle3DPlaneMouseInteraction(null,"3d")
 					
-					TweenMax.to( @overObject.material.uniforms.color_opacity, 0.5, {value:0} );
 				@overObject = null;
+
 
 		if @overObject? && !@isFocused
 			$("body").css('cursor', 'pointer');
@@ -907,30 +930,25 @@ class App
 			$("body").css('cursor', '');
 
 
-	handleMouseOverObject:(object)=>
-		# return if !@object?
+	handle3DPlaneMouseInteraction:(object,initiator)=>
+
+		if !object? && @overObject?
+			@on3DPlaneMouseOut(@overObject)
+			return
 
 		if @overObject != object
 			# intersects and it's different from before
-			if @overObject && @isWebGLCapable
-				TweenMax.to( @overObject.material.uniforms.color_opacity, 0.5, {value:0} );	
-				# if !@isFocused
-				# 	ga('send', 'event', '3d-plane:'+@overObject.link, 'out');
+			if @overObject
+				@on3DPlaneMouseOut(@overObject,initiator)
 
 			if @excludeFromPicking.indexOf(object.name) == -1 
 				# filter picked objects
 				@overObject = object;
-				if @isWebGLCapable
-					TweenMax.to( @overObject.material.uniforms.color_opacity, 0.5, {value:1} );
+				@on3DPlaneMouseOver(@overObject,initiator)
 				if !@isFocused
 					ga('send', 'event', '3d-plane:'+@overObject.link, 'over');
-					# console.log("OVER: "+@overObject.link)
 			else
 				@overObject = null;
-		else
-			# intersects but it's no different from before
-			# if ( @overObject && intersects[ 0 ].object.name == "scene_baked_pPlane1" ) 
-			# 	TweenMax.to( @overObject.material.uniforms.color_opacity, 1, {value:0} );		
 
 	getUpDirs:(howMany)=>
 		retValue = ""
@@ -946,3 +964,36 @@ class App
 		else
 			return 	"."+objectPermalink;
 
+		
+	checkWebGL:->
+		ua = navigator.userAgent.toLowerCase()
+		isStockAndroid = /android/.test(ua) and !/chrome/.test(ua)
+		try
+			return !!window.WebGLRenderingContext && !!document.createElement('canvas').getContext('experimental-webgl') and !isStockAndroid
+		catch
+			return false
+
+	showLoading:=>
+		$("body").spin
+			lines     : 8, # The number of lines to draw
+			length    : 8, # The length of each line
+			width     : 5, # The line thickness
+			radius    : 11, # The radius of the inner circle
+			corners   : 1, # Corner roundness (0..1)
+			rotate    : 0, # The rotation offset
+			direction : 1, # 1: clockwise, -1: counterclockwise
+			color     : '#444', # #rgb or #rrggbb or array of colors
+			speed     : 1.3, # Rounds per second
+			trail     : 60, # Afterglow percentage
+			shadow    : true, # Whether to render a shadow
+			hwaccel   : true, # Whether to use hardware acceleration
+			className : 'spinner', # The CSS class to assign to the spinner
+			zIndex    : 2e9, # The z-index (defaults to 2000000000)
+			top       : '50%', # Top position relative to parent in px
+			left      : '50%' # Left position relative to parent in px	
+
+		null
+
+	hideLoading:=>
+		$("body").spin(false)	
+		null	

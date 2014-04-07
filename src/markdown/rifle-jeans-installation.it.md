@@ -7,7 +7,7 @@ date        : 2013-08-10 11:44
 author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
 template    : default.it.jade
 tags        : rifle,installazione,twitter,evento dal vivo,flash,java
-description : "Displayed at the opening party for the first Rifle flagship store at Milan, the installation transformed passers by into models walking the Fashion Week runway."
+description : "Preparata per la festa di apertura del primo *flagship store* a Milano, l'installazione trasforma i passanti in modelli sulla passerella della settimana della moda."
 twittertags :
     - RIFLEJEANS
 ---
@@ -17,17 +17,15 @@ twittertags :
 
 [ ![](#{base}img/rifle1.jpg "Rifle Jeans: Installazione Interattiva") ](http://www.unit9.com/project/rifle-jeans-installation)
 
-Displayed at the opening party for the first Rifle flagship store at Milan, the installation transformed passers by into models walking the Fashion Week runway. All they had to do was to tweet #RIFLEJEANS.
+Preparata per la festa di apertura del primo *flagship store* a Milano, l'installazione trasforma i passanti in modelli sulla passerella della settimana della moda. Tutto quello che devono fare è twittare #RIFLEJEANS
 
-Rifle Jeans stands for the perfect mix of contemporaneity and all-Italian heritage in a total look for men and women. When Rifle approached us with the task to showcase their Fall/Winter Collection in a new, unique way, we thought an interactive installation would be the perfect way to bring modern day digital story-telling to traditional fashion shows.
+L'installazione è un canovaccio fluido che unisce una piattaforma sociale come twitter e la vita reale in una cosa sola. È una passerella della nuova collezione Rifle, vedi tutti i nuovi modelli come se stessi in prima fila alla sfilata; il risvolto è che l'installazione ti invita a salire in prima persona sulla passerella, vestito Rifle dal capo ai piedi. Tutto quello che è richiesto è twittare #RIFLEJEANS per vedere la tua faccia apparire nelle illustrazioni, in attesa di passeggiare sulla passerella del negozio.
 
-The installation is a fluid frame bringing real life and a social platform like Twitter into one. It’s basically a lookbook for the Rifle collection – you get to see all new items, as if you are standing at the first row of a fashion show. The twist is; the installation invites you to walk the runway yourself, dressed head to toe in Rifle. All you need to do is tweet #RIFLEJEANS to see your face appear in the illustrations, waiting to walk the runway at the store window.
+“L'utente (sulla strada davanti all'installazione) divanta il protagonista dell'installazione”, spiega il direttore creativo Francesco Bernabei, “nell'arco di un minuto si ritrova a passeggiare sull passerella Rifle nell'installazione, e il minuto dopo potrebbe indossare Jeans Rifle nella vita reale”
 
-“The user (in the street, in front of the installation) becomes the protagonist of the installation”, explains creative director Francesco Bernabei, “one minute he walks the Rifle runway in the installation, and the next minute he may be wearing the same Rifle Jeans in the real world.”
+“Improvvisamente tutti gli occhi sono su di te, non solo quelli dei passanti per strada ma anche quelli degli altri utenti dell'app che aspettano il loro turno al lato della passerella nell'installazione, tutti inseriti nell'illustrazione, spettatori dello show” aggiunge l'illustratore Jonathan Calugi. “L'interazione tra i tweets e l'illustrazione è affascinante - l'animazione infonde vita nei tweets ”
 
-“Suddenly all eyes are on you, having not only people on the street see you walking, but within the installation itself the faces of the twitterati waiting their turn are lined along the runway in the playful illustrations, enjoying the show.” adds illustrator Jonathan Calugi. “The interaction between the tweets and the artwork is simply amazing – the animations breathes life into the tweets.”
-
-The installation continues to move between Rifle stores in Italy, inviting the passers by to join the fashion show by tweeting #RIFLEJEANS. And as a reward for their best modelling moves, every 50th tweets gets a tweet back from Rifle with a discount code that they can use in store
+L'installazione continua a muoversi attraverso nuovi *Rifle stores* in Italia, invitando i passanti ad unirsi alla sfilata twittando #RIFLEJEANS. E come ricompensa per l'intraprendenza dei passanti, ogni 50 tweets viene inviato un tweet di risposta da rifle jeans con un codice sconto che è possibile usare nel negozio. 
 
 ## Credits ##
 

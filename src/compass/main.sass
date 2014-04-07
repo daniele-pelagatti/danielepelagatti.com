@@ -105,7 +105,7 @@ main
 		padding-top: 25px
 		height: 0
 
-		iframe
+		iframe, object
 			position: absolute
 			top: 0
 			left: 0
@@ -342,6 +342,14 @@ main
 			margin: 0
 			li
 				list-style: none
+
+
+				&:hover, &.hover
+					a
+						background-color: #333
+						// +transform(rotateX(360deg) translateZ(1px))
+				
+
 				a
 					display: block
 					padding: 1em
@@ -352,11 +360,17 @@ main
 					// @media screen and (max-width: $menu-visibility-threshold)
 					// 	+type-scale($zeta0,$font-base,rem)
 
+					+transition(all 0.2s ease-in-out)
+					// +transition(-webkit-transform 0.3s ease-in-out)
+					// +transition(-moz-transform 0.3s ease-in-out)
+					// +transition(-o-transform 0.3s ease-in-out)
+					// +transition(transform 0.3s ease-in-out)
+
 					&:visited
 						color: #999
 
-					&:hover
-						background-color: #333
+
+
 
 					&.selected
 						background-color: #1f8dd6

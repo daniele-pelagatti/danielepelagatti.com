@@ -7,7 +7,7 @@ date        : 2013-06-10 11:44
 author      : Daniele Pelagatti <daniele.pelagatti@unit9.com>
 template    : default.it.jade
 tags        : daniele,pelagatti,interactive,developer
-description : "Power of the Peanut is an interactive HTML5 microsite built to introduce the people of America to the nutritional power of peanuts."
+description : "Power of the Peanut è un microsito HTML5 interattivo pensato per far conoscere al pubblico i poteri nutritivi delle noccioline."
 twittertags :
     - powerofthepeanut
 ---
@@ -17,37 +17,27 @@ twittertags :
 
 [![](#{base}img/power_of_the_peanut.jpg "Optional title")](http://www.powerofthepeanut.com/)
 
-Power of the Peanut is an interactive HTML5 microsite built to introduce the people of America to the nutritional power of peanuts.
+Power of the Peanut è un microsito HTML5 interattivo pensato per far conoscere al pubblico i poteri nutritivi delle noccioline.
 
-With Bill Hader (South Park and Saturday Night Live) as the voice of Mr Peanut as the central figure in a motivational seminar, the site allows visitors to embrace and acknowledge the affirming nutritional benefits of peanuts and complements the TV and digital spots perfectly.
+Con Bill Hader (South Park e Saturday Night Live), voce di Mr Peanut, come figura centrale del seminario motivazionale, il sito permette ai visitatori di conoscere e accettare gli affermati benefici nutrizionali delle noccioline e fa da perfetto complemento agli spot televisivi.
 
-Delving behind the shiny, polished and pumped up protein power of the site, a team chiselled away at making certain aspects of the experience as engaging as possible, encouraging visitors to embrace the power of pose and upload their profiles to visualise success.
+Per il regista Michael Sugarman il tono era di fondamentale importanza.
 
-For director, Michael Sugarman, the tone was key.
+La cosa importante con questo sito era trovare il tono giusto: volevamo che fosse divertente non solo perché è il sito di un uomo-nocciolina ma anche perché tutti i siti *motivazionali* hanno un ché di ridicolo, di cult. Quindi abbiamo provato a progettare un esperienza il più possibile simile ai veri programmi motivazionali, dove più tempo vi trascorri, più vieni risucchiato dentro questa filosofia pseudo-intelletuale.
 
-The important thing with this site was to strike the right tone: we wanted it to be funny not just because it’s a peanut man with his own website, but because all motivational websites have an inherently ridiculous, cult-like feel. So we tried to design the experience as closely as we could to a real motivational program, where the longer you spend with it the deeper you are drawn into this pseudo-intellectual philosophy.
+Kanish Patel, tech lead del progetto, e lo sviluppatore Fábio Azevedo si sono concentrati sul *succ-sizzle cut out tool*, che permette agli utenti di ritagliare un immagine di se stessi e proiettarla in un animazione di loro stessi che vivono una vita di successo
 
-Kanish Patel, tech lead on POTP, and developer Fábio Azevedo focused on a succ-sizzle cut out tool, which would allow users to cut out an image of themselves and build a simple animation of them living the successful life.
+Dovevamo creare qualcosa che fosse semplice anche per qualcuno che non fosse un esperto di photoshop eppure producesse un immagine che ci desse una ragionevole libertà creativa. La nostra idea originale era quella di permettere all'utente di ritagliare il corpo intero ma poi abbiamo optato per un immagine tagliata all'altezza del torso perchè gli utenti avrebbero avuto più probabilità di avere un immagine del genere usando un computer; spiega Kanish.
 
-We had to create something that was simple for someone who wasn’t a photoshop expert, and yet would result in an image that gave us a reasonable amount of creative freedom for the animation. Our original idea was for the user to cut out their entire body, but this soon changed to just their upper body simply because we expected visitors were more likely to have such an image on their desktop. Explains Kanish.
+Il prototipo originale del *cut out tool* dava in mano all'utente un pennello virtuale per cancellare le parti dell'immagine che non voleva. Anche se questo approccio funzionava, poteva risultare lungo da eseguire e il risultato era spesso molto grezzo.
 
-Like any project, POTP went through changes, rough drafts and potential full scale experiences.
-
-The original prototype of the cut out tool had the user using a ‘brush’ tool to erase the areas of their image they didn’t want. Although this worked, it could be time consuming to do even a crude cutout of your image, and needed too many tools to be properly usable (brush size, zoom in/out, rotate, undo).
-
+Per la versione finale abbiamo messo l'accento sull'usabilità e minimizzato l'interfaccia a 3 soli strumenti (punta, ruota, annulla) emulando lo strumento penna di photoshop. La versione Tablet dello strumento ha  la capacità aggiuntiva di ingrandire l'area dove agisce il dito in modo da rendere visibile l'azione dell'utente sullo schermo. 
  
-For the final version we put the focus on usability and minimised the interface to 3 tools (point, rotate, undo) by emulating the photoshop pen tool. The Tablet version of the tool includes an additional feature where we show a zoomed bubble above where you tap, since the point you tap will always be obscured by your finger. Explains Kanish.
+Per quanto problematico sembri questo processo, avevamo sempre bisogno di mostrare il risultato finale su un Canvas HTML5, dato che questa è la tecnologia più popolare degli ultimi tempi. Creare un animazione un html da mostrare al cliente attraverso tutte le fasi di approvazione non è semplice. Kanish però ha intravisto delle possibilità
 
- 
-As problematic as this process seemed, they still needed to embed the animation, and as HTML5 Canvas is the popular choice at the moment for web, but creating the animation in html throughout the review process to share with the client would have been significantly time consuming. Kanish saw a number of possibilities.
+Ci sono 4 possibili versioni dell'animazione visto che 2 sezioni sono intercambiabili casualmente. Abbiamo animato e approvato in Flash usando un *placeholder* per l'immagine dell'utente e solo quando avevamo la versione finale dell'animazione questa è stata esportata in HTML5 con un tool Adobe chiamato CreateJS.
 
-There are 4 possible versions of the animation as 2 sections are randomly chosen for each submitted photo. We animated and reviewed the entire video in Flash using a placeholder image for the user image, and only when we had the final version of the animation, then we used a tool from Adobe and CreateJS to export the animation to HTML Canvas.
- 
-The exported animation then required minimal tweaking by developers to replace the placeholder with the user’s image, and to improve the performance somewhat to support as many browsers as possible.
- 
-Through comedy sketches and well worked product placement, Planters manage to encourage the audience to “harness the power of the peanut” and find their inner, and outer, power.
-
-Users can scroll through the website, watching videos from Mr. Peanut’s life-altering program, and explore the impact Planters
+L'animazione esportata ha richiesto solo un minimo intervento per far si che il *placeholder* fosse rimpiazzato dall'immagine dell'utente vera e propria, per ottimizzarne la performance e per renderla compatibile con più browser possibili.
 
 ## Stampa ##
 

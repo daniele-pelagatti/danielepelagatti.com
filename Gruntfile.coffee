@@ -1,7 +1,6 @@
 module.exports = (grunt)->
     # Project configuration.    
     # debugger
-
     env = grunt.option("env") || "prod";
     deploy_user = grunt.option("user");
 
@@ -225,9 +224,10 @@ module.exports = (grunt)->
         site:
             options:
                 optimizationLevel : 7
-            #     pngquant          : false
-            #     interlaced        : true
-            #     progressive       : true
+                pngquant          : true
+                interlaced        : true
+                progressive       : true
+                parallelProcesses : 1
             files: [
                 expand : true
                 cwd    : "src/images/"
@@ -237,9 +237,10 @@ module.exports = (grunt)->
         maya:
             options:
                 optimizationLevel : 7
-            #     pngquant          : false
-            #     interlaced        : true
-            #     progressive       : true
+                pngquant          : true
+                interlaced        : true
+                progressive       : true
+                parallelProcesses : 1
             files: [
                 expand : true
                 cwd    : "src/maya/images/"
