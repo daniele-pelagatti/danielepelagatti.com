@@ -9,4 +9,4 @@ before_install :
     - npm install -g compass
 
 install: npm install
-before_script: grunt minify
+# before_script: grunt minify
