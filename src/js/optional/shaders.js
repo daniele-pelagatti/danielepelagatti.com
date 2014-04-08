@@ -44,7 +44,7 @@ THREE.PlaneShader = {
 		'	// multiply texture over "mouseover" color',
 		'	gl_FragColor.xyz *= texture2D( map, vUv ).xyz;',
 		'	//fresnel reflection',
-		'	#ifdef NO_FRESNEL',
+		'	#ifdef NO_FRESNEL ',
 		'		float flipNormal = 1.0;',
 		'	#else',
 		'		float flipNormal = -1.0 + ( 2.0 * float( gl_FrontFacing ) );',
