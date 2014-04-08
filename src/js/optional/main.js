@@ -1011,7 +1011,7 @@
     };
 
     App.prototype.render = function() {
-      var camX, camY, lim, mrX, mrY, rangeX, rangeY, _ref, _ref1;
+      var camX, camY, camZ, lim, mrX, mrY, rangeX, rangeY, t, _ref, _ref1;
       if (!this.isFocused) {
         rangeX = this.maxCameraX - this.minCameraX;
         rangeY = this.maxCameraY - this.minCameraY;
@@ -1026,11 +1026,15 @@
           camX = (mrX * rangeX) / (lim * 2);
           camY = (mrY * rangeY) / (lim * 2);
         } else {
-          camX = (this.mouseX * rangeX) / this.SCREEN_WIDTH;
+          t = (-this.mouseX * Math.PI) / this.SCREEN_WIDTH;
+          t += Math.PI / 2;
+          camX = 400 * Math.cos(t);
+          camZ = 400 * Math.sin(t);
           camY = (-this.mouseY * rangeY) / this.SCREEN_HEIGHT;
         }
         this.camera.position.x += (camX - this.camera.position.x) * 0.05;
         this.camera.position.y += (camY - this.camera.position.y) * 0.05;
+        this.camera.position.z += (camZ - this.camera.position.z) * 0.05;
         this.camera.lookAt(this.cameraLookAt);
       }
       this.prevMotionAnalysis.x = this.motionAnalysis.rotation.x;
