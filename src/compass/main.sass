@@ -26,8 +26,15 @@ $nomenu-resolution-step      : $nomenu-resolution-range / $nomenu-resolution-num
 	span 
 		display: none
 	
-[class*="fontawesome-"]:before
+[class*="fontawesome-"]:before, [class*="fontawesome-"] .ie-before
 	font-family: 'FontAwesome', sans-serif
+
+// ie7 before and after polyfill
+.lt-ie8 [class*="fontawesome-"]
+	/* ::before polyfill - creates <i class="ie-before"></i> */
+	/* ::after polyfill - creates <i class="ie-after"></i> */
+	zoom: expression(this.runtimeStyle.zoom="1",this.insertBefore( document.createElement("i"), this.firstChild ).className="ie-before",this.appendChild( document.createElement("i") ).className="ie-after")
+
 
 body, html
 	overflow-x: hidden
@@ -447,7 +454,7 @@ main
 	&:visited
 		color: #444
 
-	&:before
+	&:before, .ie-before
 		margin-left: -2px
 
 	background-color: rgba(150,150,150,0.2)//#191818
@@ -475,7 +482,7 @@ main
 	-webkit-border-radius: 2px
 	-khtml-border-radius: 2px	
 
-	&:before
+	&:before, .ie-before
 		margin-left: -2px
 
 	background-color: rgba(150,150,150,0.2)//#191818
