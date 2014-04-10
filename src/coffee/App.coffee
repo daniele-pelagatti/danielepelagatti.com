@@ -238,7 +238,12 @@ class App
 		@pageLanguage = @thisPageConfig.lang
 		@pagePermalink = @thisPageConfig.meta.permalink
 		@pageDepth = @thisPageConfig.depth
-		@pageBase = @thisPageConfig.base;
+
+		if @pageBase == "./" && @thisPageConfig.base == "../"
+			# this happens in the root doc
+			@pageBase = "./"
+		else
+			@pageBase = @thisPageConfig.base;
 
 
 		document.title = "Daniele Pelagatti - "+@thisPageConfig.meta.title

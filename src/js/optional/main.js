@@ -415,7 +415,11 @@
       this.pageLanguage = this.thisPageConfig.lang;
       this.pagePermalink = this.thisPageConfig.meta.permalink;
       this.pageDepth = this.thisPageConfig.depth;
-      this.pageBase = this.thisPageConfig.base;
+      if (this.pageBase === "./" && this.thisPageConfig.base === "../") {
+        this.pageBase = "./";
+      } else {
+        this.pageBase = this.thisPageConfig.base;
+      }
       document.title = "Daniele Pelagatti - " + this.thisPageConfig.meta.title;
       obj3D = this.page3DObjects[newPath];
       if ((this.unfocusingTween != null) && !this.unfocusingTween._active) {
