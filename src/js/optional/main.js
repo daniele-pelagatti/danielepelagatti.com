@@ -461,7 +461,7 @@
         })(this), (function(_this) {
           return function(item) {
             item.attr("href", _this.pageBase + _this.getRelativeLink(item.attr("permalink")).substr(1));
-            return item.parent().removeClass("hover");
+            return item.removeClass("hover");
           };
         })(this));
         if (selectedMenuItem != null) {
@@ -526,9 +526,9 @@
         }
         if (source !== "menu") {
           menuItem = this.findMenuItemByPermalink(plane.page.attr("permalink"), function(item) {
-            return item.parent().removeClass("hover");
+            return item.removeClass("hover");
           });
-          menuItem.parent().addClass("hover");
+          menuItem.addClass("hover");
           this.scrollMenuToItem(menuItem);
         }
       }
@@ -547,7 +547,7 @@
       }
       if (!this.isFocused) {
         menuItem = this.findMenuItemByPermalink(plane.page.attr("permalink"));
-        menuItem.parent().removeClass("hover");
+        menuItem.removeClass("hover");
       }
       return null;
     };

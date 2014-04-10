@@ -290,7 +290,7 @@ class App
 				,
 				(item)=>
 					item.attr("href", @pageBase+@getRelativeLink( item.attr("permalink") ).substr(1) )
-					item.parent().removeClass("hover")
+					item.removeClass("hover")
 				);
 
 			# scroll menu to selected item
@@ -342,8 +342,8 @@ class App
 
 
 			if source != "menu"
-				menuItem = @findMenuItemByPermalink plane.page.attr("permalink"), (item) -> item.parent().removeClass("hover")
-				menuItem.parent().addClass("hover")
+				menuItem = @findMenuItemByPermalink plane.page.attr("permalink"), (item) -> item.removeClass("hover")
+				menuItem.addClass("hover")
 				@scrollMenuToItem(menuItem)
 		null
 		
@@ -356,7 +356,7 @@ class App
 
 		if !@isFocused
 			menuItem = @findMenuItemByPermalink( plane.page.attr("permalink") )
-			menuItem.parent().removeClass("hover")
+			menuItem.removeClass("hover")
 		null
 
 	findMenuItemByPermalink:(permalink,executeOnOthers,executeOnAll)=>		

@@ -1,7 +1,21 @@
+// #  ██╗███╗   ███╗██████╗  ██████╗ ██████╗ ████████╗███████╗
+// #  ██║████╗ ████║██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝
+// #  ██║██╔████╔██║██████╔╝██║   ██║██████╔╝   ██║   ███████╗
+// #  ██║██║╚██╔╝██║██╔═══╝ ██║   ██║██╔══██╗   ██║   ╚════██║
+// #  ██║██║ ╚═╝ ██║██║     ╚██████╔╝██║  ██║   ██║   ███████║
+// #  ╚═╝╚═╝     ╚═╝╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝                                                                                                   
+
 @import "normalize"
 @import "vars-typeplate"
 @import "typeplate"
 @import "bourbon/bourbon"
+
+// #  ██╗   ██╗ █████╗ ██████╗ ███████╗
+// #  ██║   ██║██╔══██╗██╔══██╗██╔════╝
+// #  ██║   ██║███████║██████╔╝███████╗
+// #  ╚██╗ ██╔╝██╔══██║██╔══██╗╚════██║
+// #   ╚████╔╝ ██║  ██║██║  ██║███████║
+// #    ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝    
 
 $menu-width                : 220px
 $menu-visibility-threshold : 1000px
@@ -21,9 +35,18 @@ $nomenu-resolution-step      : $nomenu-resolution-range / $nomenu-resolution-num
 
 
 
+// #  ██╗ ██████╗ ██████╗ ███╗   ██╗███████╗
+// #  ██║██╔════╝██╔═══██╗████╗  ██║██╔════╝
+// #  ██║██║     ██║   ██║██╔██╗ ██║███████╗
+// #  ██║██║     ██║   ██║██║╚██╗██║╚════██║
+// #  ██║╚██████╗╚██████╔╝██║ ╚████║███████║
+// #  ╚═╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝                   
+
+
+
 /* fontawesome */
 [class*="fontawesome-"]
-	span 
+	span
 		display: none
 	
 [class*="fontawesome-"]:before, [class*="fontawesome-"] .ie-before
@@ -34,6 +57,16 @@ $nomenu-resolution-step      : $nomenu-resolution-range / $nomenu-resolution-num
 	/* ::before polyfill - creates <i class="ie-before"></i> */
 	/* ::after polyfill - creates <i class="ie-after"></i> */
 	zoom: expression(this.runtimeStyle.zoom="1",this.insertBefore( document.createElement("i"), this.firstChild ).className="ie-before",this.appendChild( document.createElement("i") ).className="ie-after")
+
+
+
+// #   ██████╗ ██╗      ██████╗ ██████╗  █████╗ ██╗     
+// #  ██╔════╝ ██║     ██╔═══██╗██╔══██╗██╔══██╗██║     
+// #  ██║  ███╗██║     ██║   ██║██████╔╝███████║██║     
+// #  ██║   ██║██║     ██║   ██║██╔══██╗██╔══██║██║     
+// #  ╚██████╔╝███████╗╚██████╔╝██████╔╝██║  ██║███████╗
+// #   ╚═════╝ ╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝                                      
+
 
 *, *:before, *:after
 	+box-sizing(border-box)
@@ -53,8 +86,6 @@ body
 
 h1, h2, h3, h4, h5, h6
 	font-weight: 300
-	// letter-spacing: -0.01em
-	// color: #1f8dd6
 
 hr
 	color: #eee
@@ -63,8 +94,6 @@ hr
 	height: 3px
 	margin-bottom: 1.5em
 
-// h1 + h2
-// 	font-weight: 300
 
 
 a
@@ -83,10 +112,87 @@ blockquote
 	padding-left: 2em
 
 
+// #  ██╗  ██╗ █████╗  ██████╗██╗  ██╗███████╗
+// #  ██║  ██║██╔══██╗██╔════╝██║ ██╔╝██╔════╝
+// #  ███████║███████║██║     █████╔╝ ███████╗
+// #  ██╔══██║██╔══██║██║     ██╔═██╗ ╚════██║
+// #  ██║  ██║██║  ██║╚██████╗██║  ██╗███████║
+// #  ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝
+
+	
+// html specific main sections attributes
+.htmlContent
+	+position(relative, 0px 0 0 0px)
+	display: block
+	width: 100%
 
 
+	main
+		position: relative
 
-// shared main sections atributes, both for threejs and plain html representations 
+		padding-left: $menu-width
+		@media screen and (min-width: $menu-visibility-threshold)
+			padding-left: $menu-width
+		@media screen and (max-width: $menu-visibility-threshold)
+			padding-left: 0
+		@media print
+			padding-left: 0
+
+		+transition (padding-left 1.0s ease-in-out)
+
+// threejs specific main sections attributes
+.javascriptContent
+	+position(absolute, 0px 0 0 0px)
+	overflow: hidden
+	// z-index: 1
+	left: $menu-width
+	@media screen and (min-width: $menu-visibility-threshold)
+		left: $menu-width
+	@media screen and (max-width: $menu-visibility-threshold)
+		left: 0px
+	+transition (left 1.0s ease-in-out)
+
+
+	main
+		background-color: rgba(250,250,250,0.9)
+
+	.object3DContainer
+		
+		height : 100%
+		overflow-y: auto
+		+transition (width 0.5s ease-in-out)
+
+		width: $max-3d-page-width
+
+		// resolution is larger that our layout
+		@media screen and (min-width: $resize-resolution-begin)
+			width: $max-3d-page-width
+
+		// when menu is on screen
+		@for $i from 1 through $resize-resolution-num-steps
+			$step : $resize-resolution-step * $i
+			$startwidth : $resize-resolution-begin - $step
+			$endwidth : $startwidth + $resize-resolution-step
+			@media screen and (max-width: $endwidth) and (min-width: $startwidth)
+				width: $max-3d-page-width - $step
+
+		// when menu is not on screen
+		@for $i from 1 through $nomenu-resolution-num-steps
+			$step : $nomenu-resolution-step * $i
+			$startwidth : $nomenu-resolution-begin - $step
+			$endwidth : $startwidth + $nomenu-resolution-step
+			@media screen and (max-width: $endwidth) and (min-width: $startwidth)
+				width: ( $nomenu-resolution-begin - $step ) -$min-space-left-right
+
+			
+// #  ███╗   ███╗ █████╗ ██╗███╗   ██╗
+// #  ████╗ ████║██╔══██╗██║████╗  ██║
+// #  ██╔████╔██║███████║██║██╔██╗ ██║
+// #  ██║╚██╔╝██║██╔══██║██║██║╚██╗██║
+// #  ██║ ╚═╝ ██║██║  ██║██║██║ ╚████║
+// #  ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝
+
+
 main
 	background-color: #fafafa
 	display: block
@@ -102,7 +208,7 @@ main
 		.videoWrapper
 			position: relative
 			padding-bottom: 56.25% /* 16:9 */
-			padding-top: 25px
+			padding-top: 1.78em
 			height: 0
 
 			iframe, object
@@ -151,88 +257,19 @@ main
 				border-radius: 5px
 				-moz-border-radius: 5px
 				-webkit-border-radius: 5px
-				-khtml-border-radius: 5px	
-				// max-width: 100%
-				// min-width: 100px
+				-khtml-border-radius: 5px
 				width: 100%
 				height: auto
 
-	
-// html specific main sections attributes
-.htmlContent
-	+position(relative, 0px 0 0 0px)
-	display: block
-	width: 100%
+
+// #  ███╗   ███╗███████╗███╗   ██╗██╗   ██╗
+// #  ████╗ ████║██╔════╝████╗  ██║██║   ██║
+// #  ██╔████╔██║█████╗  ██╔██╗ ██║██║   ██║
+// #  ██║╚██╔╝██║██╔══╝  ██║╚██╗██║██║   ██║
+// #  ██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝
+// #  ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝
 
 
-	main
-		position: relative
-
-		padding-left: $menu-width
-		@media screen and (min-width: $menu-visibility-threshold)
-			padding-left: $menu-width
-		@media screen and (max-width: $menu-visibility-threshold)
-			padding-left: 0
-		@media print
-			padding-left: 0
-
-		+transition (padding-left 1.0s ease-in-out)
-
-// threejs specific main sections attributes
-.javascriptContent
-	+position(absolute, 0px 0 0 0px)
-	overflow: hidden
-	// z-index: 1
-	left: $menu-width
-	@media screen and (min-width: $menu-visibility-threshold)
-		left: $menu-width
-	@media screen and (max-width: $menu-visibility-threshold)
-		left: 0px
-
-
-	main
-		background-color: rgba(250,250,250,0.9)
-		// border-top: 2.5em solid rgba(240,240,240,0.9)
-		// border-bottom: 2.5em solid rgba(240,240,240,0.9)
-		// border-left: 0.3em solid rgba(240,240,240,0.9)
-		// border-right: 0.3em solid rgba(240,240,240,0.9)	
-
-	+transition (left 1.0s ease-in-out)
-
-
-	.object3DContainer
-		
-		height : 100%
-		overflow-y: auto
-		+transition (width 0.5s ease-in-out)
-
-		width: $max-3d-page-width
-
-		// resolution is larger that our layout
-		@media screen and (min-width: $resize-resolution-begin)
-			width: $max-3d-page-width
-
-		// when menu is on screen
-		@for $i from 1 through $resize-resolution-num-steps
-			$step : $resize-resolution-step * $i
-			$startwidth : $resize-resolution-begin - $step
-			$endwidth : $startwidth + $resize-resolution-step
-			@media screen and (max-width: $endwidth) and (min-width: $startwidth)
-				width: $max-3d-page-width - $step
-
-		// when menu is not on screen
-		@for $i from 1 through $nomenu-resolution-num-steps
-			$step : $nomenu-resolution-step * $i
-			$startwidth : $nomenu-resolution-begin - $step
-			$endwidth : $startwidth + $nomenu-resolution-step
-			@media screen and (max-width: $endwidth) and (min-width: $startwidth)
-				width: ( $nomenu-resolution-begin - $step ) -$min-space-left-right
-
-			
-
-
-
-// Global Menu
 .menu
 	position: fixed
 	top: 0
@@ -243,7 +280,6 @@ main
 	overflow: hidden
 	overflow-y: auto
 	z-index : 1
-	// text-shadow: 0 1px 0 #000
 	width: $menu-width
 	+transition (left 1.0s ease-in-out)
 
@@ -261,20 +297,14 @@ main
 
 	.myName, .mySurname
 		display: block
-		// width: 100%
-
 		a
 			font-family: "Open Sans Condensed", sans-serif
 			word-wrap: normal
 			word-break: normal
 			color: #bfbfbf
 			font-weight: 300
-			// @media screen and (min-width: $menu-visibility-threshold)
-			+type-scale($beta,$font-base,rem)
-			// @media screen and (max-width: $menu-visibility-threshold)
-			// 	+type-scale($epsilon,$font-base,rem)				
+			+type-scale($beta,$font-base,rem)		
 			display: block
-			// text-transform: uppercase
 			line-height: 1em
 			letter-spacing: 0.15em
 			padding: 0.35em
@@ -283,91 +313,76 @@ main
 				color: #bfbfbf
 
 
-
 	.myName
 		a
 			padding-bottom: 0em
-
 	.mySurname
 		a
 			border-bottom: 1px solid #333
 			padding-top: 0em
 
-
-
-	// .socialMenu
-	// 	text-align: center
-
-	nav
-		padding: 0
-		margin: 0	
-
-		h1
-			// @media screen and (min-width: $menu-visibility-threshold)
-			+type-scale($epsilon,$font-base,rem)
-			// @media screen and (max-width: $menu-visibility-threshold)
-			// 	+type-scale($zeta,$font-base,rem)	
-			padding: 1em
-			padding-left: 0.5em
-			display: block
-			font-weight: 400
-			// &:hover
-			// 	color: #999		
-			color: #444
-			margin-bottom: 0
-
-		[class*="fontawesome-"]
-			padding: 0.65em
-			// margin-right: 0.65em
+	.socialMenu
+		padding-top: 0.65em
+		padding-bottom: 0.65em
+		.social-icon
+			padding-left: 0.65em
+			padding-right: 0.65em
 			display: inline-block
-			// @media screen and (min-width: $menu-visibility-threshold)
 			+type-scale($delta,$font-base,rem)
-			// @media screen and (max-width: $menu-visibility-threshold)
-			// 	+type-scale($epsilon,$font-base,rem)
 			font-weight: normal
 			color: #333
 
 			&:hover
 				color: #999
 
+
+	nav
+		padding: 0
+		margin: 0	
+
+		h1
+			+type-scale($epsilon,$font-base,rem)
+			padding: 1em
+			padding-left: 0.5em
+			display: block
+			font-weight: 400
+			color: #444
+			margin-bottom: 0
+
 		ul	
 			padding: 0
 			margin: 0
 			li
 				list-style: none
-
-
-				&:hover, &.hover
-					a
-						background-color: #333
-						// +transform(rotateX(360deg) translateZ(1px))
-				
+				margin: 0px
+				padding: 0px
+				// for ie6
+				display: block
+				width: 100%
 
 				a
 					display: block
+					width: 100%
 					padding: 1em
 					color: #999
 					font-weight: 300
-					// @media screen and (min-width: $menu-visibility-threshold)
 					+type-scale(14,$font-base,rem)
-					// @media screen and (max-width: $menu-visibility-threshold)
-					// 	+type-scale($zeta0,$font-base,rem)
-
 					+transition(all 0.2s ease-in-out)
-					// +transition(-webkit-transform 0.3s ease-in-out)
-					// +transition(-moz-transform 0.3s ease-in-out)
-					// +transition(-o-transform 0.3s ease-in-out)
-					// +transition(transform 0.3s ease-in-out)
-
 					&:visited
 						color: #999
-
-
-
-
+					&.hover, &:hover
+						background-color: #333
 					&.selected
 						background-color: #1f8dd6
 						color: #fff
+
+ 
+// #  ███╗   ███╗██╗███████╗ ██████╗
+// #  ████╗ ████║██║██╔════╝██╔════╝
+// #  ██╔████╔██║██║███████╗██║     
+// #  ██║╚██╔╝██║██║╚════██║██║     
+// #  ██║ ╚═╝ ██║██║███████║╚██████╗
+// #  ╚═╝     ╚═╝╚═╝╚══════╝ ╚═════╝
 
 
 #lean_overlay
@@ -392,13 +407,6 @@ main
 	border-bottom: 3em solid #f0f0f0
 	border-left: 0.3em solid #f0f0f0
 	border-right: 0.3em solid #f0f0f0
-	
-	// border-radius: 5px
-	// -moz-border-radius: 5px
-	// -webkit-border-radius: 5px
-	// box-shadow: 0px 0px 4px rgba(0,0,0,0.7)
-	// -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.7)
-	// -moz-box-shadow: 0 0px 4px rgba(0,0,0,0.7)
 
 
 #no-webgl-warning
@@ -525,4 +533,27 @@ main
 		position: absolute
 	.no-webgl-warning-button
 		position: absolute
-		// display: none
+
+.lt-ie8
+	.social-icon
+		display: block
+		width: 100%	
+		padding: 0.5em
+		&:visited
+			color: #999
+		&.selected
+			background-color: #1f8dd6
+			color: #fff
+		&.hover, &:hover
+			background-color: #333
+		span
+			display: inline
+			color: #999
+			font-weight: 300
+			+type-scale(13,$font-base,rem)
+
+	[class*="fontawesome-"]
+		span
+			display: inline
+			font-weight: 300
+			+type-scale(13,$font-base,rem)
