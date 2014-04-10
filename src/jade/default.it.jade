@@ -18,13 +18,13 @@ body
 			nav.socialMenu
 				//- a.fontawesome-envelope-alt(title="Send Email" href="http://www.github.com" target="_blank")
 				a.fontawesome-info-sign.website-info-button(title="Info sul Sito" href="#about" ) 
-					span Info sul Sito 
+					span Info sul Sito | 
 				a.fontawesome-google-plus-sign(title="Contatta in Google+" href="https://plus.google.com/+DanielePelagatti" target="_blank") 
-					span Contatta in Google+ 
+					span Contatta in Google+ | 
 				a.fontawesome-twitter-sign(title="Segui su Twitter" href="https://twitter.com/redde81" target="_blank") 
-					span Segui su Twitter 
+					span Segui su Twitter | 
 				a.fontawesome-github-sign(title="Vedi Progetti GitHub" href="https://github.com/redde81" target="_blank") 
-					span Vedi Progetti GitHub 
+					span Vedi Progetti GitHub | 
 				a.fontawesome-linkedin-sign(title="Contatta in Linkedin" href="http://lnkd.in/BkMX7G" target="_blank") 
 					span Contatta in Linkedin 
 			
@@ -47,20 +47,20 @@ body
 							else
 								a(href=getRelativeLink(val) permalink=val.link)=val.meta.title
 		main
-			if banner != null || banner != undefined
-				img.banner(src="#{base}#{banner}")
-			article!=extractVars(content)
-			aside#no-webgl-warning
-				h4 ATTENZIONE: Stai visualizzando una versione semplificata di questo sito. 
-				p
-					| Per vedere la versione completa, utilizzare un 
-					a(href="http://www.google.com/chrome/") browser con supporto WebGL 
-					| e 
-					a(href="http://windows.microsoft.com/it-it/windows-8/find-install-display-drivers") aggiornare i driver della scheda video 
-					| all'ultima versione.
+			- var layoutStyle = (banner != null || banner != undefined) ?  "background-image:url("+base+banner+")" : "";
+			div(class="layout" style=layoutStyle)
+				article!=extractVars(content)
+				aside#no-webgl-warning
+					h4 ATTENZIONE: Stai visualizzando una versione semplificata di questo sito. 
+					p
+						| Per vedere la versione completa, utilizzare un 
+						a(href="http://www.google.com/chrome/") browser con supporto WebGL 
+						| e 
+						a(href="http://windows.microsoft.com/it-it/windows-8/find-install-display-drivers") aggiornare i driver della scheda video 
+						| all'ultima versione.
 
-			a(href="#no-webgl-warning").fontawesome-warning-sign.no-webgl-warning-button
-				span Attenzione
+				a(href="#no-webgl-warning").fontawesome-warning-sign.no-webgl-warning-button
+					span Attenzione
 	div.javascriptContent
 
 	div.fontawesome-remove.close-page
