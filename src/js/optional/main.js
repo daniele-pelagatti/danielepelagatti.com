@@ -415,7 +415,11 @@
       this.pageLanguage = this.thisPageConfig.lang;
       this.pagePermalink = this.thisPageConfig.meta.permalink;
       this.pageDepth = this.thisPageConfig.depth;
-      this.pageBase = this.thisPageConfig.base;
+      if (this.pageBase === "./" && this.thisPageConfig.base === "../") {
+        this.pageBase = "./";
+      } else {
+        this.pageBase = this.thisPageConfig.base;
+      }
       document.title = "Daniele Pelagatti - " + this.thisPageConfig.meta.title;
       obj3D = this.page3DObjects[newPath];
       if ((this.unfocusingTween != null) && !this.unfocusingTween._active) {
@@ -461,7 +465,7 @@
         })(this), (function(_this) {
           return function(item) {
             item.attr("href", _this.pageBase + _this.getRelativeLink(item.attr("permalink")).substr(1));
-            return item.parent().removeClass("hover");
+            return item.removeClass("hover");
           };
         })(this));
         if (selectedMenuItem != null) {
@@ -526,9 +530,9 @@
         }
         if (source !== "menu") {
           menuItem = this.findMenuItemByPermalink(plane.page.attr("permalink"), function(item) {
-            return item.parent().removeClass("hover");
+            return item.removeClass("hover");
           });
-          menuItem.parent().addClass("hover");
+          menuItem.addClass("hover");
           this.scrollMenuToItem(menuItem);
         }
       }
@@ -547,7 +551,7 @@
       }
       if (!this.isFocused) {
         menuItem = this.findMenuItemByPermalink(plane.page.attr("permalink"));
-        menuItem.parent().removeClass("hover");
+        menuItem.removeClass("hover");
       }
       return null;
     };
@@ -1029,8 +1033,10 @@
           camX = (this.mouseX * rangeX) / this.SCREEN_WIDTH;
           camY = (-this.mouseY * rangeY) / this.SCREEN_HEIGHT;
         }
-        this.camera.position.x += (camX - this.camera.position.x) * 0.05;
-        this.camera.position.y += (camY - this.camera.position.y) * 0.05;
+        if ((camX != null) && (camY != null) && !isNaN(camX) && !isNaN(camY)) {
+          this.camera.position.x += (camX - this.camera.position.x) * 0.05;
+          this.camera.position.y += (camY - this.camera.position.y) * 0.05;
+        }
         this.camera.lookAt(this.cameraLookAt);
       }
       this.prevMotionAnalysis.x = this.motionAnalysis.rotation.x;

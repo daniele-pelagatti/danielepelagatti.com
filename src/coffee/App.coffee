@@ -238,7 +238,12 @@ class App
 		@pageLanguage = @thisPageConfig.lang
 		@pagePermalink = @thisPageConfig.meta.permalink
 		@pageDepth = @thisPageConfig.depth
-		@pageBase = @thisPageConfig.base;
+
+		if @pageBase == "./" && @thisPageConfig.base == "../"
+			# this happens in the root doc
+			@pageBase = "./"
+		else
+			@pageBase = @thisPageConfig.base;
 
 
 		document.title = "Daniele Pelagatti - "+@thisPageConfig.meta.title
@@ -290,7 +295,7 @@ class App
 				,
 				(item)=>
 					item.attr("href", @pageBase+@getRelativeLink( item.attr("permalink") ).substr(1) )
-					item.parent().removeClass("hover")
+					item.removeClass("hover")
 				);
 
 			# scroll menu to selected item
@@ -342,8 +347,8 @@ class App
 
 
 			if source != "menu"
-				menuItem = @findMenuItemByPermalink plane.page.attr("permalink"), (item) -> item.parent().removeClass("hover")
-				menuItem.parent().addClass("hover")
+				menuItem = @findMenuItemByPermalink plane.page.attr("permalink"), (item) -> item.removeClass("hover")
+				menuItem.addClass("hover")
 				@scrollMenuToItem(menuItem)
 		null
 		
@@ -356,7 +361,7 @@ class App
 
 		if !@isFocused
 			menuItem = @findMenuItemByPermalink( plane.page.attr("permalink") )
-			menuItem.parent().removeClass("hover")
+			menuItem.removeClass("hover")
 		null
 
 	findMenuItemByPermalink:(permalink,executeOnOthers,executeOnAll)=>		
@@ -886,19 +891,21 @@ class App
 				camX = ( mrX * rangeX ) / (lim*2)
 				camY = ( mrY * rangeY ) / (lim*2)
 			else
-
 				camX = ( @mouseX * rangeX ) / @SCREEN_WIDTH
 				camY = ( -@mouseY * rangeY ) / @SCREEN_HEIGHT
 
+			# console.log(camX,camY, @camera.position.x, @camera.position.y)
 
-			@camera.position.x += ( camX - @camera.position.x ) * 0.05;
-			@camera.position.y += ( camY - @camera.position.y ) * 0.05;
+			if camX? && camY? && !isNaN(camX) && !isNaN(camY)
+				@camera.position.x += ( camX - @camera.position.x ) * 0.05;
+				@camera.position.y += ( camY - @camera.position.y ) * 0.05;
+				# @camera.position.z += ( camZ - @camera.position.z ) * 0.05;
 
 
 
 			@camera.lookAt( @cameraLookAt );
 
-
+		
 		@prevMotionAnalysis.x = @motionAnalysis.rotation.x
 		@prevMotionAnalysis.y = @motionAnalysis.rotation.y
 		@prevMotionAnalysis.z = @motionAnalysis.rotation.z

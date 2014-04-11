@@ -1,6 +1,67 @@
 {
   "name": "danielepelagatti.com",
   "description": "A static responsive threejs site generated using grunt tasks, jade, coffeescript, compass and markdown",
+  "version": "1.0",
+  "author": {
+    "name": "Daniele Pelagatti",
+    "email": "daniele.pelagatti@unit9.com",
+    "url": "http://www.danielepelagatti.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/redde81/danielepelagatti.com"
+  },
+  "bugs": {
+    "url": "https://github.com/redde81/danielepelagatti.com/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/redde81/danielepelagatti.com/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.10.25"
+  },
+  "devDependencies": {
+    "grunt-contrib-compass": "^0.7.2",
+    "grunt-contrib-coffee": "^0.10.1",
+    "grunt-contrib-jade": "^0.11.0",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-contrib-watch": "^0.6.0",
+    "grunt-glsl-threejs": "~0.1.4",
+    "grunt-concurrent": "~0.5.0",
+    "grunt-contrib-connect": "~0.7.1",
+    "connect-livereload": "~0.3.2",
+    "http-rewrite-middleware": "~0.1.5",
+    "grunt-modernizr": "~0.5.2",
+    "grunt-contrib-cssmin": "~0.9.0",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-rsync": "^0.5.0",
+    "load-grunt-tasks": "~0.4.0",
+    "meta-marked": "~0.3.1",
+    "chalk": "^0.4.0",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-jsonmin": "~0.2.4",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-imagemin": "~0.6.1",
+    "grunt": "^0.4.4",
+    "uglify-js": "^2.4.13",
+    "grunt-notify": "~0.2.20",
+    "grunt-coffee-percolator": "git://github.com/redde81/grunt-coffee-percolator",
+    "grunt-contrib-htmlmin": "~0.2.0"
+  },
+  "scripts": {
+    "test": "grunt minify",
+    "preinstall": "npm install -g grunt-cli coffee-script jade compass"
+  },
+  "keywords": [
+    "grunt",
+    "markdown",
+    "jade",
+    "compass",
+    "threejs"
+  ],
   "destination_host": "http://www.danielepelagatti.com",
   "www_folder": "public_html",
   "watch_folder": "src",
@@ -19,35 +80,5 @@
   "minified_optional_js_file": "public_html/js/optional.min.js",
   "minified_main_css_input_file": "public_html/css/main.css",
   "minified_main_css_file": "public_html/css/main.min.css",
-  "config_json": "public_html/config.json",
-  "devDependencies": {
-    "grunt-contrib-compass": "^0.7.2",
-    "grunt-contrib-coffee": "^0.10.1",
-    "grunt-contrib-jade": "^0.11.0",
-    "grunt-contrib-uglify": "^0.4.0",
-    "grunt-contrib-watch": "^0.6.0",
-    "grunt-coffee-percolator-v2": "^0.2.4",
-    "grunt-glsl-threejs": "~0.1.4",
-    "grunt-concurrent": "~0.5.0",
-    "grunt-contrib-connect": "~0.7.1",
-    "connect-livereload": "~0.3.2",
-    "http-rewrite-middleware": "~0.1.5",
-    "grunt-modernizr": "~0.5.2",
-    "grunt-contrib-cssmin": "~0.9.0",
-    "grunt-contrib-copy": "^0.5.0",
-    "grunt-rsync": "^0.5.0",
-    "load-grunt-tasks": "~0.4.0",
-    "meta-marked": "~0.3.1",
-    "chalk": "^0.4.0",
-    "grunt-contrib-clean": "^0.5.0",
-    "grunt-jsonmin": "~0.2.4",
-    "grunt-contrib-concat": "~0.4.0",
-    "grunt-contrib-imagemin": "~0.6.1",
-    "grunt": "^0.4.4",
-    "uglify-js": "^2.4.13"
-  },
-  "scripts": {
-    "test": "grunt minify",
-    "preinstall": "npm install -g grunt-cli coffee-script jade compass"
-  }
+  "config_json": "public_html/config.json"
 }

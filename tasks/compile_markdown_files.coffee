@@ -16,6 +16,9 @@ module.exports = (grunt)->
 
         globalJadeConfig = {}
 
+        meta_marked.setOptions
+            smartypants: true
+
         # building jade templates compilation based on markdown files
         isMarkDown = new RegExp("^.*\\.md$");
 

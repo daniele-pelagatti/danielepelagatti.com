@@ -4,6 +4,9 @@ module.exports = (grunt)->
     env = grunt.option("env") || "prod";
     deploy_user = grunt.option("user");
 
+    grunt.task.loadTasks("tasks")
+    require("load-grunt-tasks")(grunt);
+
     rewriteModule = require("http-rewrite-middleware");
 
     optional_files = [
@@ -47,50 +50,43 @@ module.exports = (grunt)->
 
     gruntConfig.watch =
         options:
-            livereload: 35729                
+            livereload : 35729
+            interrupt  : true            
         coffee:
             files: [gruntConfig.pkg.watch_folder+"/**/*.coffee"]
-            tasks: if env == "prod" then ["percolator","uglify:optional"] else ["percolator","concat:optional"]
+            tasks: if env == "prod" then ["percolator","uglify:optional","notify:js"] else ["percolator","concat:optional","notify:js"]
         glsl_threejs:
             files: [gruntConfig.pkg.watch_folder+"/**/*.{frag,vert}"]
-            tasks: if env == "prod" then ["glsl_threejs","uglify:optional"] else ["glsl_threejs","concat:optional"]
+            tasks: if env == "prod" then ["glsl_threejs","uglify:optional","notify:js"] else ["glsl_threejs","concat:optional","notify:js"]
         compass:
             files: [gruntConfig.pkg.watch_folder+"/**/*.{scss,sass}"]
-            tasks: if env == "prod" then ["compass","cssmin"] else ["compass","concat:css"]
+            tasks: if env == "prod" then ["compass","cssmin","notify:css"] else ["compass","concat:css","notify:css"]
         jsonmin:
             files: [gruntConfig.pkg.watch_folder+"/maya/data/*.json"]
-            tasks: if env == "prod" then  ["jsonmin"] else ["copy:json"]            
+            tasks: if env == "prod" then  ["jsonmin","notify:json"] else ["copy:json","notify:json"]            
         jade:
             files: [gruntConfig.pkg.watch_folder+"/**/*.{jade,md}"]
-            tasks: ["compile_markdown_files"]
+            tasks: if env == "prod" then  ["compile_markdown_files","htmlmin","notify:markdown"] else ["compile_markdown_files","notify:markdown"]
 
         uglify_essential :
             files: [gruntConfig.pkg.watch_folder+"/js/essential/*.js"]
-            tasks: if env == "prod" then  ["uglify:essential"] else ["concat:essential"]
-
-        # uglify_optional :
-        #     files: [gruntConfig.pkg.watch_folder+"/js/optional/*.js"]
-        #     tasks: ["uglify:optional"]
-        # cssmin :
-        #     files: [gruntConfig.pkg.watch_folder+"/**/*.css"]
-        #     tasks: ["cssmin"]
-
+            tasks: if env == "prod" then  ["uglify:essential","notify:js"] else ["concat:essential","notify:js"]
 
         imagemin :
             files: [gruntConfig.pkg.watch_folder+"/images/**/*.{jpg,png,gif}"]
-            tasks: ["imagemin:site"]
+            tasks: ["imagemin:site","notify:images"]
         imagemin2 :
             files: [gruntConfig.pkg.watch_folder+"/maya/images/**/*.{jpg,png,gif}"]
-            tasks: ["imagemin:maya"]
+            tasks: ["imagemin:maya","notify:images"]
         copy :
             files: [gruntConfig.pkg.watch_folder+"/include/**"]
-            tasks: ["copy"]
+            tasks: ["copy","notify:includes"]
 
 
     gruntConfig.concurrent =
         options:
             logConcurrentOutput : true
-        default: ["watch", "connect"]
+        default: ["watch", "connect","notify:server"]
 
     gruntConfig.connect =
         default:
@@ -127,7 +123,7 @@ module.exports = (grunt)->
 
     gruntConfig.uglify =
         options :
-            banner       : "/*! <%= pkg.name %> <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
+            banner       : "/*! <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
             drop_console : true
         optional :
             files : {}
@@ -140,7 +136,7 @@ module.exports = (grunt)->
     gruntConfig.cssmin =
         all :
             options:
-                banner              : "/*! <%= pkg.name %> <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
+                banner              : "/*! <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
                 keepSpecialComments : false
             files :{}
 
@@ -261,22 +257,63 @@ module.exports = (grunt)->
                 dest : "/home2/"+deploy_user
                 host : deploy_user+"@danielepelagatti.com"
 
-    grunt.initConfig(gruntConfig)
 
-    grunt.task.loadTasks("tasks")
-    require("load-grunt-tasks")(grunt);
+    gruntConfig.htmlmin = 
+        all :
+            options: 
+                removeComments: true
+                collapseWhitespace: true
+
+            files: [
+                expand : true
+                cwd    : gruntConfig.pkg.www_folder
+                src    : ["**/*.{html,shtml}"]
+                dest   : gruntConfig.pkg.www_folder
+            ]
+
+
+    gruntConfig.notify = 
+        server:
+            options:
+                message: "Server Ready" 
+        rsync:
+            options:
+                message: "Rsync Done"
+        images:
+            options:
+                message: "Images compiled"
+        markdown:
+            options:
+                message: "Markdown files compiled"
+        json:
+            options:
+                message: "Json files compiled"
+        css:
+            options:
+                message: "CSS files compiled"
+        js:
+            options:
+                message: "JS files compiled"
+        includes:
+            options:
+                message: "Includes files copied"
+        build:
+            options:
+                message: "Build Done"                
+
+    grunt.initConfig(gruntConfig)
 
     
     # Default task(s).
     grunt.registerTask("deploy", ["rsync"]);
 
     if env == "prod"
-        grunt.registerTask("build", ["clean","imagemin","copy:include","percolator","compass","glsl_threejs","compile_markdown_files","uglify","cssmin","jsonmin","modernizr"]);
+        grunt.registerTask("build", ["clean","imagemin","copy:include","percolator","compass","glsl_threejs","compile_markdown_files","uglify","cssmin","jsonmin","modernizr","htmlmin","notify:build"]);
         # deploy only production
     else
-        grunt.registerTask("build", ["clean","imagemin","copy","percolator","compass","glsl_threejs","compile_markdown_files","concat","modernizr"]);
+        grunt.registerTask("build", ["clean","imagemin","copy","percolator","compass","glsl_threejs","compile_markdown_files","concat","modernizr","notify:build"]);
     
 
-    grunt.registerTask("minify", ["copy:include","percolator","compass","glsl_threejs","compile_markdown_files","uglify","cssmin","jsonmin","modernizr"]);
+    grunt.registerTask("minify", ["copy:include","percolator","compass","glsl_threejs","compile_markdown_files","uglify","cssmin","jsonmin","modernizr","notify:build"]);
     
     grunt.registerTask("default", ["build","concurrent"]);
