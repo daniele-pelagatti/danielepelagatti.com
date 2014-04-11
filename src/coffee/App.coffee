@@ -891,30 +891,21 @@ class App
 				camX = ( mrX * rangeX ) / (lim*2)
 				camY = ( mrY * rangeY ) / (lim*2)
 			else
-
 				camX = ( @mouseX * rangeX ) / @SCREEN_WIDTH
 				camY = ( -@mouseY * rangeY ) / @SCREEN_HEIGHT
 
-				# @mouseX : @SCREEN_WIDTH = x : Math.PI/2
+			# console.log(camX,camY, @camera.position.x, @camera.position.y)
 
-				# t = ( -@mouseX * Math.PI ) / @SCREEN_WIDTH
-				# t += Math.PI/2
-				
-				# camX = 400 * Math.cos(t)
-				# camZ = 400 * Math.sin(t)
-
-				# camY = ( -@mouseY * rangeY ) / @SCREEN_HEIGHT
-
-
-			@camera.position.x += ( camX - @camera.position.x ) * 0.05;
-			@camera.position.y += ( camY - @camera.position.y ) * 0.05;
-			# @camera.position.z += ( camZ - @camera.position.z ) * 0.05;
+			if camX? && camY? && !isNaN(camX) && !isNaN(camY)
+				@camera.position.x += ( camX - @camera.position.x ) * 0.05;
+				@camera.position.y += ( camY - @camera.position.y ) * 0.05;
+				# @camera.position.z += ( camZ - @camera.position.z ) * 0.05;
 
 
 
 			@camera.lookAt( @cameraLookAt );
 
-
+		
 		@prevMotionAnalysis.x = @motionAnalysis.rotation.x
 		@prevMotionAnalysis.y = @motionAnalysis.rotation.y
 		@prevMotionAnalysis.z = @motionAnalysis.rotation.z

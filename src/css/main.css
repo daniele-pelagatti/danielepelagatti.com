@@ -910,7 +910,7 @@ blockquote {
 /* line 130, ../compass/main.sass */
 .htmlContent main {
   position: relative;
-  padding-left: 220px;
+  padding-left: 225px;
   -webkit-transition: padding-left 1s ease-in-out;
   -moz-transition: padding-left 1s ease-in-out;
   transition: padding-left 1s ease-in-out;
@@ -918,7 +918,7 @@ blockquote {
 @media screen and (min-width: 1000px) {
   /* line 130, ../compass/main.sass */
   .htmlContent main {
-    padding-left: 220px;
+    padding-left: 225px;
   }
 }
 @media screen and (max-width: 1000px) {
@@ -940,7 +940,7 @@ blockquote {
   top: 0px;
   left: 0px;
   overflow: hidden;
-  left: 220px;
+  left: 225px;
   -webkit-transition: left 1s ease-in-out;
   -moz-transition: left 1s ease-in-out;
   transition: left 1s ease-in-out;
@@ -948,7 +948,7 @@ blockquote {
 @media screen and (min-width: 1000px) {
   /* line 144, ../compass/main.sass */
   .javascriptContent {
-    left: 220px;
+    left: 225px;
   }
 }
 @media screen and (max-width: 1000px) {
@@ -970,40 +970,40 @@ blockquote {
   transition: width 0.5s ease-in-out;
   width: 950px;
 }
-@media screen and (min-width: 1242px) {
+@media screen and (min-width: 1247px) {
   /* line 159, ../compass/main.sass */
   .javascriptContent .object3DContainer {
     width: 950px;
   }
 }
-@media screen and (max-width: 1242px) and (min-width: 1193.6px) {
+@media screen and (max-width: 1247px) and (min-width: 1197.6px) {
   /* line 159, ../compass/main.sass */
   .javascriptContent .object3DContainer {
-    width: 901.6px;
+    width: 900.6px;
   }
 }
-@media screen and (max-width: 1193.6px) and (min-width: 1145.2px) {
+@media screen and (max-width: 1197.6px) and (min-width: 1148.2px) {
   /* line 159, ../compass/main.sass */
   .javascriptContent .object3DContainer {
-    width: 853.2px;
+    width: 851.2px;
   }
 }
-@media screen and (max-width: 1145.2px) and (min-width: 1096.8px) {
+@media screen and (max-width: 1148.2px) and (min-width: 1098.8px) {
   /* line 159, ../compass/main.sass */
   .javascriptContent .object3DContainer {
-    width: 804.8px;
+    width: 801.8px;
   }
 }
-@media screen and (max-width: 1096.8px) and (min-width: 1048.4px) {
+@media screen and (max-width: 1098.8px) and (min-width: 1049.4px) {
   /* line 159, ../compass/main.sass */
   .javascriptContent .object3DContainer {
-    width: 756.4px;
+    width: 752.4px;
   }
 }
-@media screen and (max-width: 1048.4px) and (min-width: 1000px) {
+@media screen and (max-width: 1049.4px) and (min-width: 1000px) {
   /* line 159, ../compass/main.sass */
   .javascriptContent .object3DContainer {
-    width: 708px;
+    width: 703px;
   }
 }
 @media screen and (max-width: 1000px) and (min-width: 955px) {
@@ -1212,7 +1212,7 @@ main .layout article * img {
   overflow: hidden;
   overflow-y: auto;
   z-index: 1;
-  width: 220px;
+  width: 225px;
   -webkit-transition: left 1s ease-in-out;
   -moz-transition: left 1s ease-in-out;
   transition: left 1s ease-in-out;
@@ -1227,7 +1227,7 @@ main .layout article * img {
 @media screen and (max-width: 1000px) {
   /* line 273, ../compass/main.sass */
   .menu {
-    left: -220px;
+    left: -225px;
   }
 }
 @media print {
@@ -1451,7 +1451,7 @@ main .layout article * img {
   -moz-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
   display: none;
-  left: 221px;
+  left: 226px;
 }
 /* line 478, ../compass/main.sass */
 .show-menu:before, .show-menu .ie-before {
@@ -1461,7 +1461,7 @@ main .layout article * img {
   /* line 464, ../compass/main.sass */
   .show-menu {
     display: none;
-    left: 221px;
+    left: 226px;
   }
 }
 @media screen and (max-width: 1000px) {
@@ -1478,7 +1478,7 @@ main .layout article * img {
 }
 /* line 501, ../compass/main.sass */
 .show-menu.force-hide {
-  left: 221px;
+  left: 226px;
 }
 
 /* line 504, ../compass/main.sass */

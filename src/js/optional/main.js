@@ -1033,8 +1033,10 @@
           camX = (this.mouseX * rangeX) / this.SCREEN_WIDTH;
           camY = (-this.mouseY * rangeY) / this.SCREEN_HEIGHT;
         }
-        this.camera.position.x += (camX - this.camera.position.x) * 0.05;
-        this.camera.position.y += (camY - this.camera.position.y) * 0.05;
+        if ((camX != null) && (camY != null) && !isNaN(camX) && !isNaN(camY)) {
+          this.camera.position.x += (camX - this.camera.position.x) * 0.05;
+          this.camera.position.y += (camY - this.camera.position.y) * 0.05;
+        }
         this.camera.lookAt(this.cameraLookAt);
       }
       this.prevMotionAnalysis.x = this.motionAnalysis.rotation.x;

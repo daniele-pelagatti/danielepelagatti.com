@@ -50,7 +50,8 @@ module.exports = (grunt)->
 
     gruntConfig.watch =
         options:
-            livereload: 35729                
+            livereload : 35729
+            interrupt  : true            
         coffee:
             files: [gruntConfig.pkg.watch_folder+"/**/*.coffee"]
             tasks: if env == "prod" then ["percolator","uglify:optional","notify:js"] else ["percolator","concat:optional","notify:js"]
@@ -65,19 +66,11 @@ module.exports = (grunt)->
             tasks: if env == "prod" then  ["jsonmin","notify:json"] else ["copy:json","notify:json"]            
         jade:
             files: [gruntConfig.pkg.watch_folder+"/**/*.{jade,md}"]
-            tasks: ["compile_markdown_files","notify:markdown"]
+            tasks: if env == "prod" then  ["compile_markdown_files","htmlmin","notify:markdown"] else ["compile_markdown_files","notify:markdown"]
 
         uglify_essential :
             files: [gruntConfig.pkg.watch_folder+"/js/essential/*.js"]
             tasks: if env == "prod" then  ["uglify:essential","notify:js"] else ["concat:essential","notify:js"]
-
-        # uglify_optional :
-        #     files: [gruntConfig.pkg.watch_folder+"/js/optional/*.js"]
-        #     tasks: ["uglify:optional"]
-        # cssmin :
-        #     files: [gruntConfig.pkg.watch_folder+"/**/*.css"]
-        #     tasks: ["cssmin"]
-
 
         imagemin :
             files: [gruntConfig.pkg.watch_folder+"/images/**/*.{jpg,png,gif}"]
@@ -265,6 +258,20 @@ module.exports = (grunt)->
                 host : deploy_user+"@danielepelagatti.com"
 
 
+    gruntConfig.htmlmin = 
+        all :
+            options: 
+                removeComments: true
+                collapseWhitespace: true
+
+            files: [
+                expand : true
+                cwd    : gruntConfig.pkg.www_folder
+                src    : ["**/*.{html,shtml}"]
+                dest   : gruntConfig.pkg.www_folder
+            ]
+
+
     gruntConfig.notify = 
         server:
             options:
@@ -301,12 +308,12 @@ module.exports = (grunt)->
     grunt.registerTask("deploy", ["rsync"]);
 
     if env == "prod"
-        grunt.registerTask("build", ["clean","imagemin","copy:include","percolator","compass","glsl_threejs","compile_markdown_files","uglify","cssmin","jsonmin","modernizr","notify:build"]);
+        grunt.registerTask("build", ["clean","imagemin","copy:include","percolator","compass","glsl_threejs","compile_markdown_files","uglify","cssmin","jsonmin","modernizr","htmlmin","notify:build"]);
         # deploy only production
     else
         grunt.registerTask("build", ["clean","imagemin","copy","percolator","compass","glsl_threejs","compile_markdown_files","concat","modernizr","notify:build"]);
     
 
-    grunt.registerTask("minify", ["copy:include","percolator","compass","glsl_threejs","compile_markdown_files","uglify","cssmin","jsonmin","modernizr"]);
+    grunt.registerTask("minify", ["copy:include","percolator","compass","glsl_threejs","compile_markdown_files","uglify","cssmin","jsonmin","modernizr","notify:build"]);
     
     grunt.registerTask("default", ["build","concurrent"]);

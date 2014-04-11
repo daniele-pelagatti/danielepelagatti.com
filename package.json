@@ -1,25 +1,27 @@
 {
   "name": "danielepelagatti.com",
   "description": "A static responsive threejs site generated using grunt tasks, jade, coffeescript, compass and markdown",
-  "destination_host": "http://www.danielepelagatti.com",
-  "www_folder": "public_html",
-  "watch_folder": "src",
-  "coffee_folder": "src/coffee",
-  "percolator_main": "main.coffee",
-  "compiled_js": "src/js/optional/main.js",
-  "compass_folder": "src/compass",
-  "compass_output_folder": "src/css",
-  "glsl_folder": "src/glsl",
-  "glsl_output_file": "src/js/optional/shaders.js",
-  "markdown_folder": "src/markdown",
-  "jade_folder": "src/jade",
-  "default_document": "index.html",
-  "js_folder": "src/js",
-  "minified_essential_js_file": "public_html/js/essential.min.js",
-  "minified_optional_js_file": "public_html/js/optional.min.js",
-  "minified_main_css_input_file": "public_html/css/main.css",
-  "minified_main_css_file": "public_html/css/main.min.css",
-  "config_json": "public_html/config.json",
+  "author": {
+    "name": "Daniele Pelagatti",
+    "email": "daniele.pelagatti@unit9.com",
+    "url": "http://www.danielepelagatti.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/redde81/danielepelagatti.com"
+  },
+  "bugs": {
+    "url": "https://github.com/redde81/danielepelagatti.com/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/redde81/danielepelagatti.com/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.10.25"
+  },
   "devDependencies": {
     "grunt-contrib-compass": "^0.7.2",
     "grunt-contrib-coffee": "^0.10.1",
@@ -45,10 +47,37 @@
     "grunt": "^0.4.4",
     "uglify-js": "^2.4.13",
     "grunt-notify": "~0.2.20",
-    "grunt-coffee-percolator": "git://github.com/redde81/grunt-coffee-percolator"
+    "grunt-coffee-percolator": "git://github.com/redde81/grunt-coffee-percolator",
+    "grunt-contrib-htmlmin": "~0.2.0"
   },
   "scripts": {
     "test": "grunt minify",
     "preinstall": "npm install -g grunt-cli coffee-script jade compass"
-  }
+  },
+  "keywords": [
+    "grunt",
+    "markdown",
+    "jade",
+    "compass",
+    "threejs"
+  ],
+  "destination_host": "http://www.danielepelagatti.com",
+  "www_folder": "public_html",
+  "watch_folder": "src",
+  "coffee_folder": "src/coffee",
+  "percolator_main": "main.coffee",
+  "compiled_js": "src/js/optional/main.js",
+  "compass_folder": "src/compass",
+  "compass_output_folder": "src/css",
+  "glsl_folder": "src/glsl",
+  "glsl_output_file": "src/js/optional/shaders.js",
+  "markdown_folder": "src/markdown",
+  "jade_folder": "src/jade",
+  "default_document": "index.html",
+  "js_folder": "src/js",
+  "minified_essential_js_file": "public_html/js/essential.min.js",
+  "minified_optional_js_file": "public_html/js/optional.min.js",
+  "minified_main_css_input_file": "public_html/css/main.css",
+  "minified_main_css_file": "public_html/css/main.min.css",
+  "config_json": "public_html/config.json"
 }

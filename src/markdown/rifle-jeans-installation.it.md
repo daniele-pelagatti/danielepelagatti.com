@@ -21,9 +21,9 @@ Preparata per la festa di apertura del primo *flagship store* a Milano, l'instal
 
 L'installazione è un canovaccio fluido che unisce una piattaforma sociale come twitter e la vita reale in una cosa sola. È una passerella della nuova collezione Rifle, vedi tutti i nuovi modelli come se stessi in prima fila alla sfilata; il risvolto è che l'installazione ti invita a salire in prima persona sulla passerella, vestito Rifle dal capo ai piedi. Tutto quello che è richiesto è twittare #RIFLEJEANS per vedere la tua faccia apparire nelle illustrazioni, in attesa di passeggiare sulla passerella del negozio.
 
-“L'utente (sulla strada davanti all'installazione) divanta il protagonista dell'installazione”, spiega il direttore creativo Francesco Bernabei, “nell'arco di un minuto si ritrova a passeggiare sull passerella Rifle nell'installazione, e il minuto dopo potrebbe indossare Jeans Rifle nella vita reale”
+"L'utente (sulla strada davanti all'installazione) divanta il protagonista dell'installazione", spiega il direttore creativo Francesco Bernabei, "nell'arco di un minuto si ritrova a passeggiare sull passerella Rifle nell'installazione, e il minuto dopo potrebbe indossare Jeans Rifle nella vita reale"
 
-“Improvvisamente tutti gli occhi sono su di te, non solo quelli dei passanti per strada ma anche quelli degli altri utenti dell'app che aspettano il loro turno al lato della passerella nell'installazione, tutti inseriti nell'illustrazione, spettatori dello show” aggiunge l'illustratore Jonathan Calugi. “L'interazione tra i tweets e l'illustrazione è affascinante - l'animazione infonde vita nei tweets ”
+"Improvvisamente tutti gli occhi sono su di te, non solo quelli dei passanti per strada ma anche quelli degli altri utenti dell'app che aspettano il loro turno al lato della passerella nell'installazione, tutti inseriti nell'illustrazione, spettatori dello show" aggiunge l'illustratore Jonathan Calugi. "L'interazione tra i tweets e l'illustrazione è affascinante - l'animazione infonde vita nei tweets"
 
 L'installazione continua a muoversi attraverso nuovi *Rifle stores* in Italia, invitando i passanti ad unirsi alla sfilata twittando #RIFLEJEANS. E come ricompensa per l'intraprendenza dei passanti, ogni 50 tweets viene inviato un tweet di risposta da rifle jeans con un codice sconto che è possibile usare nel negozio. 
 
