@@ -1,7 +1,7 @@
 {
   "name": "danielepelagatti.com",
   "description": "A static responsive threejs site generated using grunt tasks, jade, coffeescript, compass and markdown",
-  "version": "1.0",
+  "version": "1.0.0",
   "author": {
     "name": "Daniele Pelagatti",
     "email": "daniele.pelagatti@unit9.com",
