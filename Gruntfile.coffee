@@ -123,7 +123,7 @@ module.exports = (grunt)->
 
     gruntConfig.uglify =
         options :
-            banner       : "/*! <%= pkg.name %> <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
+            banner       : "/*! <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
             drop_console : true
         optional :
             files : {}
@@ -136,7 +136,7 @@ module.exports = (grunt)->
     gruntConfig.cssmin =
         all :
             options:
-                banner              : "/*! <%= pkg.name %> <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
+                banner              : "/*! <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
                 keepSpecialComments : false
             files :{}
 
