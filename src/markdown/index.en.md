@@ -14,7 +14,7 @@ description : "Daniele Pelagatti is an interactive developer living in Florence,
 # About Me #
 
 ![Daniele Pelagatti](#{base}img/daniele-pelagatti-big.jpg "Daniele Pelagatti")
-Daniele Pelagatti is an **Interactive Developer** passionately working with world class brands since 2007. 
+Daniele Pelagatti is an **Interactive Developer** e co-founder of **[MONOGRID](http://www.mono-grid.com)** passionately working with world class brands since 2007. 
 
 He specializes in bringing to life high quality digital experiences using innovative technologies. 
 
@@ -25,4 +25,4 @@ He specializes in bringing to life high quality digital experiences using innova
   * Autodesk Maya, 3ds Max, Blender & XSI
   * Adobe Products: PhotoShop, Illustrator, Flex, Flash, ActionScript 3.0 & Stage3D Rendering
 
-He currently works as _Senior Lead Developer_ at **UNIT9 Flr** and lives in Florence, Tuscany, Italy. 
+He currently works as _Co-Founder & Tech Lead_ at **MONOGRID** and lives in Florence, Tuscany, Italy. 

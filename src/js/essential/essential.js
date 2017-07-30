@@ -37,16 +37,19 @@ $(document).ready(function() {
 	$(".website-info-button").leanModal({ top : 40, overlay : 0.4, closeButton: ".modal_close" });
 
 	// load respond.js for media query incapable browsers
-	Modernizr.load({
-		test: Modernizr.mq('only all'),
-		nope : window.PAGE_BASE+"js/respond.min.js"
-	});
+	// Modernizr.load({
+	// 	test: Modernizr.mq('only all'),
+	// 	nope : window.PAGE_BASE+"js/respond.min.js"
+	// });
 
 	// load threejs site for 
-	Modernizr.load({
-		test: Modernizr.history && Modernizr.csstransforms3d && Modernizr.webgl, 
-		yep : window.PAGE_BASE+"js/optional.min.js"
-	});
+	if(Modernizr.history && Modernizr.csstransforms3d && Modernizr.webgl) {
+		$.getScript(window.PAGE_BASE+"js/optional.min.js");
+	}
+	// Modernizr.load({
+	// 	test: Modernizr.history && Modernizr.csstransforms3d && Modernizr.webgl, 
+	// 	yep : window.PAGE_BASE+"js/optional.min.js"
+	// });
 });
 
 

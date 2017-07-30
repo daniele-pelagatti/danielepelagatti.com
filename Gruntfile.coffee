@@ -146,7 +146,7 @@ module.exports = (grunt)->
     gruntConfig.modernizr =
         dist:
             devFile             : "modernizr.dev.js"
-            outputFile          : gruntConfig.pkg.www_folder+"/js/modernizr.js"
+            dest                : gruntConfig.pkg.www_folder+"/js/modernizr.js"
             uglify              : if env == "prod" then true else false
             matchCommunityTests : true
             files : 

@@ -1,0 +1,1 @@
+aws s3 cp --profile daniele --exclude "*" --include "*.json" --content-type="application/json" --metadata-directive="REPLACE" --recursive s3://danielepelagatti.com s3://danielepelagatti.com
