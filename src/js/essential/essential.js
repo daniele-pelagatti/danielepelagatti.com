@@ -56,11 +56,12 @@ $(document).ready(function() {
 WebFontConfig = {
 	google: { 
 		families: [ 'Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800:latin','Open+Sans+Condensed:300,300italic,700:latin' ] 
-	},
-	custom: {
-		families: ['FontAwesome'],
-		urls: ["http://weloveiconfonts.com/api/?family=fontawesome"]	
 	}
+	// ,
+	// custom: {
+	// 	families: ['FontAwesome'],
+	// 	urls: ["/css/weloveiconfonts.css"]	
+	// }
 };
 (function() {
 	var wf = document.createElement('script');
